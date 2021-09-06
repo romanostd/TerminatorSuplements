@@ -14,6 +14,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
+import {MatInputModule} from '@angular/material/input';
+
 
 
 
@@ -35,7 +37,9 @@ import { LoginComponent } from './views/login/login.component';
     MatButtonModule,
     MatSidenavModule,
     MatListModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatInputModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
