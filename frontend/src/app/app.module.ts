@@ -15,6 +15,8 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
 import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 
@@ -38,7 +40,10 @@ import {MatInputModule} from '@angular/material/input';
     MatSidenavModule,
     MatListModule,
     MatButtonToggleModule,
-    MatInputModule
+    MatInputModule,
+    MatCardModule,
+    ReactiveFormsModule,
+    FormsModule
     
   ],
   providers: [],

@@ -1,7 +1,10 @@
 .footer {
+    height: 50px;
     position: fixed;
     bottom: 0;
     font-size: 0.8rem;
     display: flex;
     justify-content: center;
+    background-color: black;
+    color: white;
 }
