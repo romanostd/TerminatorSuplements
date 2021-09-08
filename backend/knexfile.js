@@ -1,5 +1,3 @@
-const { db } = require('./.env')
-
 module.exports = {
 	client: 'postgresql',
 	connection: {
