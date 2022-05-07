@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
         table.increments('id').primary()
         table.string('name').notNull()
         table.integer('parantId').references('id')
-        .intTable('categories')
+        .inTable('categories')
 });
 };
 

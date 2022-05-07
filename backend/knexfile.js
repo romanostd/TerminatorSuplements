@@ -2,7 +2,7 @@ module.exports = {
 	client: 'postgresql',
 	connection: {
 		database: 'terminatordb',
-		user: 'oostgres',
+		user: 'postgres',
 		password:'123456'
 	},
 	pool: {
