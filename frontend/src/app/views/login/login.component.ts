@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   login: FormGroup = this.fb.group({
 
     email:  ['',[]],
-    senha:  ['',[]],
+    password:  ['',[]],
 })
 
 }

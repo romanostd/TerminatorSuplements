@@ -28,22 +28,19 @@ export class CreateProductComponent implements OnInit {
 
   form: FormGroup = this.fb.group({
 
-    name: [this.product?.name],
-    descreption: [this.product?.descreption],
-    imageUrl: [this.product?.imageUrl],
-    price: [this.product?.price],
-    categoryId: [this.product?.categoryId],
-    userId: [this.product?.userId],
+    name: ['',this.product?.name],
+    descreption: ['',this.product?.descreption],
+    imageUrl: ['',this.product?.imageUrl],
+    price: ['',this.product?.price],
+    categoryId: ['',this.product?.categoryId],
+    userId: ['',this.product?.userId],
   })
  
 
   async createProduct() {
 
-    Object.assign(this.product, this.form.getRawValue());
-
-    console.log(this.product)
     await this.productService.post(this.form.value);
-    this.router.navigate(['/login'])
+    this.router.navigate(['/'])
 
   }
 }
