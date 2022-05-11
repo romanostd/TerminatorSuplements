@@ -62,16 +62,18 @@ module.exports = app => {
             .catch(err => res.status(500).send(err))
     }
 
+
     const getById = (req, res) => {
         app.db('products')
             .where({ id: req.params.id })
             .first()
-            .then(products => {
-                products.content = products.content.toString()
-                return res.json(products)
-            })
+            .then(products => res.json(products))
             .catch(err => res.status(500).send(err))
     }
+
+    
+
+    
 
     const getByCategory = async (req, res) => {
         const categoryId = req.params.id

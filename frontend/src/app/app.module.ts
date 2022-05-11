@@ -19,7 +19,9 @@ import { MatCardModule } from '@angular/material/card';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ProductService } from './services/product.service';
 import { HttpClientModule } from '@angular/common/http';
-import { CreateProductComponent } from './views/create-product/create-product.component';
+import { CreateProductComponent } from './views/product/createProduct/create-product.component';
+import { ProductDetailComponent } from './views/product/product-detail/product-detail.component';
+
 // import { PlaygroundComponent } from './views/playground/playground.component';
 
 
@@ -36,6 +38,7 @@ import { CreateProductComponent } from './views/create-product/create-product.co
     HomeComponent,
     LoginComponent,
     CreateProductComponent,
+    ProductDetailComponent,
     // PlaygroundComponent
    
   ],

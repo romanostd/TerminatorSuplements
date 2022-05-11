@@ -24,12 +24,7 @@ export class ProductService {
     return await this.http.post<Product>(endpoint, produto).toPromise()
 }
 
-// async register(produto: Product) {
-//   const endpoint = `https://petstore.swagger.io/v2/user`;
-//   const message = await this.http.post<Product>(endpoint, produto).toPromise();
-  
-//   return produto;
-// }
+
 
   async get(){
     const result = await this.http.get<Product[]>('http://localhost:3000/products').toPromise();
