@@ -21,7 +21,7 @@ module.exports = app => {
         .put(app.api.category.save)
         .delete(app.api.category.remove)
 
-    app.route('/products')
+    app.route('/products/')
         .get(app.api.products.get)
         .post(app.api.products.save)
 

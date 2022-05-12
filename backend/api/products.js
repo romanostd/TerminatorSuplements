@@ -73,8 +73,6 @@ module.exports = app => {
 
     
 
-    
-
     const getByCategory = async (req, res) => {
         const categoryId = req.params.id
         const page = req.query.page || 1
