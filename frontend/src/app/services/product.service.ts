@@ -30,7 +30,7 @@ export class ProductService {
 
   // }
 
-  getById(id: number): Observable<Product> {
+  getById(id: any): Observable<Product> {
     const url = `http://localhost:3000/products/${id}`
     return this.http.get<Product>(url)
   }

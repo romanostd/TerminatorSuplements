@@ -18,11 +18,11 @@ const routes: Routes = [{
   component: LoginComponent
 },
 {
-  path: "product",
+  path: "product/create",
   component: CreateProductComponent
 },
 {
-  path: "detail",
+  path: "product/detail/:id",
   component: ProductDetailComponent
 }
 ];

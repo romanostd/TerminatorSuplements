@@ -9,23 +9,18 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private productService : ProductService) { }
+  constructor(private productService: ProductService) { }
 
   products?: Product[]
-  
+
 
   async ngOnInit() {
-    this.products = await  this.productService.get()
-    console.log(this.products)
-    
+    this.products = await this.productService.get()
   }
-  // ngOnInit(): void {
-  //  this.productService.get().subscribe(products => {
-  //    this.products = products
-  //    console.log(this.products)
-  //  })
 
-   
+  selecionar(product: Product) {
   }
+
+}
 
 

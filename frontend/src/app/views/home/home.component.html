@@ -1,18 +1,17 @@
 <div class="container mt-5">
-        <ng-container *ngFor="let product of products">
-            <div class="col-4 mt-3">
-                <!-- Cards with media area -->
-                <mat-card class="example-card" routerLink="/detail">
-                    <mat-card-title-group>
-                        <mat-card-title>{{product.name}}</mat-card-title>
-                        <mat-card-subtitle>{{product.descreption}}</mat-card-subtitle>
-                        <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
-                    </mat-card-title-group>
-                    <mat-card-content>
-                        R${{product.price}},00
-                    </mat-card-content>
-                </mat-card>
-            </div>
-        </ng-container>
- 
+    <ng-container *ngFor="let product of products">
+        <div class="col-4 mt-3">
+            <!-- Cards with media area -->
+            <mat-card (click)="selecionar(product)" class="example-card" routerLink="product/detail/{{product.id}}">
+                <mat-card-title-group>
+                    <mat-card-title>{{product.name}}</mat-card-title>
+                    <mat-card-subtitle>{{product.descreption}}</mat-card-subtitle>
+                    <img mat-card-sm-image src="{{product.imageUrl}}">
+                </mat-card-title-group>
+                <mat-card-content>
+                    R${{product.price}},00
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </ng-container>
 </div>
