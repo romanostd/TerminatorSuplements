@@ -3,8 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
-import { CreateProductComponent } from './views/product/createProduct/create-product.component';
-import { ProductDetailComponent } from './views/product/product-detail/product-detail.component';
+import { ProductCreateComponent } from './views/product/productCreate/product-create.component';
+import { ProductDetailComponent } from './views/product/productDetail/product-detail.component';
 
 
 
@@ -19,7 +19,7 @@ const routes: Routes = [{
 },
 {
   path: "product/create",
-  component: CreateProductComponent
+  component: ProductCreateComponent
 },
 {
   path: "product/detail/:id",

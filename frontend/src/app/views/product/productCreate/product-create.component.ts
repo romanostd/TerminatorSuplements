@@ -5,11 +5,11 @@ import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/models/product.model';
 
 @Component({
-  selector: 'app-create-product',
-  templateUrl: './create-product.component.html',
-  styleUrls: ['./create-product.component.scss']
+  selector: 'app-product-create',
+  templateUrl: './product-create.component.html',
+  styleUrls: ['./product-create.component.scss']
 })
-export class CreateProductComponent implements OnInit {
+export class ProductCreateComponent implements OnInit {
 
 
 
