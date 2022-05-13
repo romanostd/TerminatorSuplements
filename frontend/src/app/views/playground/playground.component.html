@@ -1,1 +1,172 @@
-<p>playground works!</p>
+<!-- <mat-toolbar class="ignore-print">
+    <div (click)="$event.stopImmediatePropagation(); pesquisaContainerActived=true" class="pesquisa-container"
+        [class.active]="pesquisaContainerActived">
+        <div style="display: flex; flex-direction: row; align-items: center;">
+            <mat-form-field style="flex: auto;">
+                <mat-label>Selecione um Estabelecimento</mat-label>
+                <mat-select [(ngModel)]="estabelecimentoCnpj">
+                    <mat-option *ngFor="let estabelecimento of estabelecimentos"  [value]="estabelecimento.cnpj">
+                        <div class="documento">
+                            <div class="info">
+                                {{estabelecimento.nomeCompleto}}
+                            </div>
+                            <div class="chave-acesso">
+                                {{ estabelecimento.cnpj | cnpjCpf}}
+                            </div>
+                        </div>
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <button mat-icon-button (click)="pesquisaContainerActived = !pesquisaContainerActived" matTooltip="Opções">
+                <mat-icon>tune</mat-icon>
+            </button>
+            <button mat-icon-button (click)="obterPosicao()" matTooltip="Pesquisar">
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
+        <div class="options">
+            <div class="row">
+
+                <mat-form-field style="width: 140px;">
+                    <mat-label>A partir de</mat-label>
+                    <input matInput type="text" autocomplete="off" [(ngModel)]="dataInicial"
+                        [matDatepicker]="pickerInicio">
+                    <mat-datepicker-toggle matSuffix [for]="pickerInicio"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerInicio></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field style="width: 140px;">
+                    <mat-label>Até</mat-label>
+                    <input matInput type="text" autocomplete="off" [(ngModel)]="dataFinal" [matDatepicker]="pickerFim">
+                    <mat-datepicker-toggle matSuffix [for]="pickerFim"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerFim></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <label class="example-margin" style="margin-left: 20px">Ordenar Por:</label>
+            <div class="row" style="justify-content: unset; margin-left: 20px">
+                <mat-radio-group [(ngModel)]="ordenacao">
+                    <mat-radio-button class="example-margin" value="Codigo">Código</mat-radio-button>
+                    <mat-radio-button class="example-margin" value="Descricao">Descrição</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="row" style="justify-content: unset; margin-left: 5px">
+                <mat-checkbox [(ngModel)]="comEstoque" class="example-margin">Com Estoque</mat-checkbox>
+                <mat-checkbox [(ngModel)]="semEstoque" class="example-margin">Sem Estoque</mat-checkbox>
+            </div>
+        </div>
+    </div>
+
+</mat-toolbar>
+<div class="row" style="margin-left: 16px; font-weight: bold"> saldo financeiro utilizando:</div>
+<div class="filtro ignore-print" style="margin-top:-10px">
+    <div class="row">
+        <mat-checkbox [(ngModel)]="custoMedio" (change)="alteraDisplayedColumns()">custo médio</mat-checkbox>
+        <mat-checkbox [(ngModel)]="precoCompraAtual" (change)="alteraDisplayedColumns()">preço compra atual
+        </mat-checkbox>
+        <mat-checkbox [(ngModel)]="custoCompraAtual" (change)="alteraDisplayedColumns()">custo compra atual
+        </mat-checkbox>
+    </div>
+    <span style="flex: auto;"></span>
+    <mat-form-field class="pesquisa">
+        <mat-label>Filtrar Produtos</mat-label>
+        <input matInput [(ngModel)]="pesquisaInput" (keyup)="filtrarLista()" placeholder="Filtrar Produtos">
+    </mat-form-field>
+    <button mat-icon-button matTooltip="Imprimir" (click)="imprimirRelatorio()">
+        <mat-icon>local_printshop</mat-icon>
+    </button>
+</div>
+<div class="table-container">
+
+    <table mat-table [dataSource]="filteredList">
+
+        <ng-container matColumnDef="gtin">
+            <th mat-header-cell *matHeaderCellDef style="text-align: start;">Código</th>
+            <td mat-cell *matCellDef="let element" style="text-align: start;">{{element.gtin}}</td>
+            <td mat-footer-cell *matFooterCellDef> </td>
+
+        </ng-container>
+
+        <ng-container matColumnDef="descricao">
+            <th mat-header-cell *matHeaderCellDef style="text-align: start;">Descrição</th>
+            <td mat-cell *matCellDef="let element" style="text-align: start;">{{element.descricao}}</td>
+            <td mat-footer-cell *matFooterCellDef> </td>
+
+        </ng-container>
+
+        <ng-container matColumnDef="quantidadeEntradas">
+            <th mat-header-cell *matHeaderCellDef style="padding-right: 5px;">Qtd.Entrada</th>
+            <td mat-cell *matCellDef="let element"style="padding-right: 5px;" >{{element.valorEntradas | number: '1.2'}}
+            </td>
+            <td mat-footer-cell *matFooterCellDef> {{entradas | currency: 'BRL'}} </td>
+
+        </ng-container>
+
+        <ng-container matColumnDef="quantidadeSaidas">
+            <th mat-header-cell *matHeaderCellDef>Qtd.Saída</th>
+            <td mat-cell *matCellDef="let element">
+                {{element.quantidadeSaidas | number: '1.2'}}</td>
+            <td mat-footer-cell *matFooterCellDef>{{saidas | currency: 'BRL'}} </td>
+
+        </ng-container>
+
+        <ng-container matColumnDef="saldoEstoqueQuantidade">
+            <th mat-header-cell *matHeaderCellDef>Saldo Qtd.</th>
+            <td mat-cell *matCellDef="let element">
+                {{element.saldoEstoqueQuantidade | number: '1.2'}}</td>
+            <td mat-footer-cell *matFooterCellDef> {{ saldoQuantidade | currency: 'BRL' }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="saldoEstoqueValor">
+            <th mat-header-cell *matHeaderCellDef style="text-align: right;">Saldo Fin.</th>
+            <td mat-cell *matCellDef="let element" style="text-align: right;">{{element.valorFinal | number: '1.2'}}
+            </td>
+            <td mat-footer-cell *matFooterCellDef style="text-align: right;"> {{saldoFinCustoMedio | currency: 'BRL'}}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ultimaAquisicaoPrecoUnitario">
+            <th mat-header-cell *matHeaderCellDef style="text-align: right;">Ult.Aq Preço Unitário</th>
+            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                {{element.ultimaAquisicaoPrecoUnitario | number: '1.2'}}</td>
+            <td mat-footer-cell *matFooterCellDef style="text-align: right;">
+                {{ultimaAquisicaoPrecoUnitario | currency: 'BRL'}}</td>
+
+        </ng-container>
+
+        <ng-container matColumnDef="ultimaAquisicaoCustoUnitario">
+            <th mat-header-cell *matHeaderCellDef style="text-align: right;">Ult.Aq.Custo Unitário</th>
+            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                {{element.ultimaAquisicaoCustoUnitario | number: '1.2'}}</td>
+            <td mat-footer-cell *matFooterCellDef style="text-align: right;">
+                {{ultimaAquisicaoCustoUnitario | currency: 'BRL'}} </td>
+
+        </ng-container>
+
+        <ng-container matColumnDef="precoUnitario">
+            <th mat-header-cell *matHeaderCellDef style="text-align: right;">Preço Unitário Aq.Ult.Data</th>
+            <td mat-cell *matCellDef="let element" style="text-align: right;">{{element.precoUnitario | number: '1.2'}}
+            </td>
+            <td mat-footer-cell *matFooterCellDef style="text-align: right;"> {{saldoFinCustoCompra | currency: 'BRL'}}
+            </td>
+
+        </ng-container>
+
+        <ng-container matColumnDef="saldoEstoqueCustoUnitarioAquisicao">
+            <th mat-header-cell *matHeaderCellDef style="text-align: right;" style="min-width: 100px;">Saldo Custo Compra Data</th>
+            <td mat-cell *matCellDef="let element" style="text-align: right;">
+                {{element.saldoEstoqueCustoUnitarioAquisicao | number: '1.2'}}</td>
+            <td mat-footer-cell *matFooterCellDef style="text-align: right;">
+                {{saldoFinCustoCompra | currency: 'BRL'}} </td>
+
+        </ng-container>
+
+        <tr style="text-align: right;" mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-footer-row *matFooterRowDef="displayedColumns; sticky: true"></tr>
+
+    </table>
+
+    <h4 class="mensagem-lista-vazia" *ngIf="filteredList.length === 0">Lista vazia </h4>
+
+</div> -->

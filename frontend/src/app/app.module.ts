@@ -22,6 +22,10 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { ProductDetailComponent } from './views/product/productDetail/product-detail.component';
 import { ProductCreateComponent } from './views/product/productCreate/product-create.component';
+import { ProductsComponent } from './views/product/products/products.component';
+import {MatTableModule} from '@angular/material/table';
+
+
 
 // import { PlaygroundComponent } from './views/playground/playground.component';
 
@@ -40,10 +44,12 @@ import { ProductCreateComponent } from './views/product/productCreate/product-cr
     LoginComponent,
     ProductCreateComponent,
     ProductDetailComponent,
+    ProductsComponent,
     // PlaygroundComponent
    
   ],
   imports: [
+    MatTableModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
