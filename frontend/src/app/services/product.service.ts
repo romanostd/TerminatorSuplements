@@ -19,20 +19,18 @@ export class ProductService {
   }
 
   async get() {
-
-
     const result = await this.http.get<Product[]>('http://localhost:3000/products').toPromise();
     return result;
   }
 
-  // async getById(id: number) {
-  //   return await this.http.get<Product[]>(`http://localhost:3000/products/${id}`).toPromise();
-
-  // }
-
   getById(id: any): Observable<Product> {
     const url = `http://localhost:3000/products/${id}`
     return this.http.get<Product>(url)
+  }
+
+  remove(id: any): Observable<Product> {
+    const url = `http://localhost:3000/products/${id}`
+    return this.http.delete<Product>(url)
   }
 
 

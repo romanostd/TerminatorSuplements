@@ -22,7 +22,7 @@
 
     <ng-container matColumnDef="action">
         <th mat-header-cell *matHeaderCellDef> Ações </th>
-        <td mat-cell *matCellDef="let element"><button mat-icon-button class="example-icon favorite-icon"
+        <td mat-cell *matCellDef="let element"><button (click)="delete(element)" mat-icon-button class="example-icon favorite-icon"
                 aria-label="Example icon-button with heart icon">
                 <mat-icon class="black"><span class="material-symbols-outlined">delete</span></mat-icon>
             </button>
