@@ -21,12 +21,9 @@ export class ProductsComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'action'];
 
 
-   delete(lista: Product) {
-  
+  delete(lista: Product) {
     this.productService.remove(lista.id).subscribe()
     this.lista.splice(this.lista.indexOf(lista), 1);
-    this.lista = [...this.lista]; 
+    this.lista = [...this.lista];
   }
-
-
 }
