@@ -24,6 +24,7 @@ import { ProductDetailComponent } from './views/product/productDetail/product-de
 import { ProductCreateComponent } from './views/product/productCreate/product-create.component';
 import { ProductsComponent } from './views/product/products/products.component';
 import {MatTableModule} from '@angular/material/table';
+import { ProductComponent } from './views/product/products/product/product.component';
 
 
 
@@ -45,6 +46,7 @@ import {MatTableModule} from '@angular/material/table';
     ProductCreateComponent,
     ProductDetailComponent,
     ProductsComponent,
+    ProductComponent,
     // PlaygroundComponent
    
   ],
