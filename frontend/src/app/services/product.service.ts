@@ -18,6 +18,11 @@ export class ProductService {
     return await this.http.post<Product>(endpoint, produto).toPromise()
   }
 
+  async put(produto: Product, id: any) {
+    const endpoint = `http://localhost:3000/products/${id}`
+    return await this.http.put<Product>(endpoint, produto).toPromise()
+  }
+
   async get() {
     const result = await this.http.get<Product[]>('http://localhost:3000/products').toPromise();
     return result;

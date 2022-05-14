@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
+import { ProductComponent } from './product/product.component';
 
 @Component({
   selector: 'app-products',
@@ -9,7 +11,8 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService,
+    public dialog: MatDialog) { }
 
   lista: Product[] = []
 
@@ -18,6 +21,7 @@ export class ProductsComponent implements OnInit {
     this.lista = await this.productService.get()
   }
 
+
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'action'];
 
 
@@ -25,5 +29,17 @@ export class ProductsComponent implements OnInit {
     this.productService.remove(lista.id).subscribe()
     this.lista.splice(this.lista.indexOf(lista), 1);
     this.lista = [...this.lista];
+  }
+
+
+  openDialog(data: Product) {
+    const dialogRef = this.dialog.open(ProductComponent, {
+      data: data,
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+      this.lista = [...this.lista];
+    });
   }
 }
