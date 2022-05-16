@@ -43,6 +43,8 @@ export class ProductComponent implements OnInit {
 
   async createProduct() {
     await this.productService.put(this.form.value , this.data.id);
+    this.dialogRef.close(this.form.value);
+    console.log(this.form.value)
   }
 
 }

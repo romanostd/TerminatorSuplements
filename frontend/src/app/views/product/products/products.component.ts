@@ -38,8 +38,10 @@ export class ProductsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-      this.lista = [...this.lista];
+      console.log(result);
+      const index = result.id
+      this.lista[0] = result
+      // this.lista = [...result];
     });
   }
 }
