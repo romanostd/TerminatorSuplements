@@ -1,3 +1,4 @@
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -20,32 +21,37 @@ export class ProductComponent implements OnInit {
   ) { }
 
   product?: Product
+  title = 'CRIAR PRODUTO'
 
   ngOnInit(): void {
-    
-    this.productService.getById(this.data.id).subscribe(product => {
-      this.product = product
-    })
-  }
 
-  
+    if (this.data != undefined) {
+      this.productService.getById(this.data.id).subscribe(product => {
+        this.product = product
+      })
+      this.title = 'EDITAR PRODUTO'
+    }
+  }
 
   form: FormGroup = this.fb.group({
 
-    name: [this.data.name,this.product?.name],
-    descreption: [this.data.descreption,this.product?.descreption],
-    imageUrl: [this.data.imageUrl,this.product?.imageUrl],
-    price: [this.data.price,this.product?.price],
-    categoryId: [this.data.categoryId,this.product?.categoryId],
-    userId: [this.data.categoryId,this.product?.userId],
+    name: [this.data?.name, this.product?.name],
+    descreption: [this.data?.descreption, this.product?.descreption],
+    imageUrl: [this.data?.imageUrl, this.product?.imageUrl],
+    price: [this.data?.price, this.product?.price],
+    categoryId: [this.data?.categoryId, this.product?.categoryId],
+    userId: [this.data?.categoryId, this.product?.userId],
   })
- 
 
-  async createProduct() {
-    await this.productService.put(this.form.value , this.data.id);
+
+  async saveProduct() {
+    if (this.data != undefined) {
+      await this.productService.put(this.form.value, this.data.id);
+    }
+    else {
+      await this.productService.post(this.form.value);
+    }
     this.dialogRef.close(this.form.value);
-    console.log(this.form.value)
-    
   }
 
 }

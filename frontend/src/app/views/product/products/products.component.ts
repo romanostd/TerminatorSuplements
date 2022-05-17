@@ -24,6 +24,8 @@ export class ProductsComponent implements OnInit {
 
   displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'action'];
 
+  pesquisar(query: string){}
+
 
   delete(lista: Product) {
     this.productService.remove(lista.id).subscribe()
@@ -32,7 +34,7 @@ export class ProductsComponent implements OnInit {
   }
 
 
-   openDialog(data: Product) {
+   openDialog(data?: Product) {
     const dialogRef = this.dialog.open(ProductComponent, {
       data: data,
     });

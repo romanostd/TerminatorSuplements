@@ -17,10 +17,10 @@ const routes: Routes = [{
   path: "login",
   component: LoginComponent
 },
-{
-  path: "product/create",
-  component: ProductCreateComponent
-},
+// {
+//   path: "product/create",
+//   component: ProductCreateComponent
+// },
 {
   path: "product/detail/:id",
   component: ProductDetailComponent
