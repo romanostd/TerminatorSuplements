@@ -32,16 +32,13 @@ export class ProductsComponent implements OnInit {
   }
 
 
-  openDialog(data: Product) {
+   openDialog(data: Product) {
     const dialogRef = this.dialog.open(ProductComponent, {
       data: data,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      const index = result.id
-      this.lista[0] = result
-      // this.lista = [...result];
+    dialogRef.afterClosed().subscribe(async result => {
+      this.lista = await this.productService.get()
     });
   }
 }

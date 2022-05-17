@@ -37,7 +37,7 @@ export class ProductComponent implements OnInit {
     imageUrl: [this.data.imageUrl,this.product?.imageUrl],
     price: [this.data.price,this.product?.price],
     categoryId: [this.data.categoryId,this.product?.categoryId],
-    userId: [this.product?.userId,this.product?.userId],
+    userId: [this.data.categoryId,this.product?.userId],
   })
  
 
@@ -45,6 +45,7 @@ export class ProductComponent implements OnInit {
     await this.productService.put(this.form.value , this.data.id);
     this.dialogRef.close(this.form.value);
     console.log(this.form.value)
+    
   }
 
 }
