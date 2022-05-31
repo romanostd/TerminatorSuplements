@@ -12,8 +12,8 @@ module.exports = app => {
         const user = { ...req.body }
         if(req.params.id) user.id = req.params.id
 
-        if(!req.originalUrl.startsWith('/users')) user.admin = false
-        if(!req.user || !req.user.admin) user.admin = false
+        // if(!req.originalUrl.startsWith('/users')) user.admin = false
+        // if(!req.user || !req.user.admin) user.admin = false
 
         try {
             existsOrError(user.nome, 'Nome não informado')
@@ -63,22 +63,22 @@ module.exports = app => {
             .first()
             .then(user => res.json(user))
             .catch(err => res.status(500).send(err))
-    }
+    }   
 
     const remove = async (req, res) => {
         try {
-            const articles = await app.db('articles')
-                .where({ userId: req.params.id })
-            notExistsOrError(articles, 'Usuário possui artigos.')
-
-            const rowsUpdated = await app.db('users')
-                .update({ deletedAt: new Date() })
-                .where({ id: req.params.id })
-            existsOrError(rowsUpdated, 'Usuário não foi encontrado.')
+            const rowsDeleted = await app.db('users')
+                .where({ id: req.params.id }).del()
+            
+            try {
+                existsOrError(rowsDeleted, 'Usuário não foi encontrado.')
+            } catch(msg) {
+                return res.status(400).send(msg)    
+            }
 
             res.status(204).send()
-        } catch (msg) {
-            res.status(400).send(msg)
+        } catch(msg) {
+            res.status(500).send(msg)
         }
     }
 

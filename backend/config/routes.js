@@ -5,8 +5,9 @@ module.exports = app => {
         .get(app.api.user.get)
 
     app.route('/users/:id')
+        .get(app.api.user.getById)
         .put(app.api.user.save)
-
+        .delete(app.api.user.remove)
 
     app.route('/categories')
         .get(app.api.category.get)
