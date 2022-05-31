@@ -26,6 +26,7 @@ import { ProductsComponent } from './views/product/products/products.component';
 import {MatTableModule} from '@angular/material/table';
 import { ProductComponent } from './views/product/products/product/product.component';
 import { UsersComponent } from './views/user/users/users.component';
+import { UserComponent } from './views/user/users/user/user.component';
 
 
 
@@ -49,6 +50,7 @@ import { UsersComponent } from './views/user/users/users.component';
     ProductsComponent,
     ProductComponent,
     UsersComponent,
+    UserComponent,
     // PlaygroundComponent
    
   ],

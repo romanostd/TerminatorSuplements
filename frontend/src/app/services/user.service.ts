@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,5 +12,30 @@ export class UserService {
     private http: HttpClient,
   ) {
     this.http = http;
+  }
+
+  async post(user: User) {
+    const endpoint = 'http://localhost:3000/user'
+    return await this.http.post<User>(endpoint, user).toPromise()
+  }
+
+  async put(user: User, id: any) {
+    const endpoint = `http://localhost:3000/user/${id}`
+    return await this.http.put<User>(endpoint, user).toPromise()
+  }
+
+  async get() {
+    const result = await this.http.get<User[]>('http://localhost:3000/user').toPromise();
+    return result;
+  }
+
+  getById(id: any): Observable<User> {
+    const url = `http://localhost:3000/user/${id}`
+    return this.http.get<User>(url)
+  }
+
+  remove(id: any): Observable<User> {
+    const url = `http://localhost:3000/user/${id}`
+    return this.http.delete<User>(url)
   }
 }
