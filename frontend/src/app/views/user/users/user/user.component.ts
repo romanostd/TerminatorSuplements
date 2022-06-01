@@ -34,7 +34,7 @@ export class UserComponent implements OnInit {
 
   form: FormGroup = this.fb.group({
 
-    name: [this.data?.nome, this.user?.nome],
+    nome: [this.data?.nome, this.user?.nome],
     email: [this.data?.email, this.user?.email],
     password: [this.data?.password, this.user?.password],
     admin: [this.data?.admin, this.user?.admin],
