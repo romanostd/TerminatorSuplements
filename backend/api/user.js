@@ -1,4 +1,5 @@
 const bcrypt = require('bcrypt-nodejs')
+const jwt = require('jsonwebtoken');
 
 module.exports = app => {
     const { existsOrError, notExistsOrError, equalsOrError } = app.api.validation
@@ -10,7 +11,7 @@ module.exports = app => {
 
     const save = async (req, res) => {
         const user = { ...req.body }
-        if(req.params.id) user.id = req.params.id
+        if (req.params.id) user.id = req.params.id
 
         // if(!req.originalUrl.startsWith('/users')) user.admin = false
         // if(!req.user || !req.user.admin) user.admin = false
@@ -22,17 +23,17 @@ module.exports = app => {
 
             const userFromDB = await app.db('users')
                 .where({ email: user.email }).first()
-            if(!user.id) {
+            if (!user.id) {
                 notExistsOrError(userFromDB, 'Usuário já cadastrado')
             }
-        } catch(msg) {
+        } catch (msg) {
             return res.status(400).send(msg)
         }
 
         user.password = encryptPassword(user.password)
         delete user.confirmPassword
 
-        if(user.id) {
+        if (user.id) {
             app.db('users')
                 .update(user)
                 .where({ id: user.id })
@@ -44,6 +45,43 @@ module.exports = app => {
                 .insert(user)
                 .then(_ => res.status(204).send())
                 .catch(err => res.status(500).send(err))
+        }
+    }
+
+    const login = async (req, res) => {
+
+        try {
+
+            var results = await app.db('users').select("*").where({ email: req.body.email })
+            console.log(results)
+            console.log(results[0].password)
+            console.log(req.body.password)
+            if (results.length < 1) {
+                return res.status(401).send({ message: 'Falha na autenticação1' })
+            }
+
+            if (await bcrypt.compareSync(req.body.password, results[0].password)) {
+                console.log('entrou')
+                const token = jwt.sign({
+                    id: results[0].id,
+                    email: results[0].email
+                },
+
+                    segredo = 'segredo',
+                {
+                    expiresIn: "1h"
+                }
+                );
+                return res.status(200).send({
+                    message: 'Autenticado com sucesso',
+                    token: token
+                });
+            }
+            return res.status(401).send({ message: 'Falha na autenticação2' })
+
+        } catch (error) {
+            console.log(error)
+            return res.status(500).send({ message: 'Falha na autenticação3' });
         }
     }
 
@@ -63,24 +101,25 @@ module.exports = app => {
             .first()
             .then(user => res.json(user))
             .catch(err => res.status(500).send(err))
-    }   
+    }
 
     const remove = async (req, res) => {
         try {
             const rowsDeleted = await app.db('users')
                 .where({ id: req.params.id }).del()
-            
+
             try {
                 existsOrError(rowsDeleted, 'Usuário não foi encontrado.')
-            } catch(msg) {
-                return res.status(400).send(msg)    
+            } catch (msg) {
+                return res.status(400).send(msg)
             }
 
             res.status(204).send()
-        } catch(msg) {
+        } catch (msg) {
             res.status(500).send(msg)
         }
     }
 
-    return { save, get, getById, remove }
+
+    return { save, get, getById, remove, login }
 }

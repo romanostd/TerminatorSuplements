@@ -4,6 +4,9 @@ module.exports = app => {
         .post(app.api.user.save)
         .get(app.api.user.get)
 
+    app.route('/login')
+        .post(app.api.user.login)
+        
     app.route('/users/:id')
         .get(app.api.user.getById)
         .put(app.api.user.save)
