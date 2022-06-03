@@ -53,11 +53,9 @@ module.exports = app => {
         try {
 
             var results = await app.db('users').select("*").where({ email: req.body.email })
-            console.log(results)
-            console.log(results[0].password)
-            console.log(req.body.password)
+           
             if (results.length < 1) {
-                return res.status(401).send({ message: 'Falha na autenticação1' })
+                return res.status(401).send({ message: 'Falha na autenticação' })
             }
 
             if (await bcrypt.compareSync(req.body.password, results[0].password)) {
@@ -77,11 +75,11 @@ module.exports = app => {
                     token: token
                 });
             }
-            return res.status(401).send({ message: 'Falha na autenticação2' })
+            return res.status(401).send({ message: 'Falha na autenticação' })
 
         } catch (error) {
             console.log(error)
-            return res.status(500).send({ message: 'Falha na autenticação3' });
+            return res.status(500).send({ message: 'Falha na autenticação' });
         }
     }
 
