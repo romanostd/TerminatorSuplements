@@ -72,7 +72,9 @@ module.exports = app => {
                 );
                 return res.status(200).send({
                     message: 'Autenticado com sucesso',
-                    token: token
+                    token: token,
+                    id: results[0].id,
+                    nome: results[0].nome
                 });
             }
             return res.status(401).send({ message: 'Falha na autenticação' })

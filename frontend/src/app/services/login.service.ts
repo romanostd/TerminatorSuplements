@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable} from 'rxjs';
+import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { tap } from 'rxjs/operators';
+import { Product } from '../models/product.model';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +14,10 @@ export class LoginService {
   constructor(
     private http: HttpClient,
   ) {
-    this.http = http;   
+    this.http = http;
   }
 
-  user?: User
+  user?: any
 
   // async login(email: string, password: string) {
   //   const endpoint = 'http://localhost:3000/login'
@@ -26,9 +28,19 @@ export class LoginService {
     return this.user != undefined
   }
 
-  login(email: string, password: string): Observable<User> {
+  login(email: string, password: string): Observable<any> {
     const url = 'http://localhost:3000/login'
-    return this.http.post<User>(url, {email: email, password: password}).pipe(tap(user => this.user = user)
-  )}
+    return this.http.post<any>(url, { email: email, password: password }).pipe(tap(user => this.user = user)
+    )
+  }
+
+  getToken(): any {
+
+    let headers = new HttpHeaders
+    if (this.isLoggedIn()) {
+      headers = headers.set('Authorization', `bearer ${this.user?.token}`)
+    }
+    return headers
+  }
 
 }
