@@ -1,17 +1,26 @@
 <mat-toolbar class="header">
-    <button mat-icon-button  class="example-icon" aria-label="Example icon-button with menu icon">
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
     </button>
-   
-    <span  routerLink="/"><img class="logo" src="../../../../assets/img/logo.png"></span>
+
+    <span routerLink="/"><img class="logo" src="../../../../assets/img/logo.png"></span>
     <mat-form-field class="search-field">
         <input type="search" matInput placeholder="Search" value="">
     </mat-form-field>
     <span class="example-spacer"></span>
-    <button routerLink="/login" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon class="white">login</mat-icon>
-    </button>
-    <button routerLink="/products" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+
+    <span *ngIf="isLoggedIn(); else notLoggedIn">
+        Olá, {{user().nome}} | <a (click)="logout()">Sair</a>
+    </span>
+    <ng-template #notLoggedIn>
+        <button routerLink="/login" mat-icon-button class="example-icon favorite-icon"
+            aria-label="Example icon-button with heart icon">
+            <mat-icon class="white">login</mat-icon>
+        </button>
+    </ng-template>
+
+    <button routerLink="/products" mat-icon-button class="example-icon favorite-icon"
+        aria-label="Example icon-button with heart icon">
         <mat-icon class="white">admin_panel_settings</mat-icon>
     </button>
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">

@@ -20,9 +20,6 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit() {
     this.products = await this.productService.get()
-    this.any =this.loginService.getToken()
-    console.log(this.any)
-
   }
 
   selecionar(product: Product) {

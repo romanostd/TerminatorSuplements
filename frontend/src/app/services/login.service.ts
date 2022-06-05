@@ -34,13 +34,16 @@ export class LoginService {
     )
   }
 
-  getToken(): any {
+  logout() {
+    this.user = undefined
+  }
 
+  getToken(): any {
     let headers = new HttpHeaders
     if (this.isLoggedIn()) {
       headers = headers.set('Authorization', `bearer ${this.user?.token}`)
     }
-    return headers
+    return this.user
   }
 
 }
