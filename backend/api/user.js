@@ -74,7 +74,8 @@ module.exports = app => {
                     message: 'Autenticado com sucesso',
                     token: token,
                     id: results[0].id,
-                    nome: results[0].nome
+                    nome: results[0].nome,
+                    admin: results[0].admin
                 });
             }
             return res.status(401).send({ message: 'Falha na autenticação' })
