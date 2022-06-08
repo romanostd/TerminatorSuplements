@@ -10,10 +10,13 @@
 }
 
 .img {
+  display: flex;
     max-width:380px !important;
     max-height:380px !important;
     width: 300px;
     height: 300px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 button, button::after {
