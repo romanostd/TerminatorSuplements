@@ -59,7 +59,7 @@ module.exports = app => {
             }
 
             if (await bcrypt.compareSync(req.body.password, results[0].password)) {
-                console.log('entrou')
+
                 const token = jwt.sign({
                     id: results[0].id,
                     email: results[0].email

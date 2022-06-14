@@ -7,6 +7,4 @@ export interface Product {
     price: number,
     categoryId?: number,
     userId?: number
-
-
 }
