@@ -28,6 +28,8 @@ import { ProductComponent } from './views/product/products/product/product.compo
 import { UsersComponent } from './views/user/users/users.component';
 import { UserComponent } from './views/user/users/user/user.component';
 import { LOCALE_ID } from '@angular/core';
+import { CategoriesComponent } from './views/categories/categories.component';
+import { CategoryComponent } from './views/categories/category/category.component';
 
 
 
@@ -52,6 +54,8 @@ import { LOCALE_ID } from '@angular/core';
     ProductComponent,
     UsersComponent,
     UserComponent,
+    CategoriesComponent,
+    CategoryComponent,
     // PlaygroundComponent
    
   ],
