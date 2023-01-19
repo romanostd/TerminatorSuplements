@@ -12,7 +12,7 @@ para rodar o backend:
 - rode o comando "knex migrate:latest", ele criara as tabelas de acordo com as migrations do projeto.
 
 - e por fim, para levantar o backend, rode o comando "npm start"
-====================================================================================================================================
+=========================================================================================
 
 para rodar o frontend:
 
