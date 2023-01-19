@@ -33,6 +33,11 @@ export class CategoriesService {
     return this.http.delete<Categories>(url)
   }
 
+  getById(id: any): Observable<Categories> {
+    const url = `http://localhost:3000/Categories/${id}`
+    return this.http.get<Categories>(url)
+  }
+
 
 
 }
