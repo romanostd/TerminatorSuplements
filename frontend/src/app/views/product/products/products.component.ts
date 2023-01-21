@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
+import { LoginService } from 'src/app/services/login.service';
 import { ProductService } from 'src/app/services/product.service';
 import { ProductComponent } from './product/product.component';
 
@@ -11,13 +13,17 @@ import { ProductComponent } from './product/product.component';
 })
 export class ProductsComponent implements OnInit {
 
-  constructor(private productService: ProductService,
-    public dialog: MatDialog) { }
+  constructor(private productService: ProductService, private loginService : LoginService,
+    public dialog: MatDialog, private router : Router) { }
 
   lista: Product[] = []
 
 
   async ngOnInit() {
+
+    if(this.loginService.user.admin != true)
+    this.router.navigate(['login'])
+    
     this.lista = await this.productService.get()
   }
 
