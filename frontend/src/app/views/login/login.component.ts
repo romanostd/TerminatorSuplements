@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
 
   login() {
     this.loginService.login(this.form.value.email, this.form.value.password).subscribe(token => {
-      console.log('login ->' ,token)
       if(token != undefined)
       this.router.navigate(['/'])
     })

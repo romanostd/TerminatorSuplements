@@ -23,9 +23,9 @@ export class UserComponent implements OnInit {
   title = 'CREATE USER'
 
   ngOnInit(): void {
-    
 
-    console.log(this.data)
+
+
 
     if (this.data != undefined) {
       this.userService.getById(this.data.id).subscribe(user => {

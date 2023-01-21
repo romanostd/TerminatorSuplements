@@ -27,7 +27,6 @@ export class CategoriesComponent implements OnInit {
 
 
   delete(lista: Categories) {
-    console.log(lista)
     this.categoriesService.remove(lista.id).subscribe()
     this.lista.splice(this.lista.indexOf(lista), 1);
     this.lista = [...this.lista];
