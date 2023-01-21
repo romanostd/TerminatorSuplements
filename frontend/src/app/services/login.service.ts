@@ -43,7 +43,6 @@ export class LoginService {
     if (this.isLoggedIn()) {
       headers = headers.set('Authorization', `bearer ${this.user?.token}`)
     }
-    console.log('get token->', this.user )
     return this.user
   }
 

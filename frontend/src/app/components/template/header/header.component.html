@@ -18,11 +18,26 @@
             <mat-icon class="white">login</mat-icon>
         </button>
     </ng-template>
-    <button *ngIf="isLoggedIn() && user().admin===true" routerLink="/products" mat-icon-button class="example-icon favorite-icon"
+
+    <div *ngIf="isLoggedIn() && user().admin===true"  class="dropdown">
+      <button  routerLink="/products" mat-icon-button class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon">
+        <mat-icon class="white">admin_panel_settings</mat-icon>
+      </button>
+      <div class="dropdown-content">
+        <a routerLink="/products">Products</a>
+        <a routerLink="/user">Users</a>
+        <a routerLink="/categories">Categories</a>
+      </div>
+    </div>
+
+    <!-- <button  routerLink="/products" mat-icon-button class="example-icon favorite-icon"
         aria-label="Example icon-button with heart icon">
         <mat-icon class="white">admin_panel_settings</mat-icon>
-    </button>
+    </button> -->
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
         <mat-icon class="white">shopping_cart</mat-icon>
     </button>
 </mat-toolbar>
+
+
