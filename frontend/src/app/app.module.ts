@@ -30,6 +30,7 @@ import { UserComponent } from './views/user/users/user/user.component';
 import { LOCALE_ID } from '@angular/core';
 import { CategoriesComponent } from './views/categories/categories.component';
 import { CategoryComponent } from './views/categories/category/category.component';
+import { GuardsService } from './guards/guards.service';
 
 
 
@@ -79,7 +80,7 @@ import { CategoryComponent } from './views/categories/category/category.componen
 
   ],
   providers: [
-    ProductService,
+    ProductService, GuardsService
   
   ],
   bootstrap: [AppComponent]
