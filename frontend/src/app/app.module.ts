@@ -27,13 +27,10 @@ import {MatTableModule} from '@angular/material/table';
 import { ProductComponent } from './views/product/products/product/product.component';
 import { UsersComponent } from './views/user/users/users.component';
 import { UserComponent } from './views/user/users/user/user.component';
-import { LOCALE_ID } from '@angular/core';
 import { CategoriesComponent } from './views/categories/categories.component';
 import { CategoryComponent } from './views/categories/category/category.component';
 import { GuardsService } from './guards/guards.service';
-
-
-
+import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
 // import { PlaygroundComponent } from './views/playground/playground.component';
 
 
@@ -57,6 +54,7 @@ import { GuardsService } from './guards/guards.service';
     UserComponent,
     CategoriesComponent,
     CategoryComponent,
+    ResetPasswordComponent,
     // PlaygroundComponent
    
   ],

@@ -13,15 +13,13 @@ export class GuardsService implements CanActivate {
     state: RouterStateSnapshot
   ) : Observable<boolean> | boolean {
 
-    console.log('AuthGuard');
-
     return this.verificarAcesso();
   }
 
   private verificarAcesso(){
     if (this.loginService.isLoggedIn()){
       return true;
-    } 
+    }
 
     this.router.navigate(['login']);
 
@@ -34,5 +32,5 @@ export class GuardsService implements CanActivate {
       return this.verificarAcesso();
     }
 
-  
+
 }
