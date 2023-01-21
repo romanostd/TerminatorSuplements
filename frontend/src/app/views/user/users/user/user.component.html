@@ -21,7 +21,7 @@
                             <input matInput placeholder="Senha" formControlName="password" type="text">
                         </mat-form-field>
                     </div>
-                    <div class="row">
+                    <div *ngIf="this.data">
                         <mat-form-field>
                             <input matInput placeholder="admin" formControlName="admin" type="text">
                         </mat-form-field>

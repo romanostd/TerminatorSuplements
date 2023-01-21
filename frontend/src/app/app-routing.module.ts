@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { GuardsService } from './guards/guards.service';
 import { CategoriesComponent } from './views/categories/categories.component';
 import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
@@ -25,15 +26,15 @@ const routes: Routes = [{
 },
 {
   path: "products",
-  component: ProductsComponent
+  component: ProductsComponent, canActivate: [GuardsService]
 },
 {
   path: "user",
-  component: UsersComponent
+  component: UsersComponent , canActivate: [GuardsService]
 },
 {
   path: "categories",
-  component: CategoriesComponent
+  component: CategoriesComponent , canActivate: [GuardsService]
 }
 ];
 

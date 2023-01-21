@@ -15,20 +15,23 @@ export class UserComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     public dialogRef: MatDialogRef<UserComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: User,
+    @Inject(MAT_DIALOG_DATA) public data: any,
 
   ) { }
 
   user?: User
-  title = 'CRIAR USUARIO'
+  title = 'CREATE USER'
 
   ngOnInit(): void {
+    
+
+    console.log(this.data)
 
     if (this.data != undefined) {
       this.userService.getById(this.data.id).subscribe(user => {
         this.user = user
       })
-      this.title = 'EDITAR USUARIO'
+      this.title = 'EDIT USER'
     }
   }
 
