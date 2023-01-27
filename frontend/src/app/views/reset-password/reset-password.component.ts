@@ -24,30 +24,30 @@ export class ResetPasswordComponent  {
   })
 
   login() {
-    this.emailService.login(this.teste).subscribe()
+    this.emailService.login().subscribe()
   }
 
-  teste ={
-    personalizations: [
-        {
-            to: [
-                {
-                    email: 'queijoromano@gmail.com'
-                }
-            ],
-            subject: 'teste'
-        }
-    ],
-    from: {
-        email: "romanostedile@gmail.com"
-    },
-    content: [
-        {
-            type: "text/plain",
-            value: 'teste'
-        }
-    ]
-}
+//   teste ={
+//     personalizations: [
+//         {
+//             to: [
+//                 {
+//                     email: 'queijoromano@gmail.com'
+//                 }
+//             ],
+//             subject: 'teste'
+//         }
+//     ],
+//     from: {
+//         email: "romanostedile@gmail.com"
+//     },
+//     content: [
+//         {
+//             type: "text/plain",
+//             value: 'teste'
+//         }
+//     ]
+// }
 
 
 }
