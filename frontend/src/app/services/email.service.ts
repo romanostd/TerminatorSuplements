@@ -12,8 +12,8 @@ export class EmailService {
 
   constructor(private http: HttpClient) { }
 
-  login(obj : any): Observable<any> {
-    const url = `https://rapidprod-sendgrid-v1.p.rapidapi.com/mail/send`
-    return this.http.post<any>(url,{obj})
+  reset(): Observable<any> {
+    const url = `http://localhost:3000/email`
+    return this.http.get<any>(url)
   }
 }
