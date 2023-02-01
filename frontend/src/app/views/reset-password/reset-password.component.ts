@@ -23,31 +23,8 @@ export class ResetPasswordComponent  {
     _subject: this.fb.control('', [Validators.required]),
   })
 
-  login() {
-    this.emailService.login().subscribe()
+  reset() {
+    this.emailService.reset().subscribe()
   }
-
-//   teste ={
-//     personalizations: [
-//         {
-//             to: [
-//                 {
-//                     email: 'queijoromano@gmail.com'
-//                 }
-//             ],
-//             subject: 'teste'
-//         }
-//     ],
-//     from: {
-//         email: "romanostedile@gmail.com"
-//     },
-//     content: [
-//         {
-//             type: "text/plain",
-//             value: 'teste'
-//         }
-//     ]
-// }
-
 
 }
