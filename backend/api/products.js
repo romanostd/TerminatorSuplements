@@ -54,12 +54,23 @@ module.exports = app => {
         const result = await app.db('products').count('id').first()
         const count = parseInt(result.count)
 
+        if(req.query.name){
+            app.db('products')
+            .select('id', 'name', 'descreption' , 'price', 'imageUrl', 'categoryId', 'userId')
+            .where({ name: req.query.name })
+            .limit(limit).offset(page * limit - limit)
+            // .then(products => res.json({ data: products, count, limit }))
+            .then(products => res.json(products))
+            .catch(err => res.status(500).send(err))
+        }
+        else {
         app.db('products')
             .select('id', 'name', 'descreption' , 'price', 'imageUrl', 'categoryId', 'userId')
             .limit(limit).offset(page * limit - limit)
             // .then(products => res.json({ data: products, count, limit }))
             .then(products => res.json(products))
             .catch(err => res.status(500).send(err))
+        }
     }
 
 

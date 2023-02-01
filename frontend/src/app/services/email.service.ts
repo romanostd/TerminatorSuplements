@@ -12,7 +12,7 @@ export class EmailService {
 
   constructor(private http: HttpClient) { }
 
-  login(): Observable<any> {
+  reset(): Observable<any> {
     const url = `http://localhost:3000/email`
     return this.http.get<any>(url)
   }
