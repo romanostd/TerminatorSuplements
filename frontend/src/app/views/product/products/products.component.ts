@@ -19,16 +19,17 @@ export class ProductsComponent implements OnInit {
   lista: Product[] = []
 
 
-  async ngOnInit() {
+   ngOnInit() {
 
     if(this.loginService.user.admin != true)
     this.router.navigate(['login'])
-    
-    this.lista = await this.productService.get()
+    this.productService.get().subscribe(product => {
+      this.lista = product
+    });;
   }
 
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'action'];
+  displayedColumns: string[] = ['id', 'name', 'price', 'categorie', 'action'];
 
   pesquisar(query: string){}
 
@@ -46,7 +47,9 @@ export class ProductsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-      this.lista = await this.productService.get()
+      this.productService.get().subscribe(product => {
+        this.lista= product
+      });;
     });
   }
 }

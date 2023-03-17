@@ -56,7 +56,6 @@ import { ResetPasswordComponent } from './views/reset-password/reset-password.co
     CategoryComponent,
     ResetPasswordComponent,
     // PlaygroundComponent
-   
   ],
   imports: [
     MatTableModule,
@@ -79,7 +78,6 @@ import { ResetPasswordComponent } from './views/reset-password/reset-password.co
   ],
   providers: [
     ProductService, GuardsService
-  
   ],
   bootstrap: [AppComponent]
 })

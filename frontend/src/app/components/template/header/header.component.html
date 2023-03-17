@@ -2,10 +2,9 @@
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
         <mat-icon>menu</mat-icon>
     </button>
-
     <span routerLink="/"><img class="logo" src="../../../../assets/img/logo.png"></span>
     <mat-form-field class="search-field">
-        <input type="search" matInput placeholder="Search" value="">
+        <input #search type="search" matInput placeholder="Search" (keydown.enter)="callSearch(search.value)">
     </mat-form-field>
     <span class="example-spacer"></span>
 
@@ -30,11 +29,6 @@
         <a routerLink="/categories">Categories</a>
       </div>
     </div>
-
-    <!-- <button  routerLink="/products" mat-icon-button class="example-icon favorite-icon"
-        aria-label="Example icon-button with heart icon">
-        <mat-icon class="white">admin_panel_settings</mat-icon>
-    </button> -->
     <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
         <mat-icon class="white">shopping_cart</mat-icon>
     </button>
