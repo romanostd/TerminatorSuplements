@@ -1,29 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/models/user.model';
 import { LoginService } from 'src/app/services/login.service';
+import { ProductService } from 'src/app/services/product.service';
+import { HomeComponent } from 'src/app/views/home/home.component';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
+  constructor(
+    private loginService: LoginService,
+    public productService: ProductService
+  ) {}
 
-  constructor(private loginService: LoginService) { }
-
-  ngOnInit(): void {
-  }
-
-  isLoggedIn(): boolean  {
-    return this.loginService.isLoggedIn()
+  isLoggedIn(): boolean {
+    return this.loginService.isLoggedIn();
   }
 
   user(): any {
-   return this.loginService.user
+    return this.loginService.user;
   }
 
-  logout()  {
-    this.loginService.logout()
+  logout() {
+    this.loginService.logout();
   }
 
+  callSearch(query?: any) {
+    this.productService.get(query).subscribe((product) => {
+      this.productService.products = product;
+    });
+  }
 }
