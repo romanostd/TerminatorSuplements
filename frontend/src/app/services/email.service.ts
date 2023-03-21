@@ -4,16 +4,15 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class EmailService {
+  private url = '';
 
-  private url = ""
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  reset(): Observable<any> {
-    const url = `http://localhost:3000/email`
-    return this.http.get<any>(url)
+  reset(email: string, code: string): Observable<any> {
+    const url = `http://localhost:3000/email?email=${email}&code=${code}`;
+    return this.http.get<any>(url);
   }
 }
