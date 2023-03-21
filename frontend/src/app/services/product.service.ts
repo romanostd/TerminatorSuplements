@@ -9,17 +9,17 @@ export class ProductService {
     this.http = http;
   }
 
-  async post(produto: Product) {
+  products?: Product[] = []
+
+   post(produto: Product): Observable<Product> {
     const endpoint = 'http://localhost:3000/products';
-    return await this.http.post<Product>(endpoint, produto).toPromise();
+    return this.http.post<Product>(endpoint, produto);
   }
 
   async put(produto: Product, id: any) {
     const endpoint = `http://localhost:3000/products/${id}`;
     return await this.http.put<Product>(endpoint, produto).toPromise();
   }
-
-  products?: Product[] = []
 
   get(query?: string): Observable<Product[]> {
     if (query) {
