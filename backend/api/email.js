@@ -5,31 +5,29 @@ const SMTPConnection = require("nodemailer/lib/smtp-connection");
 module.exports = (app) => {
   const { existsOrError } = app.api.validation;
 
-  const user = "terminatorsuplementos@terminatorsuplementos.com";
-  const pass = "Ro@19062000";
+  const user = "";
+  const pass = "";
 
   const sendEmail = (req, res) => {
-
     const transporter = nodeMailer.createTransport({
-        host: "smtp.umbler.com",
-        port: 587,
-        auth: { user, pass },
+      service: "hotmail",
+      auth: { user, pass },
+    });
+
+    transporter
+      .sendMail({
+        from: "",
+        to: req.query.email,
+        replyTo: "",
+        subject: "Reset password",
+        text: "Your confirmation code is " + req.query.code,
+      })
+      .then((info) => {
+        res.send(info);
+      })
+      .catch((error) => {
+        res.send(error);
       });
-
-    transporter.sendMail({
-        from : "romanostedile@gmail.com",
-        to: "queijoromano@gmail.com",
-        replyTo: "romanostedile@gmail.com",
-        subject: 'reset password',
-        text: "Your confirmation code is" 
-
-    }).then(info => {res.send(info)}).catch(error => {
-        res.send(error)
-    } )
-
   };
-
-  
-
   return { sendEmail };
 };

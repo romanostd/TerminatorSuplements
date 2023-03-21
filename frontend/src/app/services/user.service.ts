@@ -24,9 +24,9 @@ export class UserService {
     return await this.http.put<User>(endpoint, user).toPromise()
   }
 
-  async get() {
-    const result = await this.http.get<User[]>('http://localhost:3000/users').toPromise();
-    return result;
+  get(): Observable<User[]> {
+      const result = `http://localhost:3000/users`;
+      return this.http.get<User[]>(result);
   }
 
   getById(id: any): Observable<User> {
