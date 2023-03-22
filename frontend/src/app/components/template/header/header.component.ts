@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { User } from 'src/app/models/user.model';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
 import { ProductService } from 'src/app/services/product.service';
-import { HomeComponent } from 'src/app/views/home/home.component';
 
 @Component({
   selector: 'app-header',
@@ -12,7 +11,9 @@ import { HomeComponent } from 'src/app/views/home/home.component';
 export class HeaderComponent {
   constructor(
     private loginService: LoginService,
-    public productService: ProductService
+    public productService: ProductService,
+    public router: Router
+
   ) {}
 
   isLoggedIn(): boolean {
@@ -31,5 +32,9 @@ export class HeaderComponent {
     this.productService.get(query).subscribe((product) => {
       this.productService.products = product;
     });
+  }
+
+  goToCart() {
+    alert('in development')
   }
 }

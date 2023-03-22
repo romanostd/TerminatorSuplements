@@ -7,7 +7,7 @@
                 <mat-card-content class="font-title ">
                    <strong> {{product.price | currency:'BRL':true}}</strong>
                 </mat-card-content>
-                <button class="button-terminator">Add to cart</button>
+                <button (click)="addToCart()" class="button-terminator">Add to cart</button>
             </mat-card>
         </div>
     </div>
