@@ -21,7 +21,7 @@ export class CategoryComponent implements OnInit {
   ) { }
 
   categories?: Categories
-  title = 'CREATE USER'
+  title = 'CREATE CATEGORY'
 
   ngOnInit(): void {
 

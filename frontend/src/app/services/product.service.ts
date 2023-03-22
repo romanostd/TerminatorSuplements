@@ -16,9 +16,9 @@ export class ProductService {
     return this.http.post<Product>(endpoint, produto);
   }
 
-  async put(produto: Product, id: any) {
+  put(produto: Product, id: any): Observable<Product> {
     const endpoint = `http://localhost:3000/products/${id}`;
-    return await this.http.put<Product>(endpoint, produto).toPromise();
+    return this.http.post<Product>(endpoint, produto);
   }
 
   get(query?: string): Observable<Product[]> {

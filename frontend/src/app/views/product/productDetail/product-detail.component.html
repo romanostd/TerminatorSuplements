@@ -1,18 +1,16 @@
 <div class="container mt-5 w-25 " >
-    <mat-card class="example-card  ">
+    <mat-card class="example-card">
         <mat-card-header>
             <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title>{{product?.name}}</mat-card-title>
+            <mat-card-title class="terminator-font ">{{product?.name}}</mat-card-title>
             <mat-card-subtitle>{{product?.price | currency:'BRL':true}}</mat-card-subtitle>
         </mat-card-header>
         <img mat-card-image src="{{product?.imageUrl}}">
-        <mat-card-content>
-            <p>
-                {{product?.descreption}}
-            </p>
+        <mat-card-content class="" style="word-break: break-all;">
+                {{product?.descreption   | slice:0:50}}
         </mat-card-content>
         <mat-card-actions>
-            <button mat-button>Buy</button>
+            <button (click)="buy()" class="button-terminator" mat-button>Buy</button>
         </mat-card-actions>
     </mat-card>
 </div>
