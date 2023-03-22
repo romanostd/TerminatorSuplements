@@ -44,12 +44,12 @@ export class ProductComponent implements OnInit {
   })
 
 
-  async saveProduct() {
+   saveProduct() {
     if (this.data != undefined) {
-      await this.productService.put(this.form.value, this.data.id);
+       this.productService.put(this.form.value, this.data.id).subscribe();
     }
     else {
-      await this.productService.post(this.form.value);
+       this.productService.post(this.form.value).subscribe();
     }
     this.dialogRef.close(this.form.value);
   }

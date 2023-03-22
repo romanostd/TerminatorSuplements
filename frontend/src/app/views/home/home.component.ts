@@ -22,6 +22,10 @@ export class HomeComponent implements OnInit {
   }
 
   select(product: Product) {}
+
+  addToCart() {
+    alert('in development')
+  }
 }
 
 

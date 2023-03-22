@@ -49,6 +49,7 @@ export class UserComponent implements OnInit {
       await this.userService.put(this.form.value, this.data.id);
     }
     else {
+      this.form.controls.admin.setValue(false)
       await this.userService.post(this.form.value);
     }
     this.dialogRef.close(this.form.value);

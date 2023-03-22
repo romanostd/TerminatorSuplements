@@ -21,7 +21,7 @@ export class ProductCreateComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    
+
   }
 
   product?: Product
@@ -35,11 +35,10 @@ export class ProductCreateComponent implements OnInit {
     categoryId: ['',this.product?.categoryId],
     userId: ['',this.product?.userId],
   })
- 
 
-  async createProduct() {
 
-    await this.productService.post(this.form.value);
+   createProduct() {
+    this.productService.post(this.form.value).subscribe();
     this.router.navigate(['/'])
 
   }
