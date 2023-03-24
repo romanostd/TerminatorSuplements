@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -23,24 +23,17 @@ export class UserComponent implements OnInit {
   title = 'CREATE USER'
 
   ngOnInit(): void {
-
-
-
-
     if (this.data != undefined) {
-      this.userService.getById(this.data.id).subscribe(user => {
-        this.user = user
-      })
       this.title = 'EDIT USER'
     }
   }
 
   form: FormGroup = this.fb.group({
-
-    nome: [this.data?.nome, this.user?.nome],
-    email: [this.data?.email, this.user?.email],
-    password: [this.data?.password, this.user?.password],
-    admin: [this.data?.admin, this.user?.admin],
+    name: [ this.data?.nome, Validators.required],
+    email: [this.data?.email, Validators.compose(
+      [Validators.email, Validators.required])],
+    password: [this.data?.password, Validators.required],
+    admin: [this.data?.admin, Validators.required],
   })
 
 
