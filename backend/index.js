@@ -3,7 +3,7 @@ const consign = require('consign')
 const db = require('./config/db')
 
 app.db = db
-
+const port = process.env.PORT ? Number(process.env.Port) : 3000
 consign()
     .then('./config/middlewares.js')
     .then('./api/validation.js')
@@ -12,6 +12,6 @@ consign()
     .into(app)
 
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log("Backend executando...")
 })
