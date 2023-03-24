@@ -4,7 +4,6 @@ import { GuardsService } from './guards/guards.service';
 import { CategoriesComponent } from './views/categories/categories.component';
 import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
-import { ProductCreateComponent } from './views/product/productCreate/product-create.component';
 import { ProductDetailComponent } from './views/product/productDetail/product-detail.component';
 import { ProductsComponent } from './views/product/products/products.component';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';

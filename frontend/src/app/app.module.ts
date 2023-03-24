@@ -21,7 +21,6 @@ import { ProductService } from './services/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import {MatDialogModule} from '@angular/material/dialog';
 import { ProductDetailComponent } from './views/product/productDetail/product-detail.component';
-import { ProductCreateComponent } from './views/product/productCreate/product-create.component';
 import { ProductsComponent } from './views/product/products/products.component';
 import {MatTableModule} from '@angular/material/table';
 import { ProductComponent } from './views/product/products/product/product.component';
@@ -46,7 +45,6 @@ import { ResetPasswordComponent } from './views/reset-password/reset-password.co
     NavComponent,
     HomeComponent,
     LoginComponent,
-    ProductCreateComponent,
     ProductDetailComponent,
     ProductsComponent,
     ProductComponent,
