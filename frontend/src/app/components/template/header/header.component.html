@@ -8,11 +8,11 @@
     </mat-form-field>
     <span class="example-spacer"></span>
 
-    <span class="white" *ngIf="isLoggedIn(); else notLoggedIn">
+    <span class="white" *ngIf="isLoggedIn() && this.router.url === '/'; else notLoggedIn">
         Olá, {{user().nome}} | <a class="pointer white" (click)="logout()">Sair</a>
     </span>
     <ng-template #notLoggedIn>
-        <button routerLink="/login" mat-icon-button class="example-icon favorite-icon"
+        <button *ngIf="this.router.url === '/'" routerLink="/login" mat-icon-button class="example-icon favorite-icon"
             aria-label="Example icon-button with heart icon">
             <mat-icon class="white">login</mat-icon>
         </button>
@@ -29,7 +29,7 @@
         <a routerLink="/categories">Categories</a>
       </div>
     </div>
-    <button (click)=" goToCart()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <button *ngIf="this.router.url === '/'" (click)=" goToCart()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
         <mat-icon class="white">shopping_cart</mat-icon>
     </button>
 </mat-toolbar>
