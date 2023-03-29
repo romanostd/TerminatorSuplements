@@ -14,22 +14,24 @@ export class CategoriesComponent implements OnInit {
   constructor(private categoriesService: CategoriesService,
     public dialog: MatDialog) { }
 
-  lista: Categories[] = []
+  list: Categories[] = []
 
-  async ngOnInit() {
-    this.lista = await this.categoriesService.get()
+   ngOnInit() {
+    this.categoriesService.get().subscribe( categorie => {
+      this.list = categorie
+    })
   }
 
 
-  displayedColumns: string[] = ['position', 'name', 'action'];
+  displayedColumns: string[] = ['name', 'action'];
 
   pesquisar(query: string) { }
 
 
   delete(lista: Categories) {
     this.categoriesService.remove(lista.id).subscribe()
-    this.lista.splice(this.lista.indexOf(lista), 1);
-    this.lista = [...this.lista];
+    this.list.splice(this.list.indexOf(lista), 1);
+    this.list = [...this.list];
   }
 
   openDialog(data?: Categories) {
@@ -38,7 +40,9 @@ export class CategoriesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(async result => {
-      this.lista = await this.categoriesService.get()
+      this.categoriesService.get().subscribe( categorie => {
+        this.list = categorie
+      })
     });
   }
 }

@@ -8,18 +8,24 @@
     </mat-form-field>
     <span class="example-spacer"></span>
 
-    <span class="white" *ngIf="isLoggedIn() && this.router.url === '/'; else notLoggedIn">
-        Olá, {{user().nome}} | <a class="pointer white" (click)="logout()">Sair</a>
+    <span class="white" *ngIf="isLoggedIn() && this.router.url != '/login' && this.router.url !='/resetPassword' ; else notLoggedIn">
+        Olá, {{user().nome}}  <button title="Logout" (click)="logout()" mat-icon-button class="example-icon favorite-icon"
+        aria-label="Example icon-button with heart icon">
+        <mat-icon class="pointer white">logout</mat-icon>
+    </button>
+
+
+
     </span>
     <ng-template #notLoggedIn>
-        <button *ngIf="this.router.url === '/'" routerLink="/login" mat-icon-button class="example-icon favorite-icon"
+        <button title="Login" *ngIf="this.router.url != '/login' && this.router.url !='/resetPassword'"  routerLink="/login" mat-icon-button class="example-icon favorite-icon"
             aria-label="Example icon-button with heart icon">
-            <mat-icon class="white">login</mat-icon>
+            <mat-icon class="pointer white">login</mat-icon>
         </button>
     </ng-template>
 
     <div *ngIf="isLoggedIn() && user().admin===true"  class="dropdown">
-      <button  routerLink="/products" mat-icon-button class="example-icon favorite-icon"
+      <button title="Admin panel" routerLink="/products" mat-icon-button class="example-icon favorite-icon"
       aria-label="Example icon-button with heart icon">
         <mat-icon class="white">admin_panel_settings</mat-icon>
       </button>
@@ -29,7 +35,7 @@
         <a routerLink="/categories">Categories</a>
       </div>
     </div>
-    <button *ngIf="this.router.url === '/'" (click)=" goToCart()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+    <button *ngIf="this.router.url != '/login' && this.router.url !='/resetPassword'"   (click)=" goToCart()" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
         <mat-icon class="white">shopping_cart</mat-icon>
     </button>
 </mat-toolbar>
