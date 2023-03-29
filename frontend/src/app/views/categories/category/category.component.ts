@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Categories } from 'src/app/models/categories.model';
 import { CategoriesService } from 'src/app/services/categories.service';
@@ -24,7 +24,6 @@ export class CategoryComponent implements OnInit {
   title = 'CREATE CATEGORY'
 
   ngOnInit(): void {
-
     if (this.data != undefined) {
       this.categoriesService.getById(this.data.id).subscribe(categories => {
         this.categories = categories
@@ -34,12 +33,12 @@ export class CategoryComponent implements OnInit {
   }
 
   form: FormGroup = this.fb.group({
-    name: [this.data?.name, this.categories?.name],
-    parentId: [this.data?.parantId, this.categories?.parantId],
+    name: [this.data?.name, Validators.required],
+    // parentId: [this.data?.parantId, this.categories?.parantId],
   })
 
 
-  async saveUser() {
+  async saveCategoy() {
     if (this.data != undefined) {
       await this.categoriesService.put(this.form.value, this.data.id);
     }

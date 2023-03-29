@@ -22,11 +22,10 @@ export class CategoriesService {
     return await this.http.put<Categories>(endpoint, categories).toPromise()
   }
 
-  async get() {
-    const result = await this.http.get<Categories[]>('http://localhost:3000/categories').toPromise();
-    return result;
+  get(): Observable<Categories[]> {
+    const url = 'http://localhost:3000/categories'
+    return this.http.get<Categories[]>(url)
   }
-
 
   remove(id: any): Observable<Categories> {
     const url = `http://localhost:3000/categories/${id}`

@@ -1,47 +1,130 @@
 <mat-dialog-content class="mat-typography p-2">
-    <div class="container">
-        <mat-card class="products terminator-font p-3">
-            <div class="row text-center">
-                <mat-card-title>{{title}}</mat-card-title>
-            </div>
-            <mat-card-content class="mt-3">
-                <form [formGroup]="form">
-                    <div class="row">
-                        <mat-form-field>
-                            <input matInput placeholder="Product name" formControlName="name" type="text">
-                        </mat-form-field>
-                    </div>
-                    <div class="row">
-                        <mat-form-field>
-                            <input matInput placeholder="Descreption" formControlName="descreption" type="text">
-                        </mat-form-field>
-                    </div>
-                    <div class="row">
-                        <mat-form-field>
-                            <input matInput placeholder="image Url" formControlName="imageUrl" type="text">
-                        </mat-form-field>
-                    </div>
-                    <div class="row">
-                        <mat-form-field>
-                            <input matInput placeholder="Price" formControlName="price" type="number">
-                        </mat-form-field>
-                    </div>
-                    <div class="row">
-                        <mat-form-field>
-                            <input matInput placeholder="Categoria" formControlName="categoryId" type="text">
-                        </mat-form-field>
-                    </div>
-                    <div class="row">
-                        <mat-form-field>
-                            <input matInput placeholder="Usuario" formControlName="userId" type="text">
-                        </mat-form-field>
-                    </div>
-                </form>
-            </mat-card-content>
-        </mat-card>
-    </div>
+  <div class="container">
+    <mat-card class="products p-3">
+      <div class="row text-center">
+        <mat-card-title class="terminator-font">{{ title }}</mat-card-title>
+      </div>
+      <mat-card-content class="mt-3">
+        <form [formGroup]="form">
+          <div class="row">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Product name"
+                formControlName="name"
+                type="text"
+              />
+              <mat-error
+                *ngIf="
+                  form.controls.name.hasError('required') &&
+                  form.controls.name.touched
+                "
+              >
+                Name is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Descreption"
+                formControlName="descreption"
+                type="text"
+              />
+              <mat-error
+                *ngIf="
+                  form.controls.descreption.hasError('required') &&
+                  form.controls.descreption.touched
+                "
+              >
+                Descreption is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="image Url"
+                formControlName="imageUrl"
+                type="text"
+              />
+              <mat-error
+                *ngIf="
+                  form.controls.imageUrl.hasError('required') &&
+                  form.controls.imageUrl.touched
+                "
+              >
+                Image Url is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="Price"
+                formControlName="price"
+                type="number"
+              />
+              <mat-error
+                *ngIf="
+                  form.controls.price.hasError('required') &&
+                  form.controls.price.touched
+                "
+              >
+                Price is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Select a category</mat-label>
+              <mat-select required formControlName="categoryId">
+                <mat-option
+                  *ngFor="let category of categories"
+                  [value]="category.id"
+                >
+                  {{ category.name }}
+                </mat-option>
+              </mat-select>
+              <mat-error
+                *ngIf="
+                  form.controls.categoryId.hasError('required') &&
+                  form.controls.categoryId.touched
+                "
+              >
+                category is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field>
+              <mat-label>Select a user</mat-label>
+              <mat-select required formControlName="userId">
+                <mat-option *ngFor="let user of users" [value]="user.id">
+                  {{ user.nome }}
+                </mat-option>
+              </mat-select>
+              <mat-error
+                *ngIf="
+                  form.controls.userId.hasError('required') &&
+                  form.controls.userId.touched
+                "
+              >
+                user is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Cancelar</button>
-    <button mat-button [mat-dialog-close]="true" (click)="saveProduct()">Confirmar</button>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button [disabled]="form.invalid" mat-button [mat-dialog-close]="true" (click)="saveProduct()">
+    Confirmar
+  </button>
 </mat-dialog-actions>

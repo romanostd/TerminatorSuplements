@@ -3,7 +3,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Product } from 'src/app/models/product.model';
+import { CategoriesService } from 'src/app/services/categories.service';
 import { ProductService } from 'src/app/services/product.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-product',
@@ -15,19 +17,28 @@ export class ProductComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private productService: ProductService,
+    private userService: UserService,
     public dialogRef: MatDialogRef<ProductComponent>,
+    private categoriesService: CategoriesService,
     @Inject(MAT_DIALOG_DATA) public data: Product,
 
   ) { }
-
+  categories : any
+  users : any
   product?: Product
   title = 'CRIAR PRODUTO'
 
   ngOnInit(): void {
-
     if (this.data != undefined) {
       this.title = 'EDITAR PRODUTO'
     }
+    this.categoriesService.get().subscribe( categorie => {
+      this.categories = categorie
+    })
+
+    this.userService.get().subscribe( user => {
+      this.users = user
+    })
   }
 
   form: FormGroup = this.fb.group({

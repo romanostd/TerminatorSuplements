@@ -37,7 +37,8 @@ export class ResetPasswordComponent {
     private emailService: EmailService,
     private userService: UserService
   ) {}
-
+  hasCustomError = false
+  errorMessege : any
   matcher = new MyErrorStateMatcher();
   email = new FormControl('youremail@example.com', [
     Validators.required,
@@ -73,6 +74,12 @@ export class ResetPasswordComponent {
         this.code = this.makeid();
         this.emailService.reset(this.email.value, this.code).subscribe();
         this.resetPassWordSteps = 'confirmationCode';
+        this.hasCustomError = false
+      }
+
+      else {
+        this.hasCustomError = true
+        this.errorMessege = 'This email dont exist in the system'
       }
     });
   }
@@ -80,6 +87,12 @@ export class ResetPasswordComponent {
   resetSecondStep() {
     if (this.code == this.confirmationCode.value) {
       this.resetPassWordSteps = 'resetPassword';
+      this.hasCustomError = false
+    }
+
+    else {
+      this.hasCustomError = true
+      this.errorMessege = 'Invalid code'
     }
   }
 
