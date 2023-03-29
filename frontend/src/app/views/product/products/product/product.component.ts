@@ -1,6 +1,6 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Product } from 'src/app/models/product.model';
 import { ProductService } from 'src/app/services/product.service';
@@ -26,21 +26,18 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
 
     if (this.data != undefined) {
-      this.productService.getById(this.data.id).subscribe(product => {
-        this.product = product
-      })
       this.title = 'EDITAR PRODUTO'
     }
   }
 
   form: FormGroup = this.fb.group({
 
-    name: [this.data?.name, this.product?.name],
-    descreption: [this.data?.descreption, this.product?.descreption],
-    imageUrl: [this.data?.imageUrl, this.product?.imageUrl],
-    price: [this.data?.price, this.product?.price],
-    categoryId: [this.data?.categoryId, this.product?.categoryId],
-    userId: [this.data?.categoryId, this.product?.userId],
+    name: [this.data?.name, Validators.required],
+    descreption: [this.data?.descreption, Validators.required],
+    imageUrl: [this.data?.imageUrl, Validators.required],
+    price: [this.data?.price, Validators.required],
+    categoryId: [this.data?.categoryId, Validators.required],
+    userId: [this.data?.categoryId, Validators.required],
   })
 
 
