@@ -30,6 +30,8 @@ import { CategoriesComponent } from './views/categories/categories.component';
 import { CategoryComponent } from './views/categories/category/category.component';
 import { GuardsService } from './guards/guards.service';
 import { ResetPasswordComponent } from './views/reset-password/reset-password.component';
+import {MatSelectModule} from '@angular/material/select';
+
 // import { PlaygroundComponent } from './views/playground/playground.component';
 
 
@@ -58,6 +60,7 @@ import { ResetPasswordComponent } from './views/reset-password/reset-password.co
   imports: [
     MatTableModule,
     BrowserModule,
+    MatSelectModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
