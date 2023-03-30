@@ -2,11 +2,13 @@
 
 
 
-.elevar{position:relative}
+.elevar{position:relative;
+  min-height: 500px;
+}
 .elevar:hover{top:-2px;box-shadow:0 2px 2px #666}
 
 .font-title{
-    font-size: 16px;
+    font-size: 12px;
 }
 
 .img {
@@ -33,7 +35,7 @@ button, button::after {
     outline: transparent;
     position: relative;
   }
-  
+
   button::after {
     --slice-0: inset(50% 50% 50% 50%);
     --slice-1: inset(80% -6px 0 0);
@@ -41,7 +43,7 @@ button, button::after {
     --slice-3: inset(10% -6px 85% 0);
     --slice-4: inset(40% -6px 43% 0);
     --slice-5: inset(80% -6px 5% 0);
-    
+
     content: 'AVAILABLE NOW';
     display: block;
     position: absolute;
@@ -53,12 +55,12 @@ button, button::after {
     text-shadow: -3px -3px 0px #F8F005, 3px 3px 0px #00E6F6;
     clip-path: var(--slice-0);
   }
-  
+
   button:hover::after {
     animation: 1s glitch;
     animation-timing-function: steps(2, end);
   }
-  
+
   @keyframes glitch {
     0% {
       clip-path: var(--slice-1);
