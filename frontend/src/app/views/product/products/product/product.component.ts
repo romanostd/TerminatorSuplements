@@ -48,7 +48,7 @@ export class ProductComponent implements OnInit {
     imageUrl: [this.data?.imageUrl, Validators.required],
     price: [this.data?.price, Validators.required],
     categoryId: [this.data?.categoryId, Validators.required],
-    userId: [this.data?.categoryId, Validators.required],
+    userId: [this.data?.userId, Validators.required],
   })
 
 

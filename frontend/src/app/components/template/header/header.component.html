@@ -7,15 +7,11 @@
         <input #search type="search" matInput placeholder="Search" (keydown.enter)="callSearch(search.value)">
     </mat-form-field>
     <span class="example-spacer"></span>
-
     <span class="white" *ngIf="isLoggedIn() && this.router.url != '/login' && this.router.url !='/resetPassword' ; else notLoggedIn">
-        Olá, {{user().nome}}  <button title="Logout" (click)="logout()" mat-icon-button class="example-icon favorite-icon"
+      <span class="welcome white">  Welcome, {{user().nome}} </span><button title="Logout" (click)="logout()" mat-icon-button class="example-icon favorite-icon"
         aria-label="Example icon-button with heart icon">
         <mat-icon class="pointer white">logout</mat-icon>
     </button>
-
-
-
     </span>
     <ng-template #notLoggedIn>
         <button title="Login" *ngIf="this.router.url != '/login' && this.router.url !='/resetPassword'"  routerLink="/login" mat-icon-button class="example-icon favorite-icon"
