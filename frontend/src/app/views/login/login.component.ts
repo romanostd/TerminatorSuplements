@@ -8,33 +8,41 @@ import { UserComponent } from '../user/users/user/user.component';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  constructor(
+    private fb: FormBuilder,
+    private loginService: LoginService,
+    public dialog: MatDialog,
+    private router: Router
+  ) {}
 
-  constructor(private fb: FormBuilder, private loginService: LoginService, public dialog: MatDialog , private router : Router) { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
+  errorMessege: any = false;
   form: FormGroup = this.fb.group({
-
-    email: this.fb.control('', [Validators.required, Validators.email]),
-    password: this.fb.control('', [Validators.required]),
-  })
+    email: this.fb.control(
+      '',
+      Validators.compose([Validators.email, Validators.required])
+    ),
+    password: this.fb.control('', Validators.required),
+  });
 
   login() {
-    this.loginService.login(this.form.value.email, this.form.value.password).subscribe(token => {
-      if(token != undefined)
-      this.router.navigate(['/'])
-    })
+    this.loginService
+      .login(this.form.value.email, this.form.value.password)
+      .subscribe((token) => {
+        if (token != undefined) {
+          console.log('teste');
+          this.router.navigate(['/']);
+          this.errorMessege = false;
+        }
+      });
+      console.log('teste2');
+      this.errorMessege = 'Incorrect email or password';
   }
 
   openDialog() {
-    this.dialog.open(UserComponent, {
-    });
-
-
+    this.dialog.open(UserComponent, {});
   }
-
 }
