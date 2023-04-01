@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
-  errorMessege: any = false;
+  errorMessege: any;
   form: FormGroup = this.fb.group({
     email: this.fb.control(
       '',
@@ -33,12 +33,10 @@ export class LoginComponent implements OnInit {
       .login(this.form.value.email, this.form.value.password)
       .subscribe((token) => {
         if (token != undefined) {
-          console.log('teste');
           this.router.navigate(['/']);
           this.errorMessege = false;
         }
       });
-      console.log('teste2');
       this.errorMessege = 'Incorrect email or password';
   }
 
