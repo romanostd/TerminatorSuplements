@@ -3,9 +3,10 @@ const app = express();
 const morgan = require("morgan");
 const bodyParser = require("body-parser")
 
-
+const categoriesRoute = require("./routes/categories");
 const productsRoute = require("./routes/products");
-const orderRoute = require('./routes/orders');
+const ordersRoute = require('./routes/orders');
+const usersRoute = require('./routes/users');
 
 
 app.use(morgan('dev'));
@@ -26,8 +27,10 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use('/categories', categoriesRoute)
+app.use('/orders', ordersRoute);
 app.use("/products", productsRoute);
-app.use('/orders', orderRoute);
+app.use('/users', usersRoute);
 
 app.use((req, res, next) => {
     const error = new Error('Not found');

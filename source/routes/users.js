@@ -7,7 +7,7 @@ router.get("/", (req, res, next) => {
     if (error) {
       return res.status(500).send({ error: errror });
     }
-    conn.query("SELECT * FROM orders;", (error, result, field) => {
+    conn.query("SELECT * FROM users;", (error, result, field) => {
       conn.release();
 
       if (error) {
@@ -21,14 +21,14 @@ router.get("/", (req, res, next) => {
   });
 });
 
-router.get("/:order_id", (req, res, next) => {
+router.get("/:user_id", (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: errror });
     }
     conn.query(
-      "SELECT * FROM orders WHERE order_id = ?;",
-      [req.params.order_id],
+      "SELECT * FROM users WHERE user_id = ?;",
+      [req.params.user_id],
       (error, result, field) => {
         conn.release();
 
@@ -50,8 +50,14 @@ router.post("/", (req, res, next) => {
       return res.status(500).send({ error: error });
     }
     conn.query(
-      "INSERT INTO orders (product_id, quantity) VALUES (?,?)",
-      [req.body.product_id, req.body.quantity],
+      "INSERT INTO users (order_id, name, email, password, admin) VALUES (?,?,?,?,?)",
+      [
+        req.body.order_id, 
+        req.body.name,
+        req.body.email, 
+        req.body.password,
+        req.body.admin
+    ],
       (error, result, field) => {
         conn.release();
 
@@ -62,14 +68,14 @@ router.post("/", (req, res, next) => {
           });
         }
         res.status(201).send({
-          massage: "Order created successfully",
-          order_id: result.insertId,
+          massage: "User created successfully",
+          user_id: result.insertId,
         });
       }
     );
   });
   res.status(201).send({
-    messege: "Order insert",
+    messege: "User insert",
   });
 });
 
@@ -79,8 +85,12 @@ router.patch("/", (req, res, next) => {
       return res.status(500).send({ error: error });
     }
     conn.query(
-      `UPDATE orders SET product_id = ?, quantity = ? WHERE order_id = ?`,
-      [req.body.product_id, req.body.quantity],
+      `UPDATE users SET order_id = ?, name = ?, email = ?, password = ?, admin = ? WHERE user_id = ?`,
+      [ req.body.order_id, 
+        req.body.name,
+        req.body.email, 
+        req.body.password,
+        req.body.admin],
       (error, result, field) => {
         conn.release();
 
@@ -91,7 +101,7 @@ router.patch("/", (req, res, next) => {
           });
         }
         res.status(202).send({
-          massage: "Order updated successfully",
+          massage: "User updated successfully",
         });
       }
     );
@@ -104,8 +114,8 @@ router.delete("/", (req, res, next) => {
       return res.status(500).send({ error: error });
     }
     conn.query(
-      `DELETE FROM orders WHERE order_id = ?`,
-      [req.body.order_id],
+      `DELETE FROM users WHERE user_id = ?`,
+      [req.body.user_id],
       (error, result, field) => {
         conn.release();
 
@@ -116,7 +126,7 @@ router.delete("/", (req, res, next) => {
           });
         }
         res.status(202).send({
-          massage: "Order removed successfully",
+          massage: "User removed successfully",
         });
       }
     );
