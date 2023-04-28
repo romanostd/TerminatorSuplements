@@ -38,7 +38,7 @@ router.get("/:product_id", (req, res, next) => {
             response: null,
           });
         }
-        return res.status(200).send({ response: result });
+        return res.status(200).send(result);
       }
     );
   });
@@ -78,10 +78,6 @@ router.post("/", (req, res, next) => {
         });
       }
     );
-  });
-  res.status(201).send({
-    messege: "Product insert",
-    createdProduct: product,
   });
 });
 

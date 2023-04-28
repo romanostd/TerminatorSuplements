@@ -7,17 +7,27 @@ router.get("/", (req, res, next) => {
     if (error) {
       return res.status(500).send({ error: errror });
     }
-    conn.query("SELECT * FROM orders;", (error, result, field) => {
-      conn.release();
+    conn.query(
+      `SELECT orders.order_id,
+              orders.quantity,
+              products.product_id,
+              products.name,
+              products.price
+          FROM orders
+    INNER JOIN products
+ ON products.product_id = orders.product_id;`,
+      (error, result, field) => {
+        conn.release();
 
-      if (error) {
-        res.status(500).send({
-          error: error,
-          response: null,
-        });
+        if (error) {
+          res.status(500).send({
+            error: error,
+            response: null,
+          });
+        }
+        return res.status(200).send({ response: result });
       }
-      return res.status(200).send({ response: result });
-    });
+    );
   });
 });
 
@@ -68,9 +78,6 @@ router.post("/", (req, res, next) => {
       }
     );
   });
-  res.status(201).send({
-    messege: "Order insert",
-  });
 });
 
 router.patch("/", (req, res, next) => {
@@ -80,7 +87,7 @@ router.patch("/", (req, res, next) => {
     }
     conn.query(
       `UPDATE orders SET product_id = ?, quantity = ? WHERE order_id = ?`,
-      [req.body.product_id, req.body.quantity],
+      [req.body.product_id, req.body.quantity, req.body.order_id],
       (error, result, field) => {
         conn.release();
 

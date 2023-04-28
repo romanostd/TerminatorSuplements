@@ -68,9 +68,6 @@ router.post("/", (req, res, next) => {
       }
     );
   });
-  res.status(201).send({
-    messege: "Category insert",
-  });
 });
 
 router.patch("/", (req, res, next) => {
@@ -79,8 +76,9 @@ router.patch("/", (req, res, next) => {
       return res.status(500).send({ error: error });
     }
     conn.query(
-      `UPDATE categories SET name = ? WHERE category_id = ?`,
+      `UPDATE categories SET name = ? WHERE category_id = ?;`,
       [
+        req.body.category_id,
         req.body.name,
       ],
       (error, result, field) => {
@@ -91,7 +89,7 @@ router.patch("/", (req, res, next) => {
             error: error,
             response: null,
           });
-        }
+        }   
         res.status(202).send({
           massage: "Category updated successfully",
         });

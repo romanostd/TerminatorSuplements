@@ -74,9 +74,6 @@ router.post("/", (req, res, next) => {
       }
     );
   });
-  res.status(201).send({
-    messege: "User insert",
-  });
 });
 
 router.patch("/", (req, res, next) => {
@@ -85,12 +82,15 @@ router.patch("/", (req, res, next) => {
       return res.status(500).send({ error: error });
     }
     conn.query(
-      `UPDATE users SET order_id = ?, name = ?, email = ?, password = ?, admin = ? WHERE user_id = ?`,
-      [ req.body.order_id, 
-        req.body.name,
-        req.body.email, 
-        req.body.password,
-        req.body.admin],
+       `UPDATE users SET order_id = ?, name = ?, email = ?, password = ?, admin = ? WHERE user_id = ?`,
+        [
+          req.body.order_id,
+          req.body.name,
+          req.body.email,
+          req.body.password,
+          req.body.admin,
+          req.body.user_id
+        ],
       (error, result, field) => {
         conn.release();
 
