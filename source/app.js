@@ -7,6 +7,7 @@ const categoriesRoute = require("./routes/categories");
 const productsRoute = require("./routes/products");
 const ordersRoute = require('./routes/orders');
 const usersRoute = require('./routes/users');
+const emailRoute = require('./routes/email');
 
 
 app.use(morgan('dev'));
@@ -31,6 +32,7 @@ app.use('/categories', categoriesRoute)
 app.use('/orders', ordersRoute);
 app.use("/products", productsRoute);
 app.use('/users', usersRoute);
+app.use('/email', emailRoute);
 
 app.use((req, res, next) => {
     const error = new Error('Not found');

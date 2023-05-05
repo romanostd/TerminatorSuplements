@@ -5,7 +5,7 @@ const mysql = require("../mysql").pool;
 router.get("/", (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) {
-      return res.status(500).send({ error: errror });
+      return res.status(500).send({ error: error });
     }
     conn.query("SELECT * FROM products;", (error, result, field) => {
       conn.release();
@@ -24,7 +24,7 @@ router.get("/", (req, res, next) => {
 router.get("/:product_id", (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) {
-      return res.status(500).send({ error: errror });
+      return res.status(500).send({ error: error });
     }
     conn.query(
       "SELECT * FROM products WHERE product_id = ?;",
