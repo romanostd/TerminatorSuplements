@@ -16,7 +16,7 @@ router.get("/", (req, res, next) => {
           response: null,
         });
       }
-      return res.status(200).send({ response: result });
+      return res.status(200).send(result);
     });
   });
 });

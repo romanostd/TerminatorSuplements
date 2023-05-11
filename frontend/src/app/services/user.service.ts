@@ -19,8 +19,8 @@ export class UserService {
     return await this.http.post<User>(endpoint, user).toPromise()
   }
 
-  async put(user: User, id: any) {
-    const endpoint = `http://localhost:3000/users/${id}`
+  async put(user: User) {
+    const endpoint = `http://localhost:3000/users`
     return await this.http.put<User>(endpoint, user).toPromise()
   }
 
@@ -34,8 +34,8 @@ export class UserService {
     return this.http.get<User>(url)
   }
 
-  remove(id: any): Observable<User> {
-    const url = `http://localhost:3000/users/${id}`
+  remove(user_id: any): Observable<User> {
+    const url = `http://localhost:3000/users/${user_id}`
     return this.http.delete<User>(url)
   }
 }
