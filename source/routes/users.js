@@ -19,7 +19,7 @@ router.get("/", (req, res, next) => {
           response: null,
         });
       }
-      return res.status(200).send({ response: result });
+      return res.status(200).send(result);
     });
   });
 });
@@ -41,7 +41,7 @@ router.get("/:user_id", (req, res, next) => {
             response: null,
           });
         }
-        return res.status(200).send({ response: result });
+        return res.status(200).send(result);
       }
     );
   });
@@ -84,18 +84,22 @@ router.post("/", (req, res, next) => {
   });
 });
 
-router.patch("/", (req, res, next) => {
+router.put("/", (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error });
     }
-    conn.query(
+    bcrypt.hash(req.body.password, 10, (errBcryptt, hash) => {
+      if (errBcryptt) {
+        return res.status(500).send({ error: errBcryptt });
+      }
+   const result = conn.query(
       `UPDATE users SET order_id = ?, name = ?, email = ?, password = ?, admin = ? WHERE user_id = ?`,
       [
         req.body.order_id,
         req.body.name,
         req.body.email,
-        req.body.password,
+        hash,
         req.body.admin,
         req.body.user_id,
       ],
@@ -109,21 +113,22 @@ router.patch("/", (req, res, next) => {
           });
         }
         res.status(202).send({
-          massage: "User updated successfully",
+          result
         });
       }
     );
   });
+})
 });
 
-router.delete("/", (req, res, next) => {
+router.delete("/:user_id", (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error });
     }
     conn.query(
       `DELETE FROM users WHERE user_id = ?`,
-      [req.body.user_id],
+      [req.params.user_id],
       (error, result, field) => {
         conn.release();
 

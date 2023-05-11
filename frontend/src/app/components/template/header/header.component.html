@@ -8,7 +8,7 @@
     </mat-form-field>
     <span class="example-spacer"></span>
     <span class="white" *ngIf="isLoggedIn() && this.router.url != '/login' && this.router.url !='/resetPassword' ; else notLoggedIn">
-      <span class="welcome white">  Welcome, {{user().nome}} </span><button title="Logout" (click)="logout()" mat-icon-button class="example-icon favorite-icon"
+      <span class="welcome white">  Welcome, {{user().name}} </span><button title="Logout" (click)="logout()" mat-icon-button class="example-icon favorite-icon"
         aria-label="Example icon-button with heart icon">
         <mat-icon class="pointer white">logout</mat-icon>
     </button>
@@ -20,7 +20,7 @@
         </button>
     </ng-template>
 
-    <div *ngIf="isLoggedIn() && user().admin===true"  class="dropdown">
+    <div *ngIf="isLoggedIn() && user().admin===1"  class="dropdown">
       <button title="Admin panel" routerLink="/products" mat-icon-button class="example-icon favorite-icon"
       aria-label="Example icon-button with heart icon">
         <mat-icon class="white">admin_panel_settings</mat-icon>

@@ -31,7 +31,8 @@ export class UserComponent implements OnInit {
   }
 
   form: FormGroup = this.fb.group({
-    nome: [ this.data?.nome, Validators.required],
+    user_id: [ this.data?. user_id],
+    name: [ this.data?.name, Validators.required],
     email: [this.data?.email, Validators.compose(
       [Validators.email, Validators.required])],
     password: [this.data?.password, Validators.required],
@@ -42,7 +43,7 @@ export class UserComponent implements OnInit {
   async saveUser() {
     if (this.data != undefined) {
       this.form.controls.admin.value == 'true' ? this.form.controls.admin.setValue(true) : this.form.controls.admin.setValue(false)
-      await this.userService.put(this.form.value, this.data.id);
+      await this.userService.put(this.form.value);
     }
     else {
       this.form.controls.admin.setValue(false)

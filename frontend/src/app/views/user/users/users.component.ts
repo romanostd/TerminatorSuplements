@@ -25,7 +25,8 @@ export class UsersComponent implements OnInit {
   pesquisar(query: string) {}
 
   delete(lista: User) {
-    this.userService.remove(lista.id).subscribe();
+    console.log(lista)
+    this.userService.remove(lista.user_id).subscribe();
     this.lista.splice(this.lista.indexOf(lista), 1);
     this.lista = [...this.lista];
   }
