@@ -11,14 +11,14 @@
               <input
                 matInput
                 placeholder="Name"
-                formControlName="nome"
+                formControlName="name"
                 type="text"
               />
               <mat-error
                 style="display: block"
                 *ngIf="
-                  form.controls.nome.hasError('required') &&
-                  form.controls.nome.touched
+                  form.controls.name.hasError('required') &&
+                  form.controls.name.touched
                 "
               >
                 Name is required

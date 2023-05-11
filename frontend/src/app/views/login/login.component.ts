@@ -32,12 +32,13 @@ export class LoginComponent implements OnInit {
     this.loginService
       .login(this.form.value.email, this.form.value.password)
       .subscribe((token) => {
+        console.log(token);
         if (token != undefined) {
           this.router.navigate(['/']);
           this.errorMessege = false;
         }
       });
-      this.errorMessege = 'Incorrect email or password';
+    this.errorMessege = 'Incorrect email or password';
   }
 
   openDialog() {
