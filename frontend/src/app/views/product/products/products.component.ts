@@ -35,7 +35,7 @@ export class ProductsComponent implements OnInit {
 
 
   delete(lista: Product) {
-    this.productService.remove(lista.id).subscribe()
+    this.productService.remove(lista.product_id).subscribe()
     this.lista.splice(this.lista.indexOf(lista), 1);
     this.lista = [...this.lista];
   }

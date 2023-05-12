@@ -25,7 +25,7 @@ export class CategoryComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.data != undefined) {
-      this.categoriesService.getById(this.data.id).subscribe(categories => {
+      this.categoriesService.getById(this.data.category_id).subscribe(categories => {
         this.categories = categories
       })
       this.title = 'EDIT CATEGORY'
@@ -33,6 +33,7 @@ export class CategoryComponent implements OnInit {
   }
 
   form: FormGroup = this.fb.group({
+    category_id: [this.data?.category_id],
     name: [this.data?.name, Validators.required],
     // parentId: [this.data?.parantId, this.categories?.parantId],
   })
@@ -40,7 +41,7 @@ export class CategoryComponent implements OnInit {
 
   async saveCategoy() {
     if (this.data != undefined) {
-      await this.categoriesService.put(this.form.value, this.data.id);
+      await this.categoriesService.put(this.form.value);
     }
     else {
       await this.categoriesService.post(this.form.value);

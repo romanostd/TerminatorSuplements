@@ -55,9 +55,10 @@ router.post("/", (req, res, next) => {
       return res.status(500).send({ error: error });
     }
     conn.query(
-      "INSERT INTO products (name, price, description, imageUrl, quantity) VALUES (?,?,?,?,?)",
+      "INSERT INTO products (name, category_id, price, description, imageUrl, quantity) VALUES (?,?,?,?,?,?)",
       [
         req.body.name,
+        req.body.category_id,
         req.body.price,
         req.body.description,
         req.body.imageUrl,
@@ -81,7 +82,7 @@ router.post("/", (req, res, next) => {
   });
 });
 
-router.patch("/", (req, res, next) => {
+router.put("/", (req, res, next) => {
     const product = {
       name: req.body.name,
       price: req.body.price,
@@ -119,7 +120,7 @@ router.patch("/", (req, res, next) => {
   });
 
 
-  router.delete("/", (req, res, next) => {
+  router.delete("/:product_id", (req, res, next) => {
     const product = {
       name: req.body.name,
       price: req.body.price,
@@ -129,23 +130,37 @@ router.patch("/", (req, res, next) => {
       if (error) {
         return res.status(500).send({ error: error });
       }
+      
       conn.query(
-        `DELETE FROM products WHERE product_id = ?`,
-        [
-          req.body.product_id
-        ],
+        `DELETE FROM orders WHERE product_id = ?`,
+        [req.params.product_id],
         (error, result, field) => {
-          conn.release();
-  
           if (error) {
-            res.status(500).send({
+            conn.release();
+            return res.status(500).send({
               error: error,
               response: null,
             });
           }
-          res.status(202).send({
-            massage: "Product removed successfully",
-          });
+  
+          conn.query(
+            `DELETE FROM products WHERE product_id = ?`,
+            [req.params.product_id],
+            (error, result, field) => {
+              conn.release();
+  
+              if (error) {
+                return res.status(500).send({
+                  error: error,
+                  response: null,
+                });
+              }
+  
+              res.status(202).send({
+                message: "Product removed successfully",
+              });
+            }
+          );
         }
       );
     });
