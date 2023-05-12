@@ -29,7 +29,7 @@ export class CategoriesComponent implements OnInit {
 
 
   delete(lista: Categories) {
-    this.categoriesService.remove(lista.id).subscribe()
+    this.categoriesService.remove(lista.category_id).subscribe()
     this.list.splice(this.list.indexOf(lista), 1);
     this.list = [...this.list];
   }

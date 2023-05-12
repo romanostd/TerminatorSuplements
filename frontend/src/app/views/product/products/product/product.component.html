@@ -28,17 +28,17 @@
             <mat-form-field>
               <input
                 matInput
-                placeholder="Descreption"
-                formControlName="descreption"
+                placeholder="Description"
+                formControlName="description"
                 type="text"
               />
               <mat-error
                 *ngIf="
-                  form.controls.descreption.hasError('required') &&
-                  form.controls.descreption.touched
+                  form.controls.description.hasError('required') &&
+                  form.controls.description.touched
                 "
               >
-                Descreption is required
+                Description is required
               </mat-error>
             </mat-form-field>
           </div>
@@ -80,26 +80,44 @@
           </div>
           <div class="row">
             <mat-form-field>
+              <input
+                matInput
+                placeholder="Quantity"
+                formControlName="quantity"
+                type="number"
+              />
+              <mat-error
+                *ngIf="
+                  form.controls.quantity.hasError('required') &&
+                  form.controls.quantity.touched
+                "
+              >
+                Quantity is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field>
               <mat-label>Select a category</mat-label>
-              <mat-select required formControlName="categoryId">
+              <mat-select required formControlName="category_id">
                 <mat-option
                   *ngFor="let category of categories"
-                  [value]="category.id"
+                  [value]="category.category_id"
                 >
                   {{ category.name }}
                 </mat-option>
               </mat-select>
               <mat-error
                 *ngIf="
-                  form.controls.categoryId.hasError('required') &&
-                  form.controls.categoryId.touched
+                  form.controls.category_id.hasError('required') &&
+                  form.controls.category_id.touched
                 "
               >
                 category is required
               </mat-error>
             </mat-form-field>
           </div>
-          <div class="row">
+          <!-- <div class="row">
             <mat-form-field>
               <mat-label>Select a user</mat-label>
               <mat-select required formControlName="userId">
@@ -116,7 +134,7 @@
                 user is required
               </mat-error>
             </mat-form-field>
-          </div>
+          </div> -->
         </form>
       </mat-card-content>
     </mat-card>
