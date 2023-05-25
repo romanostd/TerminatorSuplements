@@ -35,26 +35,23 @@ export class ProductComponent implements OnInit {
     this.categoriesService.get().subscribe( categorie => {
       this.categories = categorie
     })
-
-    this.userService.get().subscribe( user => {
-      this.users = user
-    })
   }
 
   form: FormGroup = this.fb.group({
-
+    product_id: [this.data?.product_id, Validators.required],
+    category_id: [this.data?.category_id, Validators.required],
     name: [this.data?.name, Validators.required],
-    descreption: [this.data?.descreption, Validators.required],
+    description: [this.data?.description, Validators.required],
     imageUrl: [this.data?.imageUrl, Validators.required],
     price: [this.data?.price, Validators.required],
-    categoryId: [this.data?.categoryId, Validators.required],
-    userId: [this.data?.userId, Validators.required],
+    quantity: [this.data?.quantity, Validators.required],
+
   })
 
 
    saveProduct() {
     if (this.data != undefined) {
-       this.productService.put(this.form.value, this.data.id).subscribe();
+       this.productService.put(this.form.value).subscribe();
     }
     else {
        this.productService.post(this.form.value).subscribe();

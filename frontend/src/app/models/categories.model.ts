@@ -1,7 +1,7 @@
 export interface Categories {
 
-    id?: string,
+  category_id?: string,
     name?: string,
     parantId: string,
-    
+
 }
