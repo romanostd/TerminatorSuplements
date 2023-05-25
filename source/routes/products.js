@@ -7,6 +7,22 @@ router.get("/", (req, res, next) => {
     if (error) {
       return res.status(500).send({ error: error });
     }
+    if(req.query.name) {
+
+      conn.query("SELECT * FROM products WHERE name = ?;",[req.query.name],(error, result, field) => {
+        conn.release();
+  
+        if (error) {
+          res.status(500).send({
+            error: error,
+            response: null,
+          });
+        }
+        return res.status(200).send(result);
+      })
+    }
+
+    else {
     conn.query("SELECT * FROM products;", (error, result, field) => {
       conn.release();
 
@@ -17,7 +33,7 @@ router.get("/", (req, res, next) => {
         });
       }
       return res.status(200).send(result);
-    });
+    })};
   });
 });
 
