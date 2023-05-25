@@ -5,7 +5,7 @@ const mysql = require("../mysql").pool;
 router.get("/", (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) {
-      return res.status(500).send({ error: errror });
+      return res.status(500).send({ error: error });
     }
     conn.query("SELECT * FROM categories;", (error, result, field) => {
       conn.release();
@@ -16,7 +16,7 @@ router.get("/", (req, res, next) => {
           response: null,
         });
       }
-      return res.status(200).send({ response: result });
+      return res.status(200).send(result);
     });
   });
 });
@@ -24,7 +24,7 @@ router.get("/", (req, res, next) => {
 router.get("/:category_id", (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) {
-      return res.status(500).send({ error: errror });
+      return res.status(500).send({ error: error });
     }
     conn.query(
       "SELECT * FROM categories WHERE category_id = ?;",
@@ -38,7 +38,7 @@ router.get("/:category_id", (req, res, next) => {
             response: null,
           });
         }
-        return res.status(200).send({ response: result });
+        return res.status(200).send(result);
       }
     );
   });
@@ -70,7 +70,7 @@ router.post("/", (req, res, next) => {
   });
 });
 
-router.patch("/", (req, res, next) => {
+router.put("/", (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error });
@@ -98,26 +98,40 @@ router.patch("/", (req, res, next) => {
   });
 });
 
-router.delete("/", (req, res, next) => {
+router.delete("/:category_id", (req, res, next) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error });
     }
     conn.query(
-      `DELETE FROM categories WHERE category_id = ?`,
-      [req.body.category_id],
+      `DELETE FROM products WHERE category_id = ?`,
+      [req.params.category_id],
       (error, result, field) => {
-        conn.release();
-
         if (error) {
-          res.status(500).send({
+          conn.release();
+          return res.status(500).send({
             error: error,
             response: null,
           });
         }
-        res.status(202).send({
-          massage: "Category removed successfully",
-        });
+        conn.query(
+          `DELETE FROM categories WHERE category_id = ?`,
+          [req.params.category_id],
+          (error, result, field) => {
+            conn.release();
+
+            if (error) {
+              return res.status(500).send({
+                error: error,
+                response: null,
+              });
+            }
+
+            res.status(202).send({
+              message: "Category removed successfully",
+            });
+          }
+        );
       }
     );
   });

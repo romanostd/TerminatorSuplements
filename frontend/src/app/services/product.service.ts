@@ -16,8 +16,8 @@ export class ProductService {
     return this.http.post<Product>(endpoint, produto);
   }
 
-  put(produto: Product, id: any): Observable<Product> {
-    const endpoint = `http://localhost:3000/products/${id}`;
+  put(produto: Product): Observable<Product> {
+    const endpoint = `http://localhost:3000/products`;
     return this.http.put<Product>(endpoint, produto);
   }
 

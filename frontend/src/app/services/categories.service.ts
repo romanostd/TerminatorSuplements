@@ -17,8 +17,8 @@ export class CategoriesService {
     return await this.http.post<Categories>(endpoint, categories).toPromise()
   }
 
-  async put(categories: Categories, id: any) {
-    const endpoint = `http://localhost:3000/categories/${id}`
+  async put(categories: Categories) {
+    const endpoint = `http://localhost:3000/categories`
     return await this.http.put<Categories>(endpoint, categories).toPromise()
   }
 
@@ -27,8 +27,8 @@ export class CategoriesService {
     return this.http.get<Categories[]>(url)
   }
 
-  remove(id: any): Observable<Categories> {
-    const url = `http://localhost:3000/categories/${id}`
+  remove(category_id: any): Observable<Categories> {
+    const url = `http://localhost:3000/categories/${category_id}`
     return this.http.delete<Categories>(url)
   }
 
