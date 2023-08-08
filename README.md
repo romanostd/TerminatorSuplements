@@ -7,7 +7,7 @@ para rodar o backend com knex:
 
 - primeiro instale node, depois instale o knex globalmente -> npm install knex --save -g.
 
-- rode o comando "npm i", no diretorio "source" do projeto, para instalar as dependencias do backend.
+- rode o comando "npm i", no diretorio "backend" do projeto, para instalar as dependencias do backend.
 
 - rode o comando "knex migrate:latest", ele criara as tabelas de acordo com as migrations do projeto.
 
@@ -19,7 +19,7 @@ para rodar o backend com docker:
 
 - primeiro instale node
 
-- rode o comando "npm i", no diretorio "backend" do projeto, para instalar as dependencias do backend.
+- rode o comando "npm i", no diretorio "source" do projeto, para instalar as dependencias do backend.
 
 - instale docker
 
