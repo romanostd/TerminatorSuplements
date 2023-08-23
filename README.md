@@ -1,21 +1,7 @@
 # TerminatorSuplementos
-Um e-commerce de suplementos , usando Angular e Node com Express,
+Um e-commerce de suplementos , usando Angular e Node com Express.
 
-para rodar o backend com knex:
-
-- instale postgrees, e configure o arquivo "knexfile.js" de acordo com o banco de dados que você criar.
-
-- primeiro instale node, depois instale o knex globalmente -> npm install knex --save -g.
-
-- rode o comando "npm i", no diretorio "backend" do projeto, para instalar as dependencias do backend.
-
-- rode o comando "knex migrate:latest", ele criara as tabelas de acordo com as migrations do projeto.
-
-- e por fim, para levantar o backend, rode o comando "npm start"
-
-=========================================================================================
-
-para rodar o backend com docker:
+Para rodar o backend com docker:
 
 - primeiro instale node
 
@@ -33,7 +19,7 @@ para rodar o backend com docker:
 
 - e por fim, para levantar o backend, rode o comando "npm start"
 
-=========================================================================================
+=============================================================
 
 para rodar o frontend:
 
