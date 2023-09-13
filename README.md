@@ -1,7 +1,7 @@
 # TerminatorSuplementos
 Um e-commerce de suplementos , usando Angular e Node com Express.
 
-Para rodar o backend com docker:
+Para rodar o backend:
 
 - primeiro instale node
 
@@ -31,4 +31,12 @@ para rodar o frontend:
 
 - possivel erro : 0308010C:digital envelope routines::unsupported
 
-- solução : rode o seguinte comando ->set NODE_OPTIONS=--openssl-legacy-provider
+- solução : rode o seguinte comando ->set NODE_OPTIONS=--openssl-legacy-provider / mude a versao do node para 16 ou menor
+
+=============================================================
+
+Frontend com docker:
+
+docker pull romanostd/terminator-front:v1
+
+docker run -d -p 8080:80 romanostd/terminator-front:v1
