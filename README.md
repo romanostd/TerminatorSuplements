@@ -36,7 +36,7 @@ Database:
 
 =============================================================
 
-testas aplicação com Docker:
+Testar aplicação com Docker:
 
 frontend
 
