@@ -1,140 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const mysql = require("../mysql").pool;
+const categoriesController = require("../controllers/categories-controller");
 
-router.get("/", (req, res, next) => {
-  mysql.getConnection((error, conn) => {
-    if (error) {
-      return res.status(500).send({ error: error });
-    }
-    conn.query("SELECT * FROM categories;", (error, result, field) => {
-      conn.release();
+router.get("/", categoriesController.getCategories);
 
-      if (error) {
-        res.status(500).send({
-          error: error,
-          response: null,
-        });
-      }
-      return res.status(200).send(result);
-    });
-  });
-});
+router.get("/:category_id", categoriesController.getCategoryById);
 
-router.get("/:category_id", (req, res, next) => {
-  mysql.getConnection((error, conn) => {
-    if (error) {
-      return res.status(500).send({ error: error });
-    }
-    conn.query(
-      "SELECT * FROM categories WHERE category_id = ?;",
-      [req.params.category_id],
-      (error, result, field) => {
-        conn.release();
+router.post("/", categoriesController.saveCategory);
 
-        if (error) {
-          res.status(500).send({
-            error: error,
-            response: null,
-          });
-        }
-        return res.status(200).send(result);
-      }
-    );
-  });
-});
+router.put("/", categoriesController.updateCategory);
 
-router.post("/", (req, res, next) => {
-  mysql.getConnection((error, conn) => {
-    if (error) {
-      return res.status(500).send({ error: error });
-    }
-    conn.query(
-      "INSERT INTO categories (name) VALUES (?)",
-      [req.body.name],
-      (error, result, field) => {
-        conn.release();
-
-        if (error) {
-          res.status(500).send({
-            error: error,
-            response: null,
-          });
-        }
-        res.status(201).send({
-          massage: "Category created successfully",
-          user_id: result.insertId,
-        });
-      }
-    );
-  });
-});
-
-router.put("/", (req, res, next) => {
-  mysql.getConnection((error, conn) => {
-    if (error) {
-      return res.status(500).send({ error: error });
-    }
-    conn.query(
-      `UPDATE categories SET name = ? WHERE category_id = ?;`,
-      [
-        req.body.category_id,
-        req.body.name,
-      ],
-      (error, result, field) => {
-        conn.release();
-
-        if (error) {
-          res.status(500).send({
-            error: error,
-            response: null,
-          });
-        }   
-        res.status(202).send({
-          massage: "Category updated successfully",
-        });
-      }
-    );
-  });
-});
-
-router.delete("/:category_id", (req, res, next) => {
-  mysql.getConnection((error, conn) => {
-    if (error) {
-      return res.status(500).send({ error: error });
-    }
-    conn.query(
-      `DELETE FROM products WHERE category_id = ?`,
-      [req.params.category_id],
-      (error, result, field) => {
-        if (error) {
-          conn.release();
-          return res.status(500).send({
-            error: error,
-            response: null,
-          });
-        }
-        conn.query(
-          `DELETE FROM categories WHERE category_id = ?`,
-          [req.params.category_id],
-          (error, result, field) => {
-            conn.release();
-
-            if (error) {
-              return res.status(500).send({
-                error: error,
-                response: null,
-              });
-            }
-
-            res.status(202).send({
-              message: "Category removed successfully",
-            });
-          }
-        );
-      }
-    );
-  });
-});
+router.delete("/:category_id", categoriesController.deleteCategory);
 
 module.exports = router;
