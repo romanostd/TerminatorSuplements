@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const mysql = require("../mysql").pool;
 const categoriesController = require("../controllers/categories-controller");
 
 router.get("/", categoriesController.getCategories);
