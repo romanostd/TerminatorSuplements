@@ -1,13 +1,35 @@
 const mysql = require("../mysql").pool;
 
-exports.getCategories =(req, res, next) => {
-    mysql.getConnection((error, conn) => {
+exports.getCategories = (req, res, next) => {
+  mysql.getConnection((error, conn) => {
+    if (error) {
+      return res.status(500).send({ error: error });
+    }
+    conn.query("SELECT * FROM categories;", (error, result, field) => {
+      conn.release();
+
       if (error) {
-        return res.status(500).send({ error: error });
+        res.status(500).send({
+          error: error,
+          response: null,
+        });
       }
-      conn.query("SELECT * FROM categories;", (error, result, field) => {
+      return res.status(200).send(result);
+    });
+  });
+};
+
+exports.getCategoryById = (req, res, next) => {
+  mysql.getConnection((error, conn) => {
+    if (error) {
+      return res.status(500).send({ error: error });
+    }
+    conn.query(
+      "SELECT * FROM categories WHERE category_id = ?;",
+      [req.params.category_id],
+      (error, result, field) => {
         conn.release();
-  
+
         if (error) {
           res.status(500).send({
             error: error,
@@ -15,122 +37,111 @@ exports.getCategories =(req, res, next) => {
           });
         }
         return res.status(200).send(result);
-      });
-    });
-  }
-
-exports.getCategoryById = (req, res, next) => {
-    mysql.getConnection((error, conn) => {
-      if (error) {
-        return res.status(500).send({ error: error });
       }
-      conn.query(
-        "SELECT * FROM categories WHERE category_id = ?;",
-        [req.params.category_id],
-        (error, result, field) => {
-          conn.release();
-  
-          if (error) {
-            res.status(500).send({
-              error: error,
-              response: null,
-            });
-          }
-          return res.status(200).send(result);
-        }
-      );
-    });
-  }
+    );
+  });
+};
 
-  exports.saveCategory = (req, res, next) => {
-    mysql.getConnection((error, conn) => {
-      if (error) {
-        return res.status(500).send({ error: error });
-      }
-      conn.query(
-        "INSERT INTO categories (name) VALUES (?)",
-        [req.body.name],
-        (error, result, field) => {
-          conn.release();
-  
-          if (error) {
-            res.status(500).send({
-              error: error,
-              response: null,
-            });
-          }
+exports.saveCategory = (req, res, next) => {
+  mysql.getConnection((error, conn) => {
+    if (error) {
+      return res.status(500).send({ error: error });
+    }
+    conn.query(
+      "INSERT INTO categories (name) VALUES (?)",
+      [req.body.name],
+      (error, result, field) => {
+        conn.release();
+
+        if (error) {
+          res.status(500).send({
+            error: error,
+            response: null,
+          });
+        } else {
           res.status(201).send({
-            massage: "Category created successfully",
-            user_id: result.insertId,
+            message: "Category created successfully",
+            category_id: result.insertId,
           });
         }
-      );
-    });
-  }
-
-  exports.updateCategory = (req, res, next) => {
-    mysql.getConnection((error, conn) => {
-      if (error) {
-        return res.status(500).send({ error: error });
       }
-      conn.query(
-        `UPDATE categories SET name = ? WHERE category_id = ?;`,
-        [
-          req.body.category_id,
-          req.body.name,
-        ],
-        (error, result, field) => {
+    );
+  });
+};
+
+exports.updateCategory = (req, res, next) => {
+  mysql.getConnection((error, conn) => {
+    if (error) {
+      return res.status(500).send({ error: error });
+    }
+    conn.query(
+      `UPDATE categories SET name = ? WHERE category_id = ?;`,
+      [req.body.name, req.body.category_id],
+      (error, result, fields) => {
+        conn.release();
+
+        if (error) {
+          return res.status(500).send({
+            error: error,
+            response: null,
+          });
+        }
+
+        if (result.affectedRows === 0) { 
+          return res.status(404).send({
+            message: "Category not found",
+          });
+        }
+
+        res.status(202).send({
+          message: "Category updated successfully",
+        });
+      }
+    );
+  });
+};
+
+exports.deleteCategory = (req, res, next) => {
+  mysql.getConnection((error, conn) => {
+    if (error) {
+      return res.status(500).send({ error: error });
+    }
+    conn.query(
+      `DELETE FROM products WHERE category_id = ?`,
+      [req.params.category_id],
+      (error, result, field) => {
+        if (error) {
           conn.release();
-  
-          if (error) {
-            res.status(500).send({
-              error: error,
-              response: null,
-            });
-          }   
-          res.status(202).send({
-            massage: "Category updated successfully",
+          return res.status(500).send({
+            error: error,
+            response: null,
           });
         }
-      );
-    });
-  }
-
-  exports.deleteCategory = (req, res, next) => {
-    mysql.getConnection((error, conn) => {
-      if (error) {
-        return res.status(500).send({ error: error });
-      }
-      conn.query(
-        `DELETE FROM products WHERE category_id = ?`,
-        [req.params.category_id],
-        (error, result, field) => {
-          if (error) {
+        conn.query(
+          `DELETE FROM categories WHERE category_id = ?`,
+          [req.params.category_id],
+          (error, result, field) => {
             conn.release();
-            return res.status(500).send({
-              error: error,
-              response: null,
-            });
-          }
-          conn.query(
-            `DELETE FROM categories WHERE category_id = ?`,
-            [req.params.category_id],
-            (error, result, field) => {
-              conn.release();
-  
-              if (error) {
-                return res.status(500).send({
-                  error: error,
-                  response: null,
-                });
-              }
-  
-              res.status(202).send({
-                message: "Category removed successfully",
+
+            if (error) {
+              return res.status(500).send({
+                error: error,
+                response: null,
               });
             }
-          );
-        }
-      );
-    });
-  }
+
+            if (result.affectedRows === 0) { 
+              return res.status(404).send({
+                message: "Category not found",
+              });
+            }
+
+            res.status(202).send({
+              message: "Category removed successfully",
+            });
+          }
+        );
+      }
+    );
+  });
+};
