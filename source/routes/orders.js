@@ -9,8 +9,8 @@ router.get("/:order_id", ordersController.getOrderById);
 
 router.post("/", ordersController.saveOrder);
 
-router.patch("/", ordersController.updateOrder);
+router.put("/", ordersController.updateOrder);
 
-router.delete("/", ordersController.deleteOrder);
+router.delete("/:order_id", ordersController.deleteOrder);
 
 module.exports = router;
