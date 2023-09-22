@@ -1,7 +1,6 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '~@angular/material' as mat;
+@use "~@angular/material" as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -13,20 +12,27 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $TerminatorSuplementos-primary: mat.define-palette(mat.$indigo-palette);
-$TerminatorSuplementos-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$TerminatorSuplementos-accent: mat.define-palette(
+  mat.$pink-palette,
+  A200,
+  A100,
+  A400
+);
 
 // The warn palette is optional (defaults to red).
 $TerminatorSuplementos-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$TerminatorSuplementos-theme: mat.define-light-theme((
-  color: (
-    primary: $TerminatorSuplementos-primary,
-    accent: $TerminatorSuplementos-accent,
-    warn: $TerminatorSuplementos-warn,
+$TerminatorSuplementos-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $TerminatorSuplementos-primary,
+      accent: $TerminatorSuplementos-accent,
+      warn: $TerminatorSuplementos-warn,
+    ),
   )
-));
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -37,17 +43,21 @@ $TerminatorSuplementos-theme: mat.define-light-theme((
 
 @font-face {
   font-family: terminator;
-  src: url(assets/fonts/terminator.woff) format('woff2');
+  src: url(assets/fonts/terminator.woff) format("woff2");
 }
-
-
 
 .terminator {
   font-family: terminator;
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .v-middle {
   vertical-align: middle;
@@ -56,4 +66,3 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .white {
   color: white;
 }
-

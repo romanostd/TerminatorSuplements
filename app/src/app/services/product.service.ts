@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable, Optional } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Product } from '../models/product.model';
+import { HttpClient } from "@angular/common/http";
+import { Inject, Injectable, Optional } from "@angular/core";
+import { Observable } from "rxjs";
+import { Product } from "../models/product.model";
 
 @Injectable()
 export class ProductService {
@@ -9,10 +9,10 @@ export class ProductService {
     this.http = http;
   }
 
-  products?: Product[] = []
+  products?: Product[] = [];
 
-   post(produto: Product): Observable<Product> {
-    const endpoint = 'http://localhost:3000/products';
+  post(produto: Product): Observable<Product> {
+    const endpoint = "http://localhost:3000/products";
     return this.http.post<Product>(endpoint, produto);
   }
 

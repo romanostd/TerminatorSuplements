@@ -1,31 +1,34 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { User } from 'src/app/models/user.model';
-import { UserService } from 'src/app/services/user.service';
-import { UserComponent } from './user/user.component';
+import { Component, OnInit } from "@angular/core";
+import { MatDialog } from "@angular/material/dialog";
+import { User } from "src/app/models/user.model";
+import { UserService } from "src/app/services/user.service";
+import { UserComponent } from "./user/user.component";
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss'],
+  selector: "app-users",
+  templateUrl: "./users.component.html",
+  styleUrls: ["./users.component.scss"],
 })
 export class UsersComponent implements OnInit {
-  constructor(private userService: UserService, public dialog: MatDialog) {}
+  constructor(
+    private userService: UserService,
+    public dialog: MatDialog,
+  ) {}
 
   lista: User[] = [];
 
   ngOnInit() {
-    this.userService.get().subscribe((user) => {
+    this.userService.get().subscribe(user => {
       this.lista = user;
     });
   }
 
-  displayedColumns: string[] = ['position', 'name', 'weight', 'action'];
+  displayedColumns: string[] = ["position", "name", "weight", "action"];
 
   pesquisar(query: string) {}
 
   delete(lista: User) {
-    console.log(lista)
+    console.log(lista);
     this.userService.remove(lista.user_id).subscribe();
     this.lista.splice(this.lista.indexOf(lista), 1);
     this.lista = [...this.lista];
@@ -36,8 +39,8 @@ export class UsersComponent implements OnInit {
       data: data,
     });
 
-    dialogRef.afterClosed().subscribe(async (result) => {
-      this.userService.get().subscribe((user) => {
+    dialogRef.afterClosed().subscribe(async result => {
+      this.userService.get().subscribe(user => {
         this.lista = user;
       });
     });

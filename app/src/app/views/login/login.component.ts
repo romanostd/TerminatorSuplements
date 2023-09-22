@@ -1,44 +1,44 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { LoginService } from 'src/app/services/login.service';
-import { UserComponent } from '../user/users/user/user.component';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
+import { Router } from "@angular/router";
+import { LoginService } from "src/app/services/login.service";
+import { UserComponent } from "../user/users/user/user.component";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  selector: "app-login",
+  templateUrl: "./login.component.html",
+  styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private loginService: LoginService,
     public dialog: MatDialog,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {}
   errorMessege: any;
   form: FormGroup = this.fb.group({
     email: this.fb.control(
-      '',
-      Validators.compose([Validators.email, Validators.required])
+      "",
+      Validators.compose([Validators.email, Validators.required]),
     ),
-    password: this.fb.control('', Validators.required),
+    password: this.fb.control("", Validators.required),
   });
 
   login() {
     this.loginService
       .login(this.form.value.email, this.form.value.password)
-      .subscribe((token) => {
+      .subscribe(token => {
         console.log(token);
         if (token != undefined) {
-          this.router.navigate(['/']);
+          this.router.navigate(["/"]);
           this.errorMessege = false;
         }
       });
-    this.errorMessege = 'Incorrect email or password';
+    this.errorMessege = "Incorrect email or password";
   }
 
   openDialog() {

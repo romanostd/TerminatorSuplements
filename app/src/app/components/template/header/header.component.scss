@@ -1,8 +1,8 @@
-@import url('../../../app.component.scss');
+@import url("../../../app.component.scss");
 
 .example-spacer {
-    flex: 1 1 auto;
-  }
+  flex: 1 1 auto;
+}
 
 .header {
   background-image: linear-gradient(to right, white, black);
@@ -20,7 +20,6 @@
   padding: 20px;
   font-size: 0.9rem;
 }
-
 
 .dropdown {
   display: inline-block;
@@ -47,12 +46,15 @@
   display: block;
 }
 
-.dropdown-content a:hover {background-color: #ddd}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
-.btn:hover, .dropdown:hover .btn {
+.btn:hover,
+.dropdown:hover .btn {
   background-color: #0b7dda;
 }

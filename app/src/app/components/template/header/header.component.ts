@@ -1,19 +1,18 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
-import { LoginService } from 'src/app/services/login.service';
-import { ProductService } from 'src/app/services/product.service';
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
+import { LoginService } from "src/app/services/login.service";
+import { ProductService } from "src/app/services/product.service";
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
+  selector: "app-header",
+  templateUrl: "./header.component.html",
+  styleUrls: ["./header.component.scss"],
 })
 export class HeaderComponent {
   constructor(
     private loginService: LoginService,
     public productService: ProductService,
-    public router: Router
-
+    public router: Router,
   ) {}
 
   isLoggedIn(): boolean {
@@ -29,12 +28,12 @@ export class HeaderComponent {
   }
 
   callSearch(query?: any) {
-    this.productService.get(query).subscribe((product) => {
+    this.productService.get(query).subscribe(product => {
       this.productService.products = product;
     });
   }
 
   goToCart() {
-    alert('in development')
+    alert("in development");
   }
 }

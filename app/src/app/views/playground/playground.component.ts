@@ -19,7 +19,6 @@
 //   estabelecimentos: any[];
 //   estabelecimentoCnpj: '';
 
-
 //   ordenacao?: 'Codigo' | 'Descricao' = 'Codigo';
 //   custoMedio: boolean;
 //   precoCompraAtual: boolean;
@@ -90,7 +89,6 @@
 //     })
 //     return soma;
 //   }
-
 
 //   get ultimaAquisicaoPrecoUnitario() {
 //     let soma = 0;
@@ -199,4 +197,3 @@
 //     this.pesquisaContainerActived = false;
 //   }
 // }
-

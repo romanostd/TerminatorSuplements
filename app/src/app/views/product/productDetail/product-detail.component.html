@@ -1,16 +1,26 @@
-<div class="container mt-5 w-25 " >
-    <mat-card class="example-card detail-card">
-        <mat-card-header>
-            <div mat-card-avatar class="example-header-image"></div>
-            <mat-card-title class="terminator-font">{{product?.name}}</mat-card-title>
-            <mat-card-subtitle>{{product?.price | currency:'BRL':true}}</mat-card-subtitle>
-        </mat-card-header>
-        <img class="p-5" mat-card-image src="{{product?.imageUrl}}" width="500" height="500">
-        <mat-card-content  style="word-break: break-all;">
-                {{product?.description }}
-        </mat-card-content>
-        <mat-card-actions>
-            <button (click)="buy()" class="button-terminator" mat-button>Buy</button>
-        </mat-card-actions>
-    </mat-card>
+<div class="container mt-5 w-25">
+  <mat-card class="example-card detail-card">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title class="terminator-font">{{
+        product?.name
+      }}</mat-card-title>
+      <mat-card-subtitle>{{
+        product?.price | currency: "BRL" : true
+      }}</mat-card-subtitle>
+    </mat-card-header>
+    <img
+      class="p-5"
+      mat-card-image
+      src="{{ product?.imageUrl }}"
+      width="500"
+      height="500"
+    />
+    <mat-card-content style="word-break: break-all">
+      {{ product?.description }}
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="buy()" class="button-terminator" mat-button>Buy</button>
+    </mat-card-actions>
+  </mat-card>
 </div>

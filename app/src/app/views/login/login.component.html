@@ -23,7 +23,6 @@
               formControlName="password"
               type="password"
             />
-
           </mat-form-field>
           <mat-error *ngIf="this.errorMessege != false">
             {{ errorMessege }}
@@ -34,7 +33,9 @@
     <mat-card-actions class="d-flex justify-content-between">
       <button (click)="openDialog()" mat-button>Create Account</button>
       <button routerLink="/resetPassword" mat-button>Forgot password?</button>
-      <button [disabled]="form.invalid" (click)="login()" aling mat-button>Login</button>
+      <button [disabled]="form.invalid" (click)="login()" aling mat-button
+        >Login</button
+      >
     </mat-card-actions>
   </mat-card>
 </div>
