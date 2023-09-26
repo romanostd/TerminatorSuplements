@@ -1,12 +1,5 @@
 import { Injectable } from "@angular/core";
-import {
-  ActivatedRouteSnapshot,
-  CanActivate,
-  Route,
-  Router,
-  RouterStateSnapshot,
-  UrlTree,
-} from "@angular/router";
+import { CanActivate, Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { LoginService } from "../services/login.service";
 
@@ -17,10 +10,7 @@ export class GuardsService implements CanActivate {
     private router: Router,
   ) {}
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot,
-  ): Observable<boolean> | boolean {
+  canActivate(): Observable<boolean> | boolean {
     return this.verificarAcesso();
   }
 
@@ -34,9 +24,7 @@ export class GuardsService implements CanActivate {
     return false;
   }
 
-  canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {
-    console.log("canLoad: verificando se usuário pode carregar o cod módulo");
-
+  canLoad(): Observable<boolean> | Promise<boolean> | boolean {
     return this.verificarAcesso();
   }
 }

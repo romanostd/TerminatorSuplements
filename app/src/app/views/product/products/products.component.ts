@@ -30,7 +30,7 @@ export class ProductsComponent implements OnInit {
 
   displayedColumns: string[] = ["id", "name", "price", "categorie", "action"];
 
-  pesquisar(query: string) {}
+  // pesquisar(query: string) {}
 
   delete(lista: Product) {
     this.productService.remove(lista.product_id).subscribe();
@@ -43,7 +43,7 @@ export class ProductsComponent implements OnInit {
       data: data,
     });
 
-    dialogRef.afterClosed().subscribe(async result => {
+    dialogRef.afterClosed().subscribe(() => {
       this.productService.get().subscribe(product => {
         this.lista = product;
       });

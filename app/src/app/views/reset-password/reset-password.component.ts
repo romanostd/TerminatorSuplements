@@ -1,15 +1,11 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import {
-  FormBuilder,
   FormControl,
-  FormGroup,
   FormGroupDirective,
   NgForm,
   Validators,
 } from "@angular/forms";
 import { ErrorStateMatcher } from "@angular/material/core";
-import { Router } from "@angular/router";
-import { User } from "src/app/models/user.model";
 import { EmailService } from "src/app/services/email.service";
 import { UserService } from "src/app/services/user.service";
 

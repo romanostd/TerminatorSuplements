@@ -25,7 +25,7 @@ export class CategoriesComponent implements OnInit {
 
   displayedColumns: string[] = ["name", "action"];
 
-  pesquisar(query: string) {}
+  // pesquisar(query: string) {}
 
   delete(lista: Categories) {
     this.categoriesService.remove(lista.category_id).subscribe();
@@ -38,7 +38,7 @@ export class CategoriesComponent implements OnInit {
       data: data,
     });
 
-    dialogRef.afterClosed().subscribe(async result => {
+    dialogRef.afterClosed().subscribe(() => {
       this.categoriesService.get().subscribe(categorie => {
         this.list = categorie;
       });

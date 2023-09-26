@@ -25,7 +25,7 @@ export class UsersComponent implements OnInit {
 
   displayedColumns: string[] = ["position", "name", "weight", "action"];
 
-  pesquisar(query: string) {}
+  // pesquisar(query: string) {}
 
   delete(lista: User) {
     console.log(lista);
@@ -39,7 +39,7 @@ export class UsersComponent implements OnInit {
       data: data,
     });
 
-    dialogRef.afterClosed().subscribe(async result => {
+    dialogRef.afterClosed().subscribe(() => {
       this.userService.get().subscribe(user => {
         this.lista = user;
       });

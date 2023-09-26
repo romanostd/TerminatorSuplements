@@ -1,7 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { HeaderComponent } from "src/app/components/template/header/header.component";
-import { Product } from "src/app/models/product.model";
-import { LoginService } from "src/app/services/login.service";
+import { Component, OnInit } from "@angular/core";
 import { ProductService } from "src/app/services/product.service";
 
 @Component({
@@ -17,8 +14,6 @@ export class HomeComponent implements OnInit {
       this.productService.products = product;
     });
   }
-
-  select(product: Product) {}
 
   addToCart() {
     alert("in development");

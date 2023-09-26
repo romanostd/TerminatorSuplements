@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component } from "@angular/core";
 import { Router } from "@angular/router";
 import { LoginService } from "src/app/services/login.service";
 import { ProductService } from "src/app/services/product.service";
@@ -19,7 +19,7 @@ export class HeaderComponent {
     return this.loginService.isLoggedIn();
   }
 
-  user(): any {
+  user() {
     return this.loginService.user;
   }
 
@@ -27,7 +27,7 @@ export class HeaderComponent {
     this.loginService.logout();
   }
 
-  callSearch(query?: any) {
+  callSearch(query: string) {
     this.productService.get(query).subscribe(product => {
       this.productService.products = product;
     });
