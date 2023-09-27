@@ -1,6 +1,6 @@
 const mysql = require("../mysql").pool;
 
-exports.getOrders = (req, res, next) => {
+exports.getOrders = (req, res) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error });
@@ -14,7 +14,7 @@ exports.getOrders = (req, res, next) => {
             FROM orders
       INNER JOIN products
    ON products.product_id = orders.product_id;`,
-      (error, result, field) => {
+      (error, result) => {
         conn.release();
 
         if (error) {
@@ -24,14 +24,13 @@ exports.getOrders = (req, res, next) => {
           });
         }
 
-        
         return res.status(200).send({ result });
-      }
+      },
     );
   });
 };
 
-exports.getOrderById = (req, res, next) => {
+exports.getOrderById = (req, res) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error });
@@ -39,7 +38,7 @@ exports.getOrderById = (req, res, next) => {
     conn.query(
       "SELECT * FROM orders WHERE order_id = ?;",
       [req.params.order_id],
-      (error, result, field) => {
+      (error, result) => {
         conn.release();
 
         if (error) {
@@ -49,12 +48,12 @@ exports.getOrderById = (req, res, next) => {
           });
         }
         return res.status(200).send({ result });
-      }
+      },
     );
   });
 };
 
-exports.saveOrder = (req, res, next) => {
+exports.saveOrder = (req, res) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error });
@@ -62,7 +61,7 @@ exports.saveOrder = (req, res, next) => {
     conn.query(
       "INSERT INTO orders (product_id, quantity) VALUES (?,?)",
       [req.body.product_id, req.body.quantity],
-      (error, result, field) => {
+      (error, result) => {
         conn.release();
 
         if (error) {
@@ -76,12 +75,12 @@ exports.saveOrder = (req, res, next) => {
             order_id: result.insertId,
           });
         }
-      }
+      },
     );
   });
 };
 
-exports.updateOrder = (req, res, next) => {
+exports.updateOrder = (req, res) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error });
@@ -89,7 +88,7 @@ exports.updateOrder = (req, res, next) => {
     conn.query(
       `UPDATE orders SET product_id = ?, quantity = ? WHERE order_id = ?`,
       [req.body.product_id, req.body.quantity, req.body.order_id],
-      (error, result, field) => {
+      error => {
         conn.release();
 
         if (error) {
@@ -102,20 +101,20 @@ exports.updateOrder = (req, res, next) => {
             message: "Order updated successfully",
           });
         }
-      }
+      },
     );
   });
 };
 
-exports.deleteOrder = (req, res, next) => {
+exports.deleteOrder = (req, res) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error });
     }
     conn.query(
       `DELETE FROM orders WHERE order_id = ?`,
-      [req.params.order_id], 
-      (error, result, field) => {
+      [req.params.order_id],
+      (error, result) => {
         conn.release();
 
         if (error) {
@@ -133,7 +132,7 @@ exports.deleteOrder = (req, res, next) => {
         res.status(202).send({
           message: "Order removed successfully",
         });
-      }
+      },
     );
   });
 };

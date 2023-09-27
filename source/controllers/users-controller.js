@@ -1,13 +1,12 @@
 const mysql = require("../mysql").pool;
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
 
-exports.getUsers = (req, res, next) => {
+exports.getUsers = (req, res) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error });
     }
-    conn.query("SELECT * FROM users;", (error, result, field) => {
+    conn.query("SELECT * FROM users;", (error, result) => {
       conn.release();
 
       if (error) {
@@ -21,7 +20,7 @@ exports.getUsers = (req, res, next) => {
   });
 };
 
-exports.getUserById = (req, res, next) => {
+exports.getUserById = (req, res) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error });
@@ -29,7 +28,7 @@ exports.getUserById = (req, res, next) => {
     conn.query(
       "SELECT * FROM users WHERE user_id = ?;",
       [req.params.user_id],
-      (error, result, field) => {
+      (error, result) => {
         conn.release();
 
         if (error) {
@@ -39,12 +38,12 @@ exports.getUserById = (req, res, next) => {
           });
         }
         return res.status(200).send(result);
-      }
+      },
     );
   });
 };
 
-exports.saveUser = (req, res, next) => {
+exports.saveUser = (req, res) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error });
@@ -62,7 +61,7 @@ exports.saveUser = (req, res, next) => {
           hash,
           req.body.admin,
         ],
-        (error, result, field) => {
+        (error, result) => {
           conn.release();
 
           if (error) {
@@ -76,13 +75,13 @@ exports.saveUser = (req, res, next) => {
               user_id: result.insertId,
             });
           }
-        }
+        },
       );
     });
   });
 };
 
-exports.updateUser = (req, res, next) => {
+exports.updateUser = (req, res) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error });
@@ -91,7 +90,7 @@ exports.updateUser = (req, res, next) => {
       if (errBcryptt) {
         return res.status(500).send({ error: errBcryptt });
       }
-      const result = conn.query(
+      conn.query(
         `UPDATE users SET order_id = ?, name = ?, email = ?, password = ?, admin = ? WHERE user_id = ?`,
         [
           req.body.order_id,
@@ -101,7 +100,7 @@ exports.updateUser = (req, res, next) => {
           req.body.admin,
           req.body.user_id,
         ],
-        (error, result, field) => {
+        (error, result) => {
           conn.release();
 
           if (error) {
@@ -113,13 +112,13 @@ exports.updateUser = (req, res, next) => {
           res.status(202).send({
             result,
           });
-        }
+        },
       );
     });
   });
 };
 
-exports.deleteUser = (req, res, next) => {
+exports.deleteUser = (req, res) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error });
@@ -127,7 +126,7 @@ exports.deleteUser = (req, res, next) => {
     conn.query(
       `DELETE FROM users WHERE user_id = ?`,
       [req.params.user_id],
-      (error, result, field) => {
+      (error, result) => {
         conn.release();
 
         if (error) {
@@ -144,7 +143,7 @@ exports.deleteUser = (req, res, next) => {
         res.status(202).send({
           message: "User removed successfully",
         });
-      }
+      },
     );
   });
 };

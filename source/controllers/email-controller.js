@@ -3,11 +3,11 @@ const user = "queijoromano@hotmail.com";
 const pass = "*&@Ro1906";
 const transporter = nodeMailer.createTransport({
   service: "hotmail",
-  auth: { user : user, pass: pass  },
+  auth: { user: user, pass: pass },
 });
 
-exports.forgotPassword = (req, res, next) => {
-    transporter
+exports.forgotPassword = (req, res) => {
+  transporter
     .sendMail({
       from: user,
       to: req.query.email,
@@ -15,10 +15,10 @@ exports.forgotPassword = (req, res, next) => {
       subject: "Reset password",
       text: "Your confirmation code is " + req.query.code,
     })
-    .then((info) => {
+    .then(info => {
       res.send(info);
     })
-    .catch((error) => {
+    .catch(error => {
       res.send(error);
     });
-  }
+};

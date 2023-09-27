@@ -1,4 +1,4 @@
-
+#!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
 cd app
@@ -6,8 +6,8 @@ npm run lint
 npm run format
 cd ..
 
-# # Executar comandos para a pasta "source"
-# cd source
-# npm run lint
-# npm run format
-# cd ..
+cd source
+npm run lint
+npm run format
+npm run test
+cd ..

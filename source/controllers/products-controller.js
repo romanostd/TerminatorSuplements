@@ -1,6 +1,6 @@
 const mysql = require("../mysql").pool;
 
-exports.getProducts = (req, res, next) => {
+exports.getProducts = (req, res) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error });
@@ -9,7 +9,7 @@ exports.getProducts = (req, res, next) => {
       conn.query(
         "SELECT * FROM products WHERE name = ?;",
         [req.query.name],
-        (error, result, field) => {
+        (error, result) => {
           conn.release();
 
           if (error) {
@@ -19,10 +19,10 @@ exports.getProducts = (req, res, next) => {
             });
           }
           return res.status(200).send(result);
-        }
+        },
       );
     } else {
-      conn.query("SELECT * FROM products;", (error, result, field) => {
+      conn.query("SELECT * FROM products;", (error, result) => {
         conn.release();
 
         if (error) {
@@ -37,7 +37,7 @@ exports.getProducts = (req, res, next) => {
   });
 };
 
-exports.getProductById = (req, res, next) => {
+exports.getProductById = (req, res) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error });
@@ -45,7 +45,7 @@ exports.getProductById = (req, res, next) => {
     conn.query(
       "SELECT * FROM products WHERE product_id = ?;",
       [req.params.product_id],
-      (error, result, field) => {
+      (error, result) => {
         conn.release();
 
         if (error) {
@@ -55,17 +55,12 @@ exports.getProductById = (req, res, next) => {
           });
         }
         return res.status(200).send(result);
-      }
+      },
     );
   });
 };
 
-exports.saveProduct = (req, res, next) => {
-  const product = {
-    name: req.body.name,
-    price: req.body.price,
-  };
-
+exports.saveProduct = (req, res) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error });
@@ -80,7 +75,7 @@ exports.saveProduct = (req, res, next) => {
         req.body.imageUrl,
         req.body.quantity,
       ],
-      (error, result, field) => {
+      (error, result) => {
         conn.release();
 
         if (error) {
@@ -94,17 +89,12 @@ exports.saveProduct = (req, res, next) => {
             product_id: result.insertId,
           });
         }
-      }
+      },
     );
   });
 };
 
-exports.updateProduct = (req, res, next) => {
-  const product = {
-    name: req.body.name,
-    price: req.body.price,
-  };
-
+exports.updateProduct = (req, res) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error });
@@ -119,7 +109,7 @@ exports.updateProduct = (req, res, next) => {
         req.body.quantity,
         req.body.product_id,
       ],
-      (error, result, field) => {
+      error => {
         conn.release();
 
         if (error) {
@@ -132,17 +122,12 @@ exports.updateProduct = (req, res, next) => {
             message: "Product updated successfully",
           });
         }
-      }
+      },
     );
   });
 };
 
-exports.deleteProduct = (req, res, next) => {
-  const product = {
-    name: req.body.name,
-    price: req.body.price,
-  };
-
+exports.deleteProduct = (req, res) => {
   mysql.getConnection((error, conn) => {
     if (error) {
       return res.status(500).send({ error: error });
@@ -151,7 +136,7 @@ exports.deleteProduct = (req, res, next) => {
     conn.query(
       `DELETE FROM orders WHERE product_id = ?`,
       [req.params.product_id],
-      (error, result, field) => {
+      error => {
         if (error) {
           conn.release();
           return res.status(500).send({
@@ -163,7 +148,7 @@ exports.deleteProduct = (req, res, next) => {
         conn.query(
           `DELETE FROM products WHERE product_id = ?`,
           [req.params.product_id],
-          (error, result, field) => {
+          (error, result) => {
             conn.release();
 
             if (error) {
@@ -173,8 +158,7 @@ exports.deleteProduct = (req, res, next) => {
               });
             }
 
-            
-            if (result.affectedRows === 0) { 
+            if (result.affectedRows === 0) {
               return res.status(404).send({
                 message: "Product not found",
               });
@@ -183,9 +167,9 @@ exports.deleteProduct = (req, res, next) => {
             res.status(202).send({
               message: "Product removed successfully",
             });
-          }
+          },
         );
-      }
+      },
     );
   });
 };

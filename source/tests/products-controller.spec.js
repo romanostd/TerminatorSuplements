@@ -82,17 +82,17 @@ describe("PUT /updateProduct", () => {
   });
 });
 
-describe('DELETE /products/:product_id', () => {
-    it('should delete a specific product by ID', async () => {
-      const response = await request(app).delete(`/products/${productId}`);
-      expect(response.status).toBe(202);
-      expect(response.body.message).toBe('Product removed successfully');
-    });
-  
-    it('should handle non-existent product ID', async () => {
-      const productId = 999;
-      const response = await request(app).delete(`/products/${productId}`);
-      expect(response.status).toBe(404);
-      expect(response.body.message).toBe('Product not found');
-    });
+describe("DELETE /products/:product_id", () => {
+  it("should delete a specific product by ID", async () => {
+    const response = await request(app).delete(`/products/${productId}`);
+    expect(response.status).toBe(202);
+    expect(response.body.message).toBe("Product removed successfully");
   });
+
+  it("should handle non-existent product ID", async () => {
+    const productId = 999;
+    const response = await request(app).delete(`/products/${productId}`);
+    expect(response.status).toBe(404);
+    expect(response.body.message).toBe("Product not found");
+  });
+});

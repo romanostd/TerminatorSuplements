@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const request = require("supertest");
 const app = require("../app");
 
@@ -9,7 +9,7 @@ describe("User Lifecycle with Login", () => {
       name: "Test",
       email: "testuser@example.com",
       password: "password123",
-      admin: true
+      admin: true,
     };
 
     const response = await request(app).post("/users").send(newUser);
@@ -27,7 +27,9 @@ describe("User Lifecycle with Login", () => {
       password: "password123",
     };
 
-    const loginResponse = await request(app).post("/login").send(userCredentials);
+    const loginResponse = await request(app)
+      .post("/login")
+      .send(userCredentials);
 
     expect(loginResponse.status).toBe(200);
     expect(loginResponse.body.message).toBe("Login success");
@@ -36,7 +38,6 @@ describe("User Lifecycle with Login", () => {
     expect(loginResponse.body.name).toBeDefined();
     expect(loginResponse.body.admin).toBeDefined();
 
- 
     const deleteResponse = await request(app)
       .delete(`/users/${createdUserId}`)
       .set("Authorization", `Bearer ${loginResponse.body.token}`);
