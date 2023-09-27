@@ -1,5 +1,5 @@
 # TerminatorSuplementos
-Um e-commerce de suplementos , usando Angular e Node com Express.
+Um e-commerce de suplementos , usando Angular, Node com Express e MySQL.
 
 Como configurar o ambiente:
 
@@ -40,14 +40,14 @@ Testar aplicação com Docker:
 
 frontend
 
-docker pull romanostd/terminator-front:v1
+- docker pull romanostd/terminator-front:v1
 
-docker run -d -p 8080:80 romanostd/terminator-front:v1
+- docker run -d -p 8080:80 romanostd/terminator-front:v1
 
 backend:
 
-docker pull romanostd/terminator-front:v1
+- docker pull romanostd/terminator-front:v1
 
-docker run -d -p 3000:3000 romanostd/terminator-front:v1
+- docker run -d -p 3000:3000 romanostd/terminator-front:v1
 
 
