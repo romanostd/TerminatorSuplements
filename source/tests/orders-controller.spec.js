@@ -31,7 +31,7 @@ describe("Order API Endpoints", () => {
       const response = await request(app).get("/orders");
       expect(response.status).toBe(200);
       expect(response.body).toBeDefined();
-    } );
+    });
   });
 
   describe("GET /orders/:order_id", () => {
