@@ -15,11 +15,11 @@ export class CategoriesComponent implements OnInit {
     public dialog: MatDialog,
   ) {}
 
-  list: Categories[] = [];
+  categoryList: Categories[] = [];
 
   ngOnInit() {
     this.categoriesService.get().subscribe(categorie => {
-      this.list = categorie;
+      this.categoryList = categorie;
     });
   }
 
@@ -27,20 +27,20 @@ export class CategoriesComponent implements OnInit {
 
   // pesquisar(query: string) {}
 
-  delete(lista: Categories) {
-    this.categoriesService.remove(lista.category_id).subscribe();
-    this.list.splice(this.list.indexOf(lista), 1);
-    this.list = [...this.list];
+  delete(selectedCategory: Categories) {
+    this.categoriesService.remove(selectedCategory.category_id).subscribe();
+    this.categoryList.splice(this.categoryList.indexOf(selectedCategory), 1);
+    this.categoryList = [...this.categoryList];
   }
 
-  openDialog(data?: Categories) {
+  openDialog(categoryData?: Categories) {
     const dialogRef = this.dialog.open(CategoryComponent, {
-      data: data,
+      data: categoryData,
     });
 
     dialogRef.afterClosed().subscribe(() => {
       this.categoriesService.get().subscribe(categorie => {
-        this.list = categorie;
+        this.categoryList = categorie;
       });
     });
   }

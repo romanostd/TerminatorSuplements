@@ -15,16 +15,16 @@ export class CategoryComponent implements OnInit {
     private fb: FormBuilder,
     private categoriesService: CategoriesService,
     public dialogRef: MatDialogRef<UserComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Categories,
+    @Inject(MAT_DIALOG_DATA) public categoryData: Categories,
   ) {}
 
   categories?: Categories;
   title = "CREATE CATEGORY";
 
   ngOnInit(): void {
-    if (this.data != undefined) {
+    if (this.categoryData != undefined) {
       this.categoriesService
-        .getById(this.data.category_id)
+        .getById(this.categoryData.category_id)
         .subscribe(categories => {
           this.categories = categories;
         });
@@ -33,13 +33,13 @@ export class CategoryComponent implements OnInit {
   }
 
   form: FormGroup = this.fb.group({
-    category_id: [this.data?.category_id],
-    name: [this.data?.name, Validators.required],
+    category_id: [this.categoryData?.category_id],
+    name: [this.categoryData?.name, Validators.required],
     // parentId: [this.data?.parantId, this.categories?.parantId],
   });
 
   async saveCategoy() {
-    if (this.data != undefined) {
+    if (this.categoryData != undefined) {
       await this.categoriesService.put(this.form.value);
     } else {
       await this.categoriesService.post(this.form.value);

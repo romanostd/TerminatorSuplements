@@ -18,7 +18,11 @@
   </button>
 </mat-toolbar>
 
-<table mat-table [dataSource]="list" class="mat-elevation-z8 w-75 m-auto my-5">
+<table
+  mat-table
+  [dataSource]="categoryList"
+  class="mat-elevation-z8 w-75 m-auto my-5"
+>
   <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Name </th>
     <td mat-cell *matCellDef="let element"> {{ element.name }} </td>
