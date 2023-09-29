@@ -1,53 +1,65 @@
 # TerminatorSuplementos
-Um e-commerce de suplementos , usando Angular e Node com Express.
+An e-commerce platform for supplements, built using Angular, Node.js with Express, and MySQL.
 
-Como configurar o ambiente:
+Tools being used:
 
-Para rodar o backend:
+- Jest: Used for unit tests and integration tests.
+- Cypress: Used for end-to-end (E2E) tests on the frontend.
+- Prettier and ESLint: Used to maintain code quality and standards.
+- Husky: Runs the above technologies before committing code.
+- Docker: Used to create images for each part of the system.
+- Bootstrap and Angular Material: Used for easy styling.
+- Setting up the environment:
 
-- primeiro instale node
+To run the backend:
 
-- rode o comando "npm i", no diretorio "source" do projeto, para instalar as dependencias do backend.
+- First, install Node.js.
 
-- e por fim, para levantar o backend, rode o comando "npm start"
+- Run the command "npm i" in the "source" directory of the project to install backend dependencies.
 
-Para rodar o frontend:
+- Finally, to start the backend, run the command "npm start."
 
-- com o node instalado, rode o comando "npm i" no diretorio "frontend" do projeto, para instalar as dependencias do frontend.
+To run the frontend:
 
-- rode o comando "npm install -g @angular/cli" no diretorio "frontend" do projeto, para instalar o angular.
+- With Node.js installed, run the command "npm i" in the "frontend" directory of the project to install frontend dependencies.
 
-- e por fim, para levantar o frontend, rode o comando "ng serve".
+- Run the command "npm install -g @angular/cli" in the "frontend" directory of the project to install Angular.
 
-- possivel erro : 0308010C:digital envelope routines::unsupported.
+- Finally, to start the frontend, run the command "ng serve."
 
-- solução : rode o seguinte comando ->set NODE_OPTIONS=--openssl-legacy-provider / mude a versao do node para 16 ou menor.
+- Possible error: 0308010C:digital envelope routines::unsupported.
+
+- Solution: Run the following command -> set NODE_OPTIONS=--openssl-legacy-provider or switch to Node version 16 or lower.
 
 Database:
 
-- docker pull mariadb
+- Docker pull mariadb
 
-- docker run -p 3306:3306 --name mysql-mariadb -e MYSQL_ROOT_PASSWORD=your password -d mariadb
+- Docker run -p 3306:3306 --name mysql-mariadb -e MYSQL_ROOT_PASSWORD=your password -d mariadb
 
-- instalar mysql workbench
+- Install MySQL Workbench.
 
-- usar modelo de banco de dados disponivel no repositorio para montar as tabelas.
-
+- Use the database model available in the repository to create tables.
 
 =============================================================
 
-Testar aplicação com Docker:
+Testing the application with Docker:
 
-frontend
+Frontend:
 
-docker pull romanostd/terminator-front:v1
+- Docker pull romanostd/terminator-front:v1
 
-docker run -d -p 8080:80 romanostd/terminator-front:v1
+- Docker run -d -p 8080:80 romanostd/terminator-front:v1
 
-backend:
+Backend:
 
-docker pull romanostd/terminator-front:v1
+- Docker pull romanostd/terminator-front:v1
 
-docker run -d -p 3000:3000 romanostd/terminator-front:v1
+- Docker run -d -p 3000:3000 romanostd/terminator-front:v1
+
+
+
+
+
 
 
