@@ -117,37 +117,19 @@
               </mat-error>
             </mat-form-field>
           </div>
-          <!-- <div class="row">
-            <mat-form-field>
-              <mat-label>Select a user</mat-label>
-              <mat-select required formControlName="userId">
-                <mat-option *ngFor="let user of users" [value]="user.id">
-                  {{ user.nome }}
-                </mat-option>
-              </mat-select>
-              <mat-error
-                *ngIf="
-                  form.controls.userId.hasError('required') &&
-                  form.controls.userId.touched
-                "
-              >
-                user is required
-              </mat-error>
-            </mat-form-field>
-          </div> -->
         </form>
       </mat-card-content>
     </mat-card>
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button mat-dialog-close>Cancel</button>
   <button
     [disabled]="form.invalid"
     mat-button
     [mat-dialog-close]="true"
     (click)="saveProduct()"
   >
-    Confirmar
+    Save
   </button>
 </mat-dialog-actions>

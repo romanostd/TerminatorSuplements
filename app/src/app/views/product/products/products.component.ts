@@ -19,12 +19,12 @@ export class ProductsComponent implements OnInit {
     private router: Router,
   ) {}
 
-  lista: Product[] = [];
+  productList: Product[] = [];
 
   ngOnInit() {
     if (this.loginService.user.admin != true) this.router.navigate(["login"]);
     this.productService.get().subscribe(product => {
-      this.lista = product;
+      this.productList = product;
     });
   }
 
@@ -34,8 +34,8 @@ export class ProductsComponent implements OnInit {
 
   delete(lista: Product) {
     this.productService.remove(lista.product_id).subscribe();
-    this.lista.splice(this.lista.indexOf(lista), 1);
-    this.lista = [...this.lista];
+    this.productList.splice(this.productList.indexOf(lista), 1);
+    this.productList = [...this.productList];
   }
 
   openDialog(data?: Product) {
@@ -45,7 +45,7 @@ export class ProductsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(() => {
       this.productService.get().subscribe(product => {
-        this.lista = product;
+        this.productList = product;
       });
     });
   }

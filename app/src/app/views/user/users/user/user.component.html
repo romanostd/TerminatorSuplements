@@ -55,7 +55,7 @@
             <mat-form-field>
               <input
                 matInput
-                placeholder="Senha"
+                placeholder="Password"
                 formControlName="password"
                 type="password"
               />
@@ -84,8 +84,8 @@
   </div>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button mat-dialog-close>Cancel</button>
   <button mat-button [disabled]="form.invalid" (click)="saveUser()">
-    Confirmar
+    Save
   </button>
 </mat-dialog-actions>

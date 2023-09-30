@@ -15,33 +15,32 @@ export class UsersComponent implements OnInit {
     public dialog: MatDialog,
   ) {}
 
-  lista: User[] = [];
+  userList: User[] = [];
 
   ngOnInit() {
     this.userService.get().subscribe(user => {
-      this.lista = user;
+      this.userList = user;
     });
   }
 
-  displayedColumns: string[] = ["position", "name", "weight", "action"];
+  displayedColumns: string[] = ["name", "email", "admin", "action"];
 
   // pesquisar(query: string) {}
 
   delete(lista: User) {
-    console.log(lista);
     this.userService.remove(lista.user_id).subscribe();
-    this.lista.splice(this.lista.indexOf(lista), 1);
-    this.lista = [...this.lista];
+    this.userList.splice(this.userList.indexOf(lista), 1);
+    this.userList = [...this.userList];
   }
 
-  openDialog(data?: User) {
+  openDialog(userData?: User) {
     const dialogRef = this.dialog.open(UserComponent, {
-      data: data,
+      data: userData,
     });
 
     dialogRef.afterClosed().subscribe(() => {
       this.userService.get().subscribe(user => {
-        this.lista = user;
+        this.userList = user;
       });
     });
   }
