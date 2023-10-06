@@ -11,14 +11,14 @@ export class UserService {
     this.http = http;
   }
 
-  async post(user: User) {
-    const endpoint = "http://localhost:3000/users";
-    return await this.http.post<User>(endpoint, user).toPromise();
+  post(user: User): Observable<User> {
+    const url = "http://localhost:3000/users";
+    return this.http.post<User>(url, user);
   }
 
-  async put(user: User) {
-    const endpoint = `http://localhost:3000/users`;
-    return await this.http.put<User>(endpoint, user).toPromise();
+  put(user: User): Observable<User> {
+    const url = "http://localhost:3000/users";
+    return this.http.put<User>(url, user);
   }
 
   get(): Observable<User[]> {

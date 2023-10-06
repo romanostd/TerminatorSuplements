@@ -9,14 +9,14 @@ import { Categories } from "../models/categories.model";
 export class CategoriesService {
   constructor(private http: HttpClient) {}
 
-  async post(categories: Categories) {
-    const endpoint = "http://localhost:3000/categories";
-    return await this.http.post<Categories>(endpoint, categories).toPromise();
+  put(categories: Categories): Observable<Categories> {
+    const url = "http://localhost:3000/categories";
+    return this.http.put<Categories>(url, categories);
   }
 
-  async put(categories: Categories) {
-    const endpoint = `http://localhost:3000/categories`;
-    return await this.http.put<Categories>(endpoint, categories).toPromise();
+  post(categories: Categories): Observable<Categories> {
+    const url = "http://localhost:3000/categories";
+    return this.http.post<Categories>(url, categories);
   }
 
   get(): Observable<Categories[]> {
