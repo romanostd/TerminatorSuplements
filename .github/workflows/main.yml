@@ -16,7 +16,7 @@ jobs:
     - name: Install dependencies and run Prettier
       working-directory: app 
       run: |
-        npm install 
+        npm install --force
         prettier --write . 
         npm run lint
         
