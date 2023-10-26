@@ -4,9 +4,8 @@ on:
   push:
     branches:
       - main 
-
 jobs:
-  CI:
+  VALIDATIONS:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,7 +31,28 @@ jobs:
     # - name: Run Jest tests
     #   working-directory: source 
     #   run: npm run test
+
+  DOCKER:
+    runs-on: ubuntu-latestS
+    steps:
+      - name: Getting the source code
+        uses: actions/checkout@v3.5.3
+        
+      - name: Docker Login
+        uses: docker/login-action@v2.2.0
+        with:
+          username: ${{ secrets.DOCKERHUB_USR }}
+          password: ${{ secrets.DOCKERHUB_PWD }}
+        
+      - name: Docker build 
+        uses: docker/build-push-action@v4.1.1
+        with: 
+          context: ./app
+          file: ./app/Dockerfile
+          push: true
+          tags: |
+            romanostd/terminator-front:v${{ github.run_number }}
+             romanostd/terminator-front:v1
       
-  # CD:
-  #   runs-on: ubuntu-latest
+
   
