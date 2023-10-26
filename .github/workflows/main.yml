@@ -27,7 +27,7 @@ jobs:
     - name: Install backend dependencies
       working-directory: source 
       run: npm install
-
-    # - name: Run Jest tests
-    #   working-directory: backend # Altere para o diretório correto do backend
-    #   run: npm test
+      
+    - name: Run Jest tests
+      working-directory: source 
+      run: npm run test
