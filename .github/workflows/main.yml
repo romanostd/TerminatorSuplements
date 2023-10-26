@@ -17,7 +17,7 @@ jobs:
       working-directory: app 
       run: |
         npm install --force
-        prettier --write . 
+        npm run format
         npm run lint
         
     - name: Setup Node.js
