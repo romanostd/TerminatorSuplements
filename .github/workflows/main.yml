@@ -16,8 +16,9 @@ jobs:
     - name: Install dependencies and run Prettier
       working-directory: app 
       run: |
-        npm install -g prettier
+        npm install 
         prettier --write . 
+        npm run lint
         
     - name: Setup Node.js
       uses: actions/setup-node@v2
