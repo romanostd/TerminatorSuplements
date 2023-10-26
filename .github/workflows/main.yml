@@ -17,7 +17,7 @@ jobs:
       working-directory: app 
       run: |
         npm install -g prettier
-        npm run format "app" 
+        npm run format "app/src" 
     # - name: Setup Node.js
     #   uses: actions/setup-node@v2
     #   with:
