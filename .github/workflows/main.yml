@@ -32,6 +32,6 @@ jobs:
       working-directory: source 
       run: npm run test
       
-  CD:
-    runs-on: ubuntu-latest
+  # CD:
+  #   runs-on: ubuntu-latest
   
