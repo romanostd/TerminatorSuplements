@@ -1,0 +1,33 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies and run Prettier
+      working-directory: app 
+      run: |
+        npm install -g prettier
+        prettier --check "TerminatorSuplements/app/src/" 
+
+    # - name: Setup Node.js
+    #   uses: actions/setup-node@v2
+    #   with:
+    #     node-version: 14 # Altere para a versão do Node.js que você está usando
+
+    # - name: Install backend dependencies
+    #   working-directory: backend # Altere para o diretório correto do backend
+    #   run: npm install
+
+    # - name: Run Jest tests
+    #   working-directory: backend # Altere para o diretório correto do backend
+    #   run: npm test
