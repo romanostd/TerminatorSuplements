@@ -25,7 +25,7 @@ jobs:
         node-version: 16 
 
     - name: Install backend dependencies
-      working-directory: src 
+      working-directory: source 
       run: npm install
 
     # - name: Run Jest tests
