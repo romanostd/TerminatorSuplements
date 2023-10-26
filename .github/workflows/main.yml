@@ -1,9 +1,9 @@
-name: CI/CD Pipeline
-
-on:
+name: CI-CD
+on: 
   push:
-    branches:
-      - main 
+    branches: ["main"]
+  workflow_dispatch:
+  
 jobs:
   VALIDATIONS:
     runs-on: ubuntu-latest
