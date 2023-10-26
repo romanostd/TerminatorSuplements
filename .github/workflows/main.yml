@@ -6,7 +6,7 @@ on:
       - main 
 
 jobs:
-  build:
+  CI:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,3 +31,7 @@ jobs:
     - name: Run Jest tests
       working-directory: source 
       run: npm run test
+      
+  CD:
+    runs-on: ubuntu-latest
+  
