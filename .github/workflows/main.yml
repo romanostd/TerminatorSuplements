@@ -44,7 +44,7 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USR }}
           password: ${{ secrets.DOCKERHUB_PWD }}
         
-      - name: Docker build 
+      - name: Docker build frontend
         uses: docker/build-push-action@v4.1.1
         with: 
           context: ./app
@@ -53,6 +53,16 @@ jobs:
           tags: |
             romanostd/terminator-front:v${{ github.run_number }}
              romanostd/terminator-front:v1
+
+      - name: Docker build backend
+        uses: docker/build-push-action@v4.1.1
+        with: 
+          context: ./app
+          file: ./app/Dockerfile
+          push: true
+          tags: |
+            romanostd/terminator-back:v${{ github.run_number }}
+             romanostd/terminator-back:v1
       
 
   
