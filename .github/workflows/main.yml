@@ -17,7 +17,7 @@ jobs:
       working-directory: app 
       run: |
         npm install -g prettier
-        prettier --check "TerminatorSuplements/app/src/" 
+        prettier --check "TerminatorSuplements/app/src" 
 
     # - name: Setup Node.js
     #   uses: actions/setup-node@v2
