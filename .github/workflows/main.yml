@@ -32,7 +32,7 @@ jobs:
     #   run: npm run test
   
   DOCKER:
-    runs-on: ubuntu-latestS
+    runs-on: ubuntu-latest
     needs: [VALIDATIONS]
     steps:
       - name: Getting the source code
