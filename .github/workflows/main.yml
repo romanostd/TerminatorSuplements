@@ -7,7 +7,6 @@ on:
 jobs:
   VALIDATIONS:
     runs-on: ubuntu-latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -31,9 +30,10 @@ jobs:
     # - name: Run Jest tests
     #   working-directory: source 
     #   run: npm run test
-
+  
   DOCKER:
     runs-on: ubuntu-latestS
+    needs: [VALIDATIONS]
     steps:
       - name: Getting the source code
         uses: actions/checkout@v3.5.3
