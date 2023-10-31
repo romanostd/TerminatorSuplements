@@ -17,17 +17,17 @@ To run the backend:
 
 - First, install Node.js.
 
-- Run the command "npm i" in the "source" directory of the project to install backend dependencies.
+- Run the command `npm i` in the "source" directory of the project to install backend dependencies.
 
-- Finally, to start the backend, run the command "npm start."
+- Finally, to start the backend, run the command `npm start`
 
 To run the frontend:
 
-- With Node.js installed, run the command "npm i" in the "frontend" directory of the project to install frontend dependencies.
+- With Node.js installed, run the command `npm i` in the "frontend" directory of the project to install frontend dependencies.
 
-- Run the command "npm install -g @angular/cli" in the "frontend" directory of the project to install Angular.
+- Run the command `npm install -g @angular/cli` in the "frontend" directory of the project to install Angular.
 
-- Finally, to start the frontend, run the command "ng serve."
+- Finally, to start the frontend, run the command `ng serve.`
 
 - Possible error: 0308010C:digital envelope routines::unsupported.
 
