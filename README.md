@@ -1,15 +1,17 @@
 # TerminatorSuplementos
+
 An e-commerce platform for supplements, built using Angular, Node.js with Express, and MySQL.
 
-Tools being used:
+## Tools being used:
 
-- Jest: Used for unit tests and integration tests.
-- Cypress: Used for end-to-end (E2E) tests on the frontend.
-- Prettier and ESLint: Used to maintain code quality and standards.
-- Husky: Runs the above technologies before committing code.
-- Docker: Used to create images for each part of the system.
-- Bootstrap and Angular Material: Used for easy styling.
-- Setting up the environment:
+- **Jest**: Used for unit tests and integration tests.
+- **Cypress**: Used for end-to-end (E2E) tests on the frontend.
+- **Prettier and ESLint**: Used to maintain code quality and standards.
+- **Husky**: Runs the above technologies before committing code.
+- **Docker**: Used to create images for each part of the system.
+- **Bootstrap and Angular Material**: Used for easy styling.
+
+## Setting up the environment:
 
 To run the backend:
 
@@ -41,8 +43,6 @@ Database:
 
 - Use the database model available in the repository to create tables.
 
-=============================================================
-
 Testing the application with Docker:
 
 Frontend:
@@ -56,10 +56,3 @@ Backend:
 - Docker pull romanostd/terminator-front:v1
 
 - Docker run -d -p 3000:3000 romanostd/terminator-front:v1
-
-
-
-
-
-
-
