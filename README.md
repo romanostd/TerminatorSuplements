@@ -1,31 +1,33 @@
 # TerminatorSuplementos
+
 An e-commerce platform for supplements, built using Angular, Node.js with Express, and MySQL.
 
-Tools being used:
+## Tools being used:
 
-- Jest: Used for unit tests and integration tests.
-- Cypress: Used for end-to-end (E2E) tests on the frontend.
-- Prettier and ESLint: Used to maintain code quality and standards.
-- Husky: Runs the above technologies before committing code.
-- Docker: Used to create images for each part of the system.
-- Bootstrap and Angular Material: Used for easy styling.
-- Setting up the environment:
+- **Jest**: Used for unit tests and integration tests.
+- **Cypress**: Used for end-to-end (E2E) tests on the frontend.
+- **Prettier and ESLint**: Used to maintain code quality and standards.
+- **Husky**: Runs the above technologies before committing code.
+- **Docker**: Used to create images for each part of the system.
+- **Bootstrap and Angular Material**: Used for easy styling.
+
+## Setting up the environment:
 
 To run the backend:
 
 - First, install Node.js.
 
-- Run the command "npm i" in the "source" directory of the project to install backend dependencies.
+- Run the command `npm i` in the "source" directory of the project to install backend dependencies.
 
-- Finally, to start the backend, run the command "npm start."
+- Finally, to start the backend, run the command `npm start`
 
 To run the frontend:
 
-- With Node.js installed, run the command "npm i" in the "frontend" directory of the project to install frontend dependencies.
+- With Node.js installed, run the command `npm i` in the "frontend" directory of the project to install frontend dependencies.
 
-- Run the command "npm install -g @angular/cli" in the "frontend" directory of the project to install Angular.
+- Run the command `npm install -g @angular/cli` in the "frontend" directory of the project to install Angular.
 
-- Finally, to start the frontend, run the command "ng serve."
+- Finally, to start the frontend, run the command `ng serve.`
 
 - Possible error: 0308010C:digital envelope routines::unsupported.
 
@@ -41,8 +43,6 @@ Database:
 
 - Use the database model available in the repository to create tables.
 
-=============================================================
-
 Testing the application with Docker:
 
 Frontend:
@@ -56,10 +56,3 @@ Backend:
 - Docker pull romanostd/terminator-front:v1
 
 - Docker run -d -p 3000:3000 romanostd/terminator-front:v1
-
-
-
-
-
-
-
