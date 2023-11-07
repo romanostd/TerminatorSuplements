@@ -10,12 +10,6 @@ RUN npm install bcrypt
 
 COPY . .
 
-ENV MYSQL_HOST=mysql-mariadb
-ENV MYSQL_PORT=3306
-ENV MYSQL_USER=root
-ENV MYSQL_PASSWORD=root
-ENV MYSQL_DATABASE=ecommerce
-
 EXPOSE 3000
 
 CMD ["npm", "start"]
