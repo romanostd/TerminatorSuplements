@@ -10,7 +10,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-
     - name: Install dependencies and run Prettier
       working-directory: app 
       run: |
@@ -22,7 +21,6 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: 16 
-
     - name: Install backend dependencies
       working-directory: source 
       run: npm install
@@ -53,16 +51,12 @@ jobs:
           tags: |
             romanostd/terminator-front:v${{ github.run_number }}
              romanostd/terminator-front:v1
-
       - name: Docker build backend
         uses: docker/build-push-action@v4.1.1
         with: 
-          context: ./app
-          file: ./app/Dockerfile
+          context: ./source
+          file: ./source/Dockerfile
           push: true
           tags: |
             romanostd/terminator-back:v${{ github.run_number }}
              romanostd/terminator-back:v1
-      
-
-  
