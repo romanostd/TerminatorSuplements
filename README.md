@@ -19,7 +19,7 @@ To run the backend:
 
 - Run the command `npm i` in the "source" directory of the project to install backend dependencies.
 
-- Finally, to start the backend, run the command `npm run dev`. It will use nodemon to run and the nodemon.json environment variables.
+- Finally, to start the backend, run the command `npm run dev`. It will use nodemon to run and the nodemon.json as environment variables.
 
 - `npm start` and `npm run test` require creation of .env file, with yours database credentials, like this: 
      `MYSQL_USER=example
