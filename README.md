@@ -19,7 +19,7 @@ To run the backend:
 
 - Run the command `npm i` in the "source" directory of the project to install backend dependencies.
 
-- Finally, to start the backend, run the command `npm start`
+- Finally, to start the backend, run the command `npm run dev`
 
 To run the frontend:
 
