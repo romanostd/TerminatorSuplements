@@ -57,8 +57,8 @@ jobs:
       - name: Docker build backend
         uses: docker/build-push-action@v4.1.1
         with: 
-          context: ./app
-          file: ./app/Dockerfile
+          context: ./source
+          file: ./source/Dockerfile
           push: true
           tags: |
             romanostd/terminator-back:v${{ github.run_number }}
