@@ -19,7 +19,15 @@ To run the backend:
 
 - Run the command `npm i` in the "source" directory of the project to install backend dependencies.
 
-- Finally, to start the backend, run the command `npm run dev`
+- Finally, to start the backend, run the command `npm run dev`.
+
+- `npm start` and `npm run test` require creation of .env file, with yours database credentials, like this: 
+     `MYSQL_USER=example
+      MYSQL_PASSWORD=example
+      MYSQL_DATABASE=example
+      MYSQL_HOST=example
+      MYSQL_PORT=example
+      JWT_KEY=secret`
 
 To run the frontend:
 
@@ -58,3 +66,4 @@ Backend:
 - Docker pull romanostd/terminator-back:v26
 
 - Docker run -d -p 3000:3000 romanostd/terminator-back:v26
+
