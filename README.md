@@ -51,8 +51,6 @@ Database:
 
 - Use the database model available in the repository to create tables.
 
-- In nodemon.json file, you can set the environment variables
-
 Testing the application with Docker:
 
 Frontend:
