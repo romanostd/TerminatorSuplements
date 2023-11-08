@@ -47,12 +47,12 @@ Testing the application with Docker:
 
 Frontend:
 
-- Docker pull romanostd/terminator-front:v1
+- Docker pull romanostd/terminator-front:v26
 
-- Docker run -d -p 8080:80 romanostd/terminator-front:v1
+- Docker run -d -p 8080:80 romanostd/terminator-front:v26
 
 Backend:
 
-- Docker pull romanostd/terminator-front:v1
+- Docker pull romanostd/terminator-back:v26
 
-- Docker run -d -p 3000:3000 romanostd/terminator-front:v1
+- Docker run -d -p 3000:3000 romanostd/terminator-back:v26
