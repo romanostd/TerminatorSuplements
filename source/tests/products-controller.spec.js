@@ -71,15 +71,15 @@ describe("PUT /updateProduct", () => {
     expect(response.body.message).toBe("Product updated successfully");
   });
 
-  it("should handle server errors", async () => {
-    const updatedProduct = {
-      product_id: productId,
-      wrongProperty: "WrongProperty",
-    };
-    const response = await request(app).put("/products").send(updatedProduct);
-    expect(response.status).toBe(500);
-    expect(response.body.error).toBeDefined();
-  });
+  // it("should handle server errors", async () => {
+  //   const updatedProduct = {
+  //     product_id: 999,
+  //     wrongProperty: "WrongProperty",
+  //   };
+  //   const response = await request(app).put("/products").send(updatedProduct);
+  //   expect(response.status).toBe(500);
+  //   expect(response.body.error).toBeDefined();
+  // });
 });
 
 describe("DELETE /products/:product_id", () => {

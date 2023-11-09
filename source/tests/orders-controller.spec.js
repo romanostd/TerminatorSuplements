@@ -7,7 +7,7 @@ describe("Order API Endpoints", () => {
   describe("POST /orders", () => {
     it("should create a new order", async () => {
       const newOrder = {
-        product_id: 1,
+        product_id: 5,
         quantity: 2,
       };
 
@@ -46,7 +46,7 @@ describe("Order API Endpoints", () => {
     it("should update an existing order", async () => {
       const updatedOrder = {
         order_id: orderId,
-        product_id: 2,
+        product_id: 5,
         quantity: 3,
       };
 
