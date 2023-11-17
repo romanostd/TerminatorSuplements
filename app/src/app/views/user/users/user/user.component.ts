@@ -40,20 +40,33 @@ export class UserComponent implements OnInit {
       this.data?.email,
       Validators.compose([Validators.email, Validators.required]),
     ],
-    password: [this.data?.password, Validators.required],
+    password: ["", Validators.required],
     admin: [this.data?.admin],
   });
 
-  async saveUser() {
+  saveUser(): void {
     if (this.data != undefined) {
-      this.form.controls.admin.value == "true"
-        ? this.form.controls.admin.setValue(true)
-        : this.form.controls.admin.setValue(false);
-      await this.userService.put(this.form.value);
+      this.form.controls.admin.setValue(
+        this.form.controls.admin.value == "true",
+      );
+      this.userService.put(this.form.value).subscribe({
+        next: () => {
+          this.dialogRef.close(this.form.value);
+        },
+        error: error => {
+          console.error(error);
+        },
+      });
     } else {
       this.form.controls.admin.setValue(false);
-      await this.userService.post(this.form.value);
+      this.userService.post(this.form.value).subscribe({
+        next: () => {
+          this.dialogRef.close(this.form.value);
+        },
+        error: error => {
+          console.error(error);
+        },
+      });
     }
-    this.dialogRef.close(this.form.value);
   }
 }

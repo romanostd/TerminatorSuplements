@@ -18,14 +18,15 @@
         <div class="row">
           <mat-form-field>
             <input
+              (keydown.enter)="login()"
               matInput
               placeholder="password"
               formControlName="password"
               type="password"
             />
           </mat-form-field>
-          <mat-error *ngIf="this.errorMessege != false">
-            {{ errorMessege }}
+          <mat-error *ngIf="this.errorMessage != false">
+            {{ errorMessage }}
           </mat-error>
         </div>
       </form>

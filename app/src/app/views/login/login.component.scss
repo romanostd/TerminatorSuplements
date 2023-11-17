@@ -4,4 +4,10 @@
   justify-content: center;
   position: relative;
   top: 100px;
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  background-color: white;
+  transition: box-shadow 0.3s ease;
 }

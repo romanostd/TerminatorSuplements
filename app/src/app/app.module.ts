@@ -31,12 +31,14 @@ import { CategoryComponent } from "./views/categories/category/category.componen
 import { GuardsService } from "./guards/guards.service";
 import { ResetPasswordComponent } from "./views/reset-password/reset-password.component";
 import { MatSelectModule } from "@angular/material/select";
+import { CepPipe } from "./pipes/cep.pipe";
 
 // import { PlaygroundComponent } from './views/playground/playground.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    CepPipe,
     HeaderComponent,
     FooterComponent,
     NavComponent,

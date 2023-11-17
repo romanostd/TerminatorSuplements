@@ -25,6 +25,7 @@ export class HeaderComponent {
 
   logout() {
     this.loginService.logout();
+    this.router.navigate(["/"]);
   }
 
   callSearch(query: string) {

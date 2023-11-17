@@ -36,6 +36,7 @@ export class UsersComponent implements OnInit {
   openDialog(userData?: User) {
     const dialogRef = this.dialog.open(UserComponent, {
       data: userData,
+      disableClose: true,
     });
 
     dialogRef.afterClosed().subscribe(() => {

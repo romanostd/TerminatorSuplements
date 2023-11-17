@@ -1,26 +1,26 @@
-<div class="container mt-5 w-25">
-  <mat-card class="example-card detail-card">
-    <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title class="terminator-font">{{
-        product?.name
-      }}</mat-card-title>
-      <mat-card-subtitle>{{
-        product?.price | currency: "BRL" : true
-      }}</mat-card-subtitle>
-    </mat-card-header>
-    <img
-      class="p-5"
-      mat-card-image
-      src="{{ product?.imageUrl }}"
-      width="500"
-      height="500"
-    />
-    <mat-card-content style="word-break: break-all">
-      {{ product?.description }}
-    </mat-card-content>
-    <mat-card-actions>
-      <button (click)="buy()" class="button-terminator" mat-button>Buy</button>
-    </mat-card-actions>
-  </mat-card>
+<div class="product-detail-container">
+  <div class="product-image">
+    <img src="{{ product?.imageUrl }}" alt="{{ product?.name }}" />
+  </div>
+  <div class="product-info">
+    <div class="title-container">
+      <h1 class="product-title terminator-font">{{ product?.name }}</h1>
+      <mat-icon class="favorite-icon" (click)="toggleFavorite()">
+        favorite
+      </mat-icon>
+    </div>
+    <p class="product-category">Category: category</p>
+    <p class="product-price terminator-font">{{
+      product?.price | currency: "USD" : "symbol" : "1.2-2"
+    }}</p>
+    <p class="product-stock">In stock: {{ product?.quantity }}</p>
+    <p class="product-description"
+      ><strong>Description: </strong> {{ product?.description }}</p
+    >
+    <button mat-icon-button class="example-icon">
+      <input type="text" class="cep" placeholder="CEP" /> Free delivery
+      <mat-icon class="black">local_shipping</mat-icon>
+    </button>
+    <button (click)="buy()" class="button-terminator">Buy</button>
+  </div>
 </div>

@@ -1,6 +1,6 @@
 const nodeMailer = require("nodemailer");
-const user = "queijoromano@hotmail.com";
-const pass = "*&@Ro1906";
+const user = process.env.TERMINATOR_EMAIL;
+const pass = process.env.TERMINATOR_KEY;
 const transporter = nodeMailer.createTransport({
   service: "hotmail",
   auth: { user: user, pass: pass },

@@ -1,22 +1,23 @@
 <mat-toolbar class="header">
-  <!-- <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-    </button> -->
   <span routerLink="/"
-    ><img class="logo" src="../../../../assets/img/logo.png"
+    ><img
+      class="logo"
+      src="../../../../assets/img/logo.png"
+      width="200px"
+      height="100px"
   /></span>
-  <mat-form-field *ngIf="this.router.url === '/'" class="search-field">
+  <div *ngIf="this.router.url === '/'" class="search-field ml-5">
     <input
       #search
       type="search"
-      matInput
       placeholder="Search"
       (keydown.enter)="callSearch(search.value)"
     />
-  </mat-form-field>
+  </div>
+  <span *ngIf="this.router.url != '/'" class="search-field"></span>
   <span class="example-spacer"></span>
   <span
-    class="white"
+    class="white mr-3"
     *ngIf="
       isLoggedIn() &&
         this.router.url != '/login' &&
@@ -25,15 +26,14 @@
     "
   >
     <span class="welcome white"> Welcome, {{ user().name }} </span
-    ><button
+    ><span
       title="Logout"
       (click)="logout()"
       mat-icon-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
-    >
-      <mat-icon class="pointer white">logout</mat-icon>
-    </button>
+      class="welcome"
+      style="cursor: pointer"
+      >| Logout
+    </span>
   </span>
   <ng-template #notLoggedIn>
     <button

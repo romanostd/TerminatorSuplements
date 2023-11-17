@@ -1,31 +1,37 @@
-@import url("../../../app/app.component.scss");
-
-.elevar {
-  position: relative;
-  min-height: 500px;
+.img {
+  margin: 0 auto;
+  width: 100%;
+  height: 200px;
+  max-width: 200px;
 }
+
+.mat-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #d3d3d3;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  background-color: white;
+  transition: box-shadow 0.3s ease;
+}
+
+.font-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
 .elevar:hover {
   top: -2px;
   box-shadow: 0 2px 2px #666;
 }
 
-.font-title {
-  font-size: 12px;
-}
-
-.img {
-  display: flex;
-  max-width: 380px !important;
-  max-height: 380px !important;
-  width: 300px;
-  height: 300px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 button,
 button::after {
-  width: 100%;
+  margin: 0 auto;
+  width: 80%;
   height: 50px;
   font-size: 16px;
   font-family: terminator;

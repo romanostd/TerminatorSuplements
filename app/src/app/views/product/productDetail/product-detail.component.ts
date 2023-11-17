@@ -19,12 +19,17 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get("id");
-    this.productService.getById(id).subscribe(product => {
-      this.product = product;
+    this.productService.getById(id).subscribe((product: any) => {
+      this.product = product[0];
     });
   }
 
   buy() {
     alert("in development");
+  }
+
+  toggleFavorite() {
+    // this.product.isFavorite = !this.product.isFavorite;
+    // [class.active]="product?.isFavorite"
   }
 }

@@ -1,5 +1,27 @@
+@import url("../../../app.component.scss");
+
 .navbar {
-  margin-top: 2px;
-  height: 20px !important;
-  background-color: black;
+  background-color: #000;
+  height: 30px;
+  .mat-nav-list {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    padding: 0;
+
+    .mat-list-item {
+      color: white;
+      margin-top: -10px;
+      &:hover {
+        color: #ccc;
+      }
+    }
+  }
+}
+
+.terminator-font {
+  font-size: 12px !important;
+  text-align: center !important;
 }

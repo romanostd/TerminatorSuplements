@@ -5,6 +5,8 @@
     "MYSQL_DATABASE": "ecommerce",
     "MYSQL_HOST": "localhost",
     "MYSQL_PORT": 3306,
-    "JWT_KEY": "secret"
+    "JWT_KEY": "secret",
+    "TERMINATOR_KEY": "Terminator*&@Dev",
+    "TERMINATOR_EMAIL": "terminatorsuplements@outlook.com"
   }
 }
