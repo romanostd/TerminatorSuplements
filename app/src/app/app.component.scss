@@ -1,3 +1,13 @@
+.main-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Altura da viewport */
+}
+
+.content {
+  flex: 1; /* Ocupa todo o espaço vertical disponível */
+}
+
 .terminator-font {
   font-family: terminator;
 }

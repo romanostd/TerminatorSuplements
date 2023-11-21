@@ -1,10 +1,48 @@
+@import url("../../../app.component.scss");
+
 .footer {
-  height: 50px;
-  position: fixed;
-  bottom: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 20px 0;
+  font-size: 0.8rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid grey;
+  padding-bottom: 20px;
+  height: 200px;
+}
+
+.footer-section {
+  margin-right: 20px;
+}
+
+.footer-section h5 {
+  margin-bottom: 10px;
+}
+
+.subscribe-section input,
+.subscribe-section button {
+  margin-top: 5px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20px;
+}
+
+.white {
+  margin-right: 10px;
+}
+
+.sub-footer {
   font-size: 0.8rem;
   display: flex;
   justify-content: center;
-  background-color: black;
-  color: white;
+  margin-top: 10px;
 }

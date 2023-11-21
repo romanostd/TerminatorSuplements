@@ -34,7 +34,6 @@ exports.login = (req, res) => {
             .send({ message: "Authentication failed: Incorrect password" });
         }
         if (result) {
-          console.log(req.body.password, results[0].password);
           const token = jwt.sign(
             {
               user_id: results[0].user_id,
