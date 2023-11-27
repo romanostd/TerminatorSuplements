@@ -21,6 +21,8 @@ To run the backend:
 
 - Finally, to start the backend, run the command `npm run dev`. It will use nodemon to run and the nodemon.json as environment variables.
 
+- `npx husky install`if you want to use husky as a pre-commit tool in the application.
+
 - `npm start` and `npm run test` require creation of .env file, with yours database credentials, like this: 
      `MYSQL_USER=example
       MYSQL_PASSWORD=example
