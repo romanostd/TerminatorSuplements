@@ -23,7 +23,6 @@ export class UserComponent implements OnInit {
     public dialogRef: MatDialogRef<UserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {}
-  admin = new FormControl();
   user?: User;
   title = "CREATE USER";
 
@@ -45,7 +44,7 @@ export class UserComponent implements OnInit {
   });
 
   saveUser(): void {
-    if (this.data != undefined) {
+    if (this.data != undefined ) {
       this.form.controls.admin.setValue(
         this.form.controls.admin.value == "true",
       );
@@ -58,7 +57,9 @@ export class UserComponent implements OnInit {
         },
       });
     } else {
+
       this.form.controls.admin.setValue(false);
+      console.log(this.form.value)
       this.userService.post(this.form.value).subscribe({
         next: () => {
           this.dialogRef.close(this.form.value);
