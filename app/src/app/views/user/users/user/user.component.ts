@@ -1,10 +1,5 @@
 import { Component, Inject, OnInit } from "@angular/core";
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { User } from "src/app/models/user.model";
@@ -44,7 +39,7 @@ export class UserComponent implements OnInit {
   });
 
   saveUser(): void {
-    if (this.data != undefined ) {
+    if (this.data != undefined) {
       this.form.controls.admin.setValue(
         this.form.controls.admin.value == "true",
       );
@@ -57,9 +52,8 @@ export class UserComponent implements OnInit {
         },
       });
     } else {
-
       this.form.controls.admin.setValue(false);
-      console.log(this.form.value)
+      console.log(this.form.value);
       this.userService.post(this.form.value).subscribe({
         next: () => {
           this.dialogRef.close(this.form.value);
