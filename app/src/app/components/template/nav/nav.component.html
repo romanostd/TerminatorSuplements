@@ -1,19 +1,12 @@
 <mat-toolbar class="navbar">
   <mat-nav-list *ngIf="this.router.url === '/'">
     <a
+      *ngFor="let category of categoriesList"
       class="terminator-font text-center"
       mat-list-item
-      routerLink="/categoria1"
-      >Categoria 1</a
+      (click)="filterByCategory(category.category_id)"
     >
-    <a class="terminator-font" mat-list-item routerLink="/categoria2"
-      >Categoria 2</a
-    >
-    <a class="terminator-font" mat-list-item routerLink="/categoria3"
-      >Categoria 3</a
-    >
-    <a class="terminator-font" mat-list-item routerLink="/categoria3"
-      >Categoria 4</a
-    >
+      {{ category.name }}
+    </a>
   </mat-nav-list>
 </mat-toolbar>

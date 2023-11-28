@@ -87,7 +87,6 @@ export class ResetPasswordComponent {
   }
 
   async confirmNewPassword() {
-    console.log(this.userExist);
     this.userExist.password = this.newPassword.value;
     await this.userService.put(this.userExist);
     this.resetPassWordSteps = "sucsses";

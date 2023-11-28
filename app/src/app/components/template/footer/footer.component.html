@@ -10,10 +10,11 @@
     </div>
     <div class="footer-section">
       <h5 class="terminator-font">Categories</h5>
-      <tr>categoria 1</tr>
-      <tr>categoria 2</tr>
-      <tr>categoria 3</tr>
-      <tr>categoria 4</tr>
+      <tr
+        *ngFor="let category of categoriesService.serviceCategoryList"
+        (click)="filterByCategory(category.category_id)"
+        >{{ category.name }}</tr
+      >
     </div>
     <div class="footer-section">
       <h5 class="terminator-font">About</h5>

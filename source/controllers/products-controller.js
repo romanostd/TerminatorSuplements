@@ -5,35 +5,34 @@ exports.getProducts = (req, res) => {
     if (error) {
       return res.status(500).send({ error: error });
     }
+
+    let query = "SELECT * FROM products";
+    const params = [];
+
+    const conditions = [];
+
     if (req.query.name) {
-      conn.query(
-        "SELECT * FROM products WHERE name = ?;",
-        [req.query.name],
-        (error, result) => {
-          conn.release();
-
-          if (error) {
-            res.status(500).send({
-              error: error,
-              response: null,
-            });
-          }
-          return res.status(200).send(result);
-        },
-      );
-    } else {
-      conn.query("SELECT * FROM products;", (error, result) => {
-        conn.release();
-
-        if (error) {
-          res.status(500).send({
-            error: error,
-            response: null,
-          });
-        }
-        return res.status(200).send(result);
-      });
+      conditions.push("LOWER(name) LIKE LOWER(?)");
+      params.push(`%${req.query.name}%`);
     }
+
+    if (req.query.category_id) {
+      conditions.push("category_id = ?");
+      params.push(req.query.category_id);
+    }
+
+    if (conditions.length) {
+      query += " WHERE " + conditions.join(" AND ");
+    }
+
+    conn.query(query, params, (error, result) => {
+      conn.release();
+
+      if (error) {
+        return res.status(500).send({ error: error });
+      }
+      return res.status(200).send(result);
+    });
   });
 };
 

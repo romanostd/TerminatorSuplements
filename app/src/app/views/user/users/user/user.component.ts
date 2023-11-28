@@ -53,7 +53,6 @@ export class UserComponent implements OnInit {
       });
     } else {
       this.form.controls.admin.setValue(false);
-      console.log(this.form.value);
       this.userService.post(this.form.value).subscribe({
         next: () => {
           this.dialogRef.close(this.form.value);

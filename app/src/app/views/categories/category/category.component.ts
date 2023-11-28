@@ -4,6 +4,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { Categories } from "src/app/models/categories.model";
 import { CategoriesService } from "src/app/services/categories.service";
 import { UserComponent } from "../../user/users/user/user.component";
+import { of } from "rxjs";
+import { switchMap } from "rxjs/operators";
 
 @Component({
   selector: "app-category",
@@ -35,15 +37,22 @@ export class CategoryComponent implements OnInit {
   form: FormGroup = this.fb.group({
     category_id: [this.categoryData?.category_id],
     name: [this.categoryData?.name, Validators.required],
-    // parentId: [this.data?.parantId, this.categories?.parantId],
   });
 
-  async saveCategoy() {
-    if (this.categoryData != undefined) {
-      await this.categoriesService.put(this.form.value);
-    } else {
-      await this.categoriesService.post(this.form.value);
-    }
-    this.dialogRef.close(this.form.value);
+  saveCategoy() {
+    of(this.form.value)
+      .pipe(
+        switchMap(formValue =>
+          this.categoryData != undefined
+            ? this.categoriesService.put(formValue)
+            : this.categoriesService.post(formValue),
+        ),
+      )
+      .subscribe({
+        next: () => {
+          this.dialogRef.close(this.form.value);
+        },
+        error: () => {},
+      });
   }
 }

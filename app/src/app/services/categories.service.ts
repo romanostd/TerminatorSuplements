@@ -9,6 +9,9 @@ import { Categories } from "../models/categories.model";
 export class CategoriesService {
   constructor(private http: HttpClient) {}
 
+  serviceCategoryList: any[] = [];
+  categoryId: any = undefined;
+
   put(categories: Categories): Observable<Categories> {
     const url = "http://localhost:3000/categories";
     return this.http.put<Categories>(url, categories);

@@ -9,7 +9,7 @@
         favorite
       </mat-icon>
     </div>
-    <p class="product-category">Category: category</p>
+    <p class="product-category">Category: {{ this.categoryName }}</p>
     <p class="product-price terminator-font">{{
       product?.price | currency: "USD" : "symbol" : "1.2-2"
     }}</p>
