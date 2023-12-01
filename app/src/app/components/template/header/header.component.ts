@@ -45,6 +45,7 @@ export class HeaderComponent {
   }
 
   updateProducts() {
+    this.categoryService.categoryId = undefined;
     this.productService.get().subscribe(products => {
       this.productService.products = products;
     });

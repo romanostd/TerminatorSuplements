@@ -6,8 +6,6 @@ COPY package*.json ./
 
 RUN npm install
 
-RUN npm install bcrypt
-
 COPY . .
 
 ENV MYSQL_USER=admin

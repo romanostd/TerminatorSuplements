@@ -38,15 +38,19 @@ app.use("/users", usersRoute);
 app.use("/email", emailRoute);
 app.use("/login", loginRoute);
 
-app.use(next => {
+app.get("/", (req, res) => {
+  res.send("Terminator api");
+});
+
+app.use((req, res, next) => {
   const error = new Error("Not found");
   error.status = 404;
   next(error);
 });
 
-app.use((error, res) => {
+app.use((error, req, res, next) => {
   res.status(error.status || 500);
-  return res.send({
+  res.send({
     erro: {
       mensagem: error.message,
     },
