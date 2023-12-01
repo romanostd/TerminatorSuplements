@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Product } from "../models/product.model";
+import { environment } from "src/environments/environment";
 
 @Injectable()
 export class ProductService {
@@ -9,15 +10,17 @@ export class ProductService {
     this.http = http;
   }
 
+  private apiUrl = environment.apiUrl;
+
   products?: Product[] = [];
 
   post(produto: Product): Observable<Product> {
-    const endpoint = "http://localhost:3000/products";
+    const endpoint = `${this.apiUrl}/products`;
     return this.http.post<Product>(endpoint, produto);
   }
 
   put(produto: Product): Observable<Product> {
-    const endpoint = `http://localhost:3000/products`;
+    const endpoint = `${this.apiUrl}/products`;
     return this.http.put<Product>(endpoint, produto);
   }
 
@@ -35,18 +38,18 @@ export class ProductService {
       }
     }
 
-    return this.http.get<Product[]>("http://localhost:3000/products", {
+    return this.http.get<Product[]>(`${this.apiUrl}/products`, {
       params,
     });
   }
 
   getById(id: any): Observable<Product> {
-    const url = `http://localhost:3000/products/${id}`;
+    const url = `${this.apiUrl}/products/${id}`;
     return this.http.get<Product>(url);
   }
 
   remove(id: any): Observable<Product> {
-    const url = `http://localhost:3000/products/${id}`;
+    const url = `${this.apiUrl}/products/${id}`;
     return this.http.delete<Product>(url);
   }
 }

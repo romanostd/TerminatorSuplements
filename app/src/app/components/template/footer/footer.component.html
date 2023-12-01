@@ -12,6 +12,7 @@
       <h5 class="terminator-font">Categories</h5>
       <tr
         *ngFor="let category of categoriesService.serviceCategoryList"
+        class="pointer"
         (click)="filterByCategory(category.category_id)"
         >{{ category.name }}</tr
       >

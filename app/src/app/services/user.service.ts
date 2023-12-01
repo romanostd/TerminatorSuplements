@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { User } from "../models/user.model";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -11,28 +12,30 @@ export class UserService {
     this.http = http;
   }
 
+  private apiUrl = environment.apiUrl;
+
   post(user: User): Observable<User> {
-    const url = "http://localhost:3000/users";
+    const url = `${this.apiUrl}/users`;
     return this.http.post<User>(url, user);
   }
 
   put(user: User): Observable<User> {
-    const url = "http://localhost:3000/users";
+    const url = `${this.apiUrl}/users`;
     return this.http.put<User>(url, user);
   }
 
   get(): Observable<User[]> {
-    const result = `http://localhost:3000/users`;
+    const result = `${this.apiUrl}/users`;
     return this.http.get<User[]>(result);
   }
 
   getById(id: any): Observable<User> {
-    const url = `http://localhost:3000/users/${id}`;
+    const url = `${this.apiUrl}/users/${id}`;
     return this.http.get<User>(url);
   }
 
   remove(user_id: any): Observable<User> {
-    const url = `http://localhost:3000/users/${user_id}`;
+    const url = `${this.apiUrl}/users/${user_id}`;
     return this.http.delete<User>(url);
   }
 }

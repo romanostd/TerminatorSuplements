@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { tap } from "rxjs/operators";
 import { HttpHeaders } from "@angular/common/http";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -12,6 +13,8 @@ export class LoginService {
     this.http = http;
   }
 
+  private apiUrl = environment.apiUrl;
+
   user?: any;
 
   isLoggedIn(): boolean {
@@ -19,7 +22,7 @@ export class LoginService {
   }
 
   login(email: string, password: string): Observable<any> {
-    const url = "http://localhost:3000/login";
+    const url = `${this.apiUrl}/login`;
     return this.http
       .post<any>(url, { email: email, password: password })
       .pipe(tap(user => (this.user = user)));
