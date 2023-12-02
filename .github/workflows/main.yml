@@ -28,6 +28,13 @@ jobs:
     - name: Run Jest tests
       working-directory: source 
       run: npm run test
+      env:
+        JWT_KEY: ${{ secrets.JWT_KEY }}
+        MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+        MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+        MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+        MYSQL_PORT: ${{ secrets.MYSQL_PORT }}
+        MYSQL_USER: ${{ secrets.MYSQL_USER }}
   
   DOCKER:
     runs-on: ubuntu-latest
