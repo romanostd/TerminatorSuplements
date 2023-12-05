@@ -67,3 +67,43 @@ jobs:
           tags: |
             romanostd/terminator-back:v${{ github.run_number }}
              romanostd/terminator-back:v1
+
+  DEPLOY:
+    runs-on: ubuntu-latest
+    needs: [DOCKER]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3.5.3
+      
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-2
+
+      - name: Install ECS CLI
+        run: |
+          curl -Lo ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest
+          chmod +x ecs-cli
+          sudo mv ecs-cli /usr/local/bin
+
+      - name: Update ECS Service for Frontend
+        run: |
+          CLUSTER_NAME_FRONT="terminator-deploy-front"
+          SERVICE_NAME_FRONT="terminator-deploy-front"
+          
+          sed -i 's|romanostd/terminator-front:v[0-9]+|romanostd/terminator-front:v${{ github.run_number }}|' ecs-task-definition-front.json
+
+          ecs-cli register-task-definition --cli-input-json file://ecs-task-definition-front.json
+          ecs-cli update-service --cluster $CLUSTER_NAME_FRONT --service $SERVICE_NAME_FRONT --force-new-deployment
+
+      - name: Update ECS Service for Backend
+        run: |
+          CLUSTER_NAME_BACK="terminator-deploy"
+          SERVICE_NAME_BACK="terminator-service-prod"
+          
+          sed -i 's|romanostd/terminator-back:v[0-9]+|romanostd/terminator-back:v${{ github.run_number }}|' ecs-task-definition-back.json
+          
+          ecs-cli register-task-definition --cli-input-json file://ecs-task-definition-back.json
+          ecs-cli update-service --cluster $CLUSTER_NAME_BACK --service $SERVICE_NAME_BACK --force-new-deployment
