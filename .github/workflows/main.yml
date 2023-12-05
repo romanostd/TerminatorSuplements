@@ -90,8 +90,8 @@ jobs:
           sed -i 's|romanostd/terminator-front:latest|romanostd/terminator-front:v${{ github.run_number }}|' .github/workflows/ecs-task-definition-front.json
 
           aws ecs register-task-definition --cli-input-json file://.github/workflows/ecs-task-definition-front.json
-          aws ecs update-service --cluster $CLUSTER_NAME_FRONT --service $SERVICE_NAME_FRONT --force-new-deployment
-        
+          aws ecs update-service --cluster $CLUSTER_NAME_FRONT --service $SERVICE_NAME_FRONT --task-definition terminator-deploy-front
+
       - name: Update ECS Service for Backend
         run: |
           CLUSTER_NAME_BACK="terminator-deploy"
