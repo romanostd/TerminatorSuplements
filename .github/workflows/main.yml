@@ -90,7 +90,7 @@ jobs:
           sed -i 's|romanostd/terminator-front:latest|romanostd/terminator-front:v${{ github.run_number }}|' .github/workflows/ecs-task-definition-front.json
 
           aws ecs register-task-definition --cli-input-json file://.github/workflows/ecs-task-definition-front.json
-          aws ecs update-service --cluster $CLUSTER_NAME_FRONT --service $SERVICE_NAME_FRONT --task-definition $TASK_FAMILY:$TASK_REVISION --force-new-deployment
+          aws ecs update-service --cluster $CLUSTER_NAME_FRONT --service $SERVICE_NAME_FRONT --force-new-deployment
         
       - name: Update ECS Service for Backend
         run: |
@@ -101,3 +101,5 @@ jobs:
           
           aws ecs register-task-definition --cli-input-json file://.github/workflows/ecs-task-definition-back.json
           aws ecs update-service --cluster $CLUSTER_NAME_BACK --service $SERVICE_NAME_BACK --force-new-deployment
+
+          
