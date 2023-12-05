@@ -93,9 +93,9 @@ jobs:
           CLUSTER_NAME_FRONT="terminator-deploy-front"
           SERVICE_NAME_FRONT="terminator-deploy-front"
           
-          sed -i 's|romanostd/terminator-front:v[0-9]+|romanostd/terminator-front:v${{ github.run_number }}|' ecs-task-definition-front.json
+          sed -i 's|romanostd/terminator-front:v[0-9]+|romanostd/terminator-front:v${{ github.run_number }}|' .github/workflows/ecs-task-definition-front.json
 
-          ecs-cli register-task-definition --cli-input-json file://ecs-task-definition-front.json
+          ecs-cli register-task-definition --cli-input-json file://.github/workflows/ecs-task-definition-front.json
           ecs-cli update-service --cluster $CLUSTER_NAME_FRONT --service $SERVICE_NAME_FRONT --force-new-deployment
 
       - name: Update ECS Service for Backend
@@ -103,7 +103,7 @@ jobs:
           CLUSTER_NAME_BACK="terminator-deploy"
           SERVICE_NAME_BACK="terminator-service-prod"
           
-          sed -i 's|romanostd/terminator-back:v[0-9]+|romanostd/terminator-back:v${{ github.run_number }}|' ecs-task-definition-back.json
+          sed -i 's|romanostd/terminator-back:v[0-9]+|romanostd/terminator-back:v${{ github.run_number }}|' .github/workflows/ecs-task-definition-back.json
           
-          ecs-cli register-task-definition --cli-input-json file://ecs-task-definition-back.json
+          ecs-cli register-task-definition --cli-input-json file://.github/workflows/ecs-task-definition-back.json
           ecs-cli update-service --cluster $CLUSTER_NAME_BACK --service $SERVICE_NAME_BACK --force-new-deployment
