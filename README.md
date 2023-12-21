@@ -1,6 +1,7 @@
 # TerminatorSuplementos
 
 An e-commerce platform for supplements, built using Angular, Node.js with Express, and MySQL.
+This project have a full-stack and full-cycle content, with CI/CD implemented using GitHub Actions and the ECS service of AWS to auto deploy the application.
 
 ## Tools being used:
 
@@ -10,6 +11,7 @@ An e-commerce platform for supplements, built using Angular, Node.js with Expres
 - **Husky**: Runs the above technologies before committing code.
 - **Docker**: Used to create images for each part of the system.
 - **Bootstrap and Angular Material**: Used for easy styling.
+- **Github Actions**: Used for create the pipeline.
 
 ## Setting up the environment:
 
