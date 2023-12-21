@@ -32,6 +32,59 @@
   box-shadow: 0 2px 2px #666;
 }
 
+.loading-animation {
+  position: relative;
+  overflow: hidden;
+}
+
+.loading-animation::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+  animation: slide 1.5s infinite linear;
+}
+
+@keyframes slide {
+  from {
+    left: -150%;
+  }
+  to {
+    left: 150%;
+  }
+}
+
+.fake-image,
+.fake-text,
+.fake-button {
+  display: block;
+  background: #f0f0f0;
+}
+
+.fake-image {
+  height: 200px;
+}
+
+.fake-text {
+  height: 20px;
+  width: 80%;
+  margin: 10px auto;
+}
+
+.fake-button {
+  height: 50px;
+  width: 80%;
+  margin: 20px auto;
+}
+
 button,
 button::after {
   margin: 0 auto;

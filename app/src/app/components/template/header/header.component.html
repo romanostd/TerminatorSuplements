@@ -1,31 +1,14 @@
-<mat-toolbar class="header">
-  <span (click)="updateProducts()" routerLink="/"
-    ><img
-      class="logo"
-      src="../../../../assets/img/defaut.png"
-      width="200px"
-      height="75px"
-  /></span>
-  <div *ngIf="this.router.url === '/'" class="search-field ml-5">
-    <input
-      #search
-      type="search"
-      placeholder="Search"
-      (keydown.enter)="callSearch(search.value)"
-    />
-  </div>
-  <span *ngIf="this.router.url != '/'" class="search-field"></span>
-  <span class="example-spacer"></span>
+<mat-toolbar *ngIf="isMobileView()" class="mobile-header">
   <span
     class="white mr-3"
     *ngIf="
       isLoggedIn() &&
         this.router.url != '/login' &&
         this.router.url != '/resetPassword';
-      else notLoggedIn
+      else notLoggedInMobile
     "
   >
-    <span class="welcome white"> Welcome, {{ user().name }} </span
+    <span class="welcome white"> Welcome, {{ user().name }}</span
     ><span
       title="Logout"
       (click)="logout()"
@@ -35,19 +18,6 @@
       >| Logout
     </span>
   </span>
-  <ng-template #notLoggedIn>
-    <button
-      title="Login"
-      *ngIf="this.router.url != '/login' && this.router.url != '/resetPassword'"
-      routerLink="/login"
-      mat-icon-button
-      class="example-icon favorite-icon"
-      aria-label="Example icon-button with heart icon"
-    >
-      <mat-icon class="pointer white">login</mat-icon>
-    </button>
-  </ng-template>
-
   <div *ngIf="isLoggedIn() && user().admin === 1" class="dropdown">
     <button
       title="Admin panel"
@@ -74,3 +44,115 @@
     <mat-icon class="white">shopping_cart</mat-icon>
   </button>
 </mat-toolbar>
+<mat-toolbar class="header">
+  <span (click)="updateProducts()" routerLink="/"
+    ><img
+      class="logo"
+      src="../../../../assets/img/defaut.png"
+      width="200px"
+      height="75px"
+  /></span>
+  <div *ngIf="this.router.url === '/'" class="search-field ml-5">
+    <input
+      #search
+      type="search"
+      placeholder="Search"
+      (keydown.enter)="callSearch(search.value)"
+    />
+    <button (click)="toggleSideMenu()" mat-icon-button *ngIf="isMobileView()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <span *ngIf="this.router.url != '/'" class="search-field"></span>
+  <span class="example-spacer"></span>
+  <span
+    class="white mr-3"
+    *ngIf="
+      isLoggedIn() &&
+        this.router.url != '/login' &&
+        this.router.url != '/resetPassword' &&
+        !isMobileView();
+      else notLoggedIn
+    "
+  >
+    <span class="welcome white"> Welcome, {{ user().name }}</span
+    ><span
+      title="Logout"
+      (click)="logout()"
+      mat-icon-button
+      class="welcome"
+      style="cursor: pointer"
+      >| Logout
+    </span>
+  </span>
+  <ng-template #notLoggedIn>
+    <button
+      title="Login"
+      *ngIf="
+        this.router.url != '/login' &&
+        this.router.url != '/resetPassword' &&
+        !isMobileView()
+      "
+      routerLink="/login"
+      mat-icon-button
+      class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon"
+    >
+      <mat-icon class="pointer white">login</mat-icon>
+    </button>
+  </ng-template>
+  <ng-template #notLoggedInMobile>
+    <button
+      title="Login"
+      *ngIf="this.router.url != '/login' && this.router.url != '/resetPassword'"
+      routerLink="/login"
+      mat-icon-button
+      class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon"
+    >
+      <mat-icon class="pointer white">login</mat-icon>
+    </button>
+  </ng-template>
+
+  <div
+    *ngIf="isLoggedIn() && user().admin === 1 && !isMobileView()"
+    class="dropdown"
+  >
+    <button
+      title="Admin panel"
+      routerLink="/products"
+      mat-icon-button
+      class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon"
+    >
+      <mat-icon class="white">admin_panel_settings</mat-icon>
+    </button>
+    <div class="dropdown-content">
+      <a routerLink="/products">Products</a>
+      <a routerLink="/user">Users</a>
+      <a routerLink="/categories">Categories</a>
+    </div>
+  </div>
+  <button
+    *ngIf="
+      this.router.url != '/login' &&
+      this.router.url != '/resetPassword' &&
+      !isMobileView()
+    "
+    (click)="goToCart()"
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with share icon"
+  >
+    <mat-icon class="white">shopping_cart</mat-icon>
+  </button>
+</mat-toolbar>
+<div *ngIf="isMobileView()" [class.show]="sideMenuVisible" class="side-menu">
+  <a
+    *ngFor="let category of categoriesList"
+    (click)="filterByCategory(category.category_id)"
+    routerLink="/{{ category.route }}"
+  >
+    {{ category.name }}
+  </a>
+</div>

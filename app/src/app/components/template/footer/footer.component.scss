@@ -11,6 +11,7 @@
 
 .about {
   width: 200px;
+  min-width: 200px !important;
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
@@ -60,4 +61,15 @@
 
 .pointer {
   cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .categories-mobile {
+    display: none;
+  }
+
+  .footer-section,
+  .about {
+    text-align: center;
+  }
 }

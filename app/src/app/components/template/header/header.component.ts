@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, HostListener } from "@angular/core";
 import { Router } from "@angular/router";
 import { CategoriesService } from "src/app/services/categories.service";
 import { LoginService } from "src/app/services/login.service";
@@ -16,6 +16,24 @@ export class HeaderComponent {
     public categoryService: CategoriesService,
     public router: Router,
   ) {}
+
+  public sideMenuVisible = false;
+  categoriesList: any;
+
+  toggleSideMenu() {
+    this.categoryService.get().subscribe(categories => {
+      this.categoriesList = categories;
+      this.categoryService.serviceCategoryList = categories;
+    });
+    this.sideMenuVisible = !this.sideMenuVisible;
+  }
+
+  filterByCategory(categoryId: any) {
+    this.categoryService.categoryId = categoryId;
+    this.productService.get({ category_id: categoryId }).subscribe(products => {
+      this.productService.products = products;
+    });
+  }
 
   isLoggedIn(): boolean {
     return this.loginService.isLoggedIn();
@@ -53,5 +71,10 @@ export class HeaderComponent {
 
   goToCart() {
     alert("in development");
+  }
+
+  @HostListener("window:resize", ["$event"])
+  isMobileView(): boolean {
+    return window.innerWidth <= 768;
   }
 }

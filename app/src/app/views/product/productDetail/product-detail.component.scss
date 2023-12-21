@@ -101,3 +101,57 @@
   display: flex;
   align-items: center;
 }
+
+.loading-animation {
+  position: relative;
+  overflow: hidden;
+  background: #f0f0f0;
+}
+
+.loading-animation::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+  animation: slide 1.5s infinite linear;
+}
+
+@keyframes slide {
+  from {
+    left: -150%;
+  }
+  to {
+    left: 150%;
+  }
+}
+
+.product-title,
+.product-category,
+.product-price,
+.product-stock,
+.product-description,
+.buy-button {
+  height: 20px;
+  margin: 10px 0;
+}
+
+.product-title {
+  height: 40px;
+}
+
+.product-description {
+  height: 60px;
+}
+
+.buy-button {
+  height: 50px;
+  width: 200px;
+}

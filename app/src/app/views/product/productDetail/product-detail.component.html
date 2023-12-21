@@ -1,26 +1,51 @@
-<div class="product-detail-container">
-  <div class="product-image">
-    <img src="{{ product?.imageUrl }}" alt="{{ product?.name }}" />
-  </div>
-  <div class="product-info">
-    <div class="title-container">
-      <h1 class="product-title terminator-font">{{ product?.name }}</h1>
-      <mat-icon class="favorite-icon" (click)="toggleFavorite()">
-        favorite
-      </mat-icon>
+<div class="container">
+  <div class="product-detail-container row" *ngIf="!product">
+    <div class="product-fake-image loading-animation col-12 col-md-6"> </div>
+    <div class="product-info col-12 col-md-6">
+      <h1 class="product-title loading-animation"></h1>
+      <div class="product-category loading-animation"></div>
+      <div class="product-price loading-animation"></div>
+      <div class="product-stock loading-animation"></div>
+      <p class="product-description loading-animation"></p>
+      <div class="buy-button loading-animation"></div>
     </div>
-    <p class="product-category">Category: {{ this.categoryName }}</p>
-    <p class="product-price terminator-font">{{
-      product?.price | currency: "USD" : "symbol" : "1.2-2"
-    }}</p>
-    <p class="product-stock">In stock: {{ product?.quantity }}</p>
-    <p class="product-description"
-      ><strong>Description: </strong> {{ product?.description }}</p
-    >
-    <button mat-icon-button class="example-icon">
-      <input type="text" class="cep" placeholder="CEP" /> Free delivery
-      <mat-icon class="black">local_shipping</mat-icon>
-    </button>
-    <button (click)="buy()" class="button-terminator">Buy</button>
+  </div>
+
+  <div class="product-detail-container row" *ngIf="product">
+    <div class="product-image col-4 col-md-4">
+      <img
+        src="{{ product?.imageUrl }}"
+        alt="{{ product?.name }}"
+        class="img-fluid"
+      />
+    </div>
+    <div class="product-info col-4 col-md-4">
+      <div
+        class="title-container d-flex justify-content-between align-items-center"
+      >
+        <h1 class="product-title terminator-font">{{ product?.name }}</h1>
+        <mat-icon class="favorite-icon" (click)="toggleFavorite()"
+          >favorite</mat-icon
+        >
+      </div>
+      <p class="product-category">Category: {{ this.categoryName }}</p>
+      <p class="product-price terminator-font">{{
+        product?.price | currency: "USD" : "symbol" : "1.2-2"
+      }}</p>
+      <p class="product-stock">In stock: {{ product?.quantity }}</p>
+      <p class="product-description"
+        ><strong>Description: </strong>{{ product?.description }}</p
+      >
+      <div class="d-flex flex-column flex-sm-row align-items-center">
+        <input type="text" class="cep form-control mr-2" placeholder="CEP" />
+        <button mat-icon-button class="example-icon">
+          Free delivery
+          <mat-icon class="black">local_shipping</mat-icon>
+        </button>
+      </div>
+      <button (click)="buy()" class="button-terminator btn btn-primary mt-3"
+        >Buy</button
+      >
+    </div>
   </div>
 </div>

@@ -16,11 +16,12 @@
 
 .search-field {
   flex-grow: 1;
-  margin: 0px 0px 0px 200px;
+  margin: 0px 0px 0px 20px;
+  width: 100%;
 }
 
 input[type="search"] {
-  width: 80%;
+  width: 100%;
   border: 2px solid #fff;
   padding: 5px;
   padding-left: 18px;
@@ -71,6 +72,8 @@ input:focus[type="search"] {
 .welcome {
   font-size: 12px;
   text-decoration: none;
+  margin-left: 10px;
+  margin-right: -5px;
 }
 
 .dropdown-content {
@@ -100,7 +103,106 @@ input:focus[type="search"] {
 @media (max-width: 1150px) {
   .search-field {
     flex-grow: 1;
-    margin: 0px 0px 0px 30px;
     min-width: 150px;
   }
+}
+
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    height: auto;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .mobile-header-top {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .header-logo {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .logo {
+    max-width: 150px;
+    height: auto;
+    margin: 0 auto;
+  }
+
+  .side-menu a {
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+  }
+
+  .side-menu a:hover {
+    background-color: #666;
+  }
+
+  .side-menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background: #333;
+    overflow-x: hidden;
+    transition: 0.5s;
+    z-index: 1000;
+
+    &.show {
+      left: 0;
+    }
+  }
+
+  .search-field {
+    width: 85%;
+    margin: 0 auto !important;
+  }
+
+  input {
+    width: 100% !important;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+  }
+
+  .mobile-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .mobile-header .mat-icon-button {
+    display: flex;
+  }
+
+  .search-field {
+    flex-grow: 1;
+    margin: 0 10px;
+  }
+
+  .side-menu:not(.show) {
+    display: none;
+  }
+
+  .side-menu.show {
+    display: block;
+    position: fixed;
+    width: 250px;
+  }
+}
+
+.mobile-header {
+  background-color: #000;
+  height: 30px;
+  display: flex;
+  justify-content: flex-end;
+  min-width: 375px;
 }

@@ -1,4 +1,4 @@
-<mat-toolbar class="navbar">
+<mat-toolbar *ngIf="!isMobileView()" class="navbar">
   <mat-nav-list *ngIf="this.router.url === '/'">
     <a
       *ngFor="let category of categoriesList"

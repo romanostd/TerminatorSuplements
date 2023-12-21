@@ -1,4 +1,20 @@
-<div class="container mt-5">
+<div class="container mt-5" *ngIf="isLoading">
+  <div class="row">
+    <div
+      class="col-sm-4 col-xs-12 mb-5 loading-animation"
+      *ngFor="let i of [].constructor(5)"
+    >
+      <mat-card class="example-card mb-3 elevar">
+        <div class="fake-image"></div>
+        <div class="fake-text"></div>
+        <div class="fake-text"></div>
+        <div class="fake-button"></div>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-5" *ngIf="!isLoading">
   <div class="row">
     <div
       class="col-sm-4 col-xs-12 mb-5"

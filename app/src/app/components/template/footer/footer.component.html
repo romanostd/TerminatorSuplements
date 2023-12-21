@@ -1,42 +1,53 @@
 <footer class="footer">
-  <div class="footer-content">
-    <div class="footer-section logo">
-      <img
-        class="logo"
-        src="../../../../assets/img/logo.png"
-        width="275px"
-        height="200px"
-      />
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-3 footer-section mb-2">
+        <img
+          class="logo img-fluid"
+          src="../../../../assets/img/logo.png"
+          alt="Logo"
+        />
+      </div>
+      <div class="col-12 col-md-2 footer-section categories-mobile">
+        <h5 class="terminator-font">Categories</h5>
+        <ul>
+          <li
+            *ngFor="let category of categoriesService.serviceCategoryList"
+            class="pointer"
+            (click)="filterByCategory(category.category_id)"
+          >
+            {{ category.name }}
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-12 col-md-3 footer-section mb-2">
+        <h5 class="terminator-font">About</h5>
+        <span class="about">
+          Terminator Supplements, is a fake e-commerce, developed in Angular and
+          Node, to apply the Full Stack knowledge, with unit tests, pipelines,
+          CI/CD, cloud development, etc. Is a public repository, click
+          <a href="https://github.com/romanostd/TerminatorSuplements">here</a>
+          for more informations.
+        </span>
+      </div>
+
+      <div class="col-12 col-md-2 footer-section mb-2">
+        <h5 class="terminator-font">Contact</h5>
+        <p>terminatorsuplements&#64;outlook.com</p>
+        <div>
+          <i class="fab fa-facebook-square icon fa-2x"></i>
+          <i class="fab fa-twitter-square icon fa-2x"></i>
+          <i class="fab fa-instagram-square icon fa-2x"></i>
+          <i class="fab fa-linkedin icon fa-2x"></i>
+        </div>
+        <p class="mt-2">(41) 9999-9999</p>
+      </div>
     </div>
-    <div class="footer-section">
-      <h5 class="terminator-font">Categories</h5>
-      <tr
-        *ngFor="let category of categoriesService.serviceCategoryList"
-        class="pointer"
-        (click)="filterByCategory(category.category_id)"
-        >{{ category.name }}</tr
-      >
+    <div class="row">
+      <div class="col-12 sub-footer v-middle">
+        © Develop by Romano M. Stedile 2023. All Rights Reserved.
+      </div>
     </div>
-    <div class="footer-section">
-      <h5 class="terminator-font">About</h5>
-      <p class="about"
-        >Terminator Supplements, is a fake e-commerce, developed in Angular and
-        Node, to apply the Full Stack knowledge, with unit tests, pipelines,
-        CI/CD, cloud development, etc.Is a public repository, click
-        <a href="https://github.com/romanostd/TerminatorSuplements">here</a> for
-        more informations.</p
-      >
-    </div>
-    <div class="footer-section">
-      <h5 class="terminator-font">Contact</h5>
-      <p>terminatorsuplements&#64;outlook.com</p>
-      <i class="fab fa-facebook-square icon fa-2x"></i>
-      <i class="fab fa-twitter-square icon fa-2x"></i>
-      <i class="fab fa-instagram-square icon fa-2x"></i>
-      <i class="fab fa-linkedin icon fa-2x"></i>
-      <p class="mt-2">(41) 9999-9999</p>
-    </div> </div
-  ><div class="sub-footer v-middle"
-    >© Develop by Romano M. Stedile 2023. All Rights Reserved.</div
-  >
+  </div>
 </footer>

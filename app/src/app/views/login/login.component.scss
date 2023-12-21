@@ -1,7 +1,9 @@
 @import url("../../app.component.scss");
 
 .login {
-  justify-content: center;
+  max-width: 600px;
+  min-width: 325px;
+  margin: 0 auto;
   position: relative;
   top: 100px;
   border: 1px solid #d3d3d3;
@@ -10,4 +12,8 @@
   padding: 10px;
   background-color: white;
   transition: box-shadow 0.3s ease;
+}
+
+.container {
+  min-height: 500px;
 }

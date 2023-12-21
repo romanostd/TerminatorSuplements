@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, HostListener, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { CategoriesService } from "src/app/services/categories.service";
 import { ProductService } from "src/app/services/product.service";
@@ -29,5 +29,10 @@ export class NavComponent implements OnInit {
     this.productService.get({ category_id: categoryId }).subscribe(products => {
       this.productService.products = products;
     });
+  }
+
+  @HostListener("window:resize", ["$event"])
+  isMobileView(): boolean {
+    return window.innerWidth <= 768;
   }
 }
